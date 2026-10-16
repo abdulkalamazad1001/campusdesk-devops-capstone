@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(dirname "$0")/.."
-kind load docker-image "ghcr.io/abdulkalamazad1001/campusdesk-backend:$IMAGE_TAG" "ghcr.io/abdulkalamazad1001/campusdesk-frontend:$IMAGE_TAG" --name campusdesk-ci
+kind load docker-image "ghcr.io/abdulkalamazad1001/campusdesk-capstone-backend:$IMAGE_TAG" "ghcr.io/abdulkalamazad1001/campusdesk-capstone-frontend:$IMAGE_TAG" --name campusdesk-ci
 kubectl apply -f k8s/namespace.yaml
 # The chart generates campusdesk-db and campusdesk-grafana (secrets.create defaults to true).
 helm upgrade --install campusdesk helm/campusdesk -n campusdesk \

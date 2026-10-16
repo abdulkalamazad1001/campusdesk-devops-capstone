@@ -100,12 +100,12 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build both images using the source commit
         run: |
-          docker build --pull -t ghcr.io/abdulkalamazad1001/campusdesk-backend:${{ github.sha }} "$PROJECT/backend"
-          docker build --pull -t ghcr.io/abdulkalamazad1001/campusdesk-frontend:${{ github.sha }} "$PROJECT/frontend"
+          docker build --pull -t ghcr.io/abdulkalamazad1001/campusdesk-capstone-backend:${{ github.sha }} "$PROJECT/backend"
+          docker build --pull -t ghcr.io/abdulkalamazad1001/campusdesk-capstone-frontend:${{ github.sha }} "$PROJECT/frontend"
       - name: Scan backend image
         uses: aquasecurity/trivy-action@0.35.0
         with:
-          image-ref: ghcr.io/abdulkalamazad1001/campusdesk-backend:${{ github.sha }}
+          image-ref: ghcr.io/abdulkalamazad1001/campusdesk-capstone-backend:${{ github.sha }}
           format: table
           severity: HIGH,CRITICAL
           exit-code: '1'
@@ -113,7 +113,7 @@ jobs:
       - name: Scan frontend image
         uses: aquasecurity/trivy-action@0.35.0
         with:
-          image-ref: ghcr.io/abdulkalamazad1001/campusdesk-frontend:${{ github.sha }}
+          image-ref: ghcr.io/abdulkalamazad1001/campusdesk-capstone-frontend:${{ github.sha }}
           format: table
           severity: HIGH,CRITICAL
           exit-code: '1'
@@ -162,7 +162,7 @@ jobs:
       - name: Save the scanned images for publication
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         run: |
-          docker save             ghcr.io/abdulkalamazad1001/campusdesk-backend:${{ github.sha }}             ghcr.io/abdulkalamazad1001/campusdesk-frontend:${{ github.sha }} | gzip > campusdesk-images.tar.gz
+          docker save ghcr.io/abdulkalamazad1001/campusdesk-capstone-backend:${{ github.sha }} ghcr.io/abdulkalamazad1001/campusdesk-capstone-frontend:${{ github.sha }} | gzip > campusdesk-images.tar.gz
       - uses: actions/upload-artifact@v4
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         with:
@@ -191,8 +191,8 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish verified images
         run: |
-          docker push ghcr.io/abdulkalamazad1001/campusdesk-backend:${{ github.sha }}
-          docker push ghcr.io/abdulkalamazad1001/campusdesk-frontend:${{ github.sha }}
+          docker push ghcr.io/abdulkalamazad1001/campusdesk-capstone-backend:${{ github.sha }}
+          docker push ghcr.io/abdulkalamazad1001/campusdesk-capstone-frontend:${{ github.sha }}
       - name: Promote verified images to GitOps
         run: |
           git config user.name 'github-actions[bot]'

@@ -194,8 +194,8 @@ above predates that addition.
 Registry names:
 
 ```text
-ghcr.io/abdulkalamazad1001/campusdesk-backend:<full-commit-sha>
-ghcr.io/abdulkalamazad1001/campusdesk-frontend:<full-commit-sha>
+ghcr.io/abdulkalamazad1001/campusdesk-capstone-backend:<full-commit-sha>
+ghcr.io/abdulkalamazad1001/campusdesk-capstone-frontend:<full-commit-sha>
 ```
 
 New GHCR packages may be private. Make them public in package settings or configure
@@ -203,8 +203,8 @@ a Kubernetes image-pull Secret using a token with `read:packages`. Never commit 
 
 ## Local Kubernetes And Helm
 
-Install Kind, Helm 3 and kubectl; this workspace also has local tools under the
-repository's ignored `tools/` directory. With Docker running, bootstrap a new cluster:
+Install Kind, Helm 3 and kubectl (for example `winget install Kubernetes.kind Helm.Helm
+Kubernetes.kubectl`). With Docker running, bootstrap a new cluster:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts/local-k8s.ps1

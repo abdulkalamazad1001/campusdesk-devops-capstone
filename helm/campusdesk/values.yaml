@@ -2,11 +2,11 @@
 # rewrites values-release.json only, so pass `-f values-release.json` for the newest tag;
 # this default may lag behind it.
 backend:
-  repository: ghcr.io/abdulkalamazad1001/campusdesk-backend
+  repository: ghcr.io/abdulkalamazad1001/campusdesk-capstone-backend
   tag: 455907c58b08b4866101a29a573e4f73982a82a6
   replicas: 2
 frontend:
-  repository: ghcr.io/abdulkalamazad1001/campusdesk-frontend
+  repository: ghcr.io/abdulkalamazad1001/campusdesk-capstone-frontend
   tag: 455907c58b08b4866101a29a573e4f73982a82a6
   replicas: 2
 imagePullPolicy: IfNotPresent

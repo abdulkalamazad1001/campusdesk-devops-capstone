@@ -209,7 +209,7 @@ can take another 2-3 minutes to resolve. Then open `http://<$lb>/` in a browser.
 `evidence/aws/09-app-browser.png` (the app opened via the load balancer hostname).
 
 If pods show `ImagePullBackOff`, the GHCR images are private: make the
-`campusdesk-backend` / `campusdesk-frontend` packages public on GitHub
+`campusdesk-capstone-backend` / `campusdesk-capstone-frontend` packages public on GitHub
 (Packages > Package settings > Change visibility), then
 `kubectl -n campusdesk delete pod --all`.
 
