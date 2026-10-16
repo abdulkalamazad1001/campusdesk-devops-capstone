@@ -20,7 +20,7 @@ history, so every rubric path (`backend/`, `frontend/`, `helm/`, `k8s/`, `terraf
 | `backend/Dockerfile` builds, non-root | [`backend/Dockerfile`](backend/Dockerfile) | Done: UID 10001 |
 | `frontend/Dockerfile` multi-stage, non-root | [`frontend/Dockerfile`](frontend/Dockerfile) | Done: Node build, Nginx runtime, UID 101 |
 | Workflow runs on push to `main`, pytest in pipeline | [`.github/workflows/campusdesk.yml`](.github/workflows/campusdesk.yml) | Done |
-| Images in GHCR with SHA tags | Repository **Packages** | Done after the first green run |
+| Images in GHCR with SHA tags | `ghcr.io/abdulkalamazad1001/campusdesk-capstone-backend` / `-frontend` | Done: [green run 38917011474](https://github.com/abdulkalamazad1001/campusdesk-devops-capstone/actions/runs/38917011474) |
 | Trivy scan in pipeline, fails on HIGH/CRITICAL | Workflow `build-scan-deploy` job | Done; [explanation](README.md#trivy-result-explained) |
 | No secrets committed | Gitleaks scans the full history in CI | Done: no leaks |
 | `terraform plan`, VPC + EKS Console, `terraform destroy` | [`terraform/`](terraform/), [runbook](terraform/README.md) | **Student to run in AWS**; screenshots go in `evidence/aws/` |
@@ -31,6 +31,8 @@ history, so every rubric path (`backend/`, `frontend/`, `helm/`, `k8s/`, `terraf
 | Narrated presentation video | `demo/` | **Student to record** using [the script](demo/VIDEO-SCRIPT.md) |
 
 ## Evidence
+
+Screenshots for every module: [evidence/screenshots/](evidence/screenshots/README.md).
 
 [`evidence/`](evidence/README.md) holds real test reports, scan reports and captures
 from the running system. `evidence/shared-aws/` contains screenshots from a shared

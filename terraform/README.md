@@ -58,9 +58,6 @@ kubectl version --client
 helm version
 ```
 
-(This repository also ships `..\..\tools\terraform\terraform.exe`; you may use that
-path instead of `terraform`.)
-
 ## 2. AWS credentials
 
 1. Sign in to the AWS Console as the root user or an admin, open **IAM > Users >
