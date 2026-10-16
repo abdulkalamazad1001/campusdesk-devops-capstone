@@ -15,7 +15,7 @@ implementation for the DevOps capstone, using the course architecture.
 | M2 Testing | 40 pytest cases on an isolated test database | [`backend/tests/`](backend/tests/), [`backend/pytest.ini`](backend/pytest.ini), [`backend/tests/conftest.py`](backend/tests/conftest.py) |
 | M3 Git | Public repository, scoped commits, ignore rules | [`.gitignore`](.gitignore) |
 | M4 Docker | Non-root images, multi-stage frontend, Compose stack | [`backend/Dockerfile`](backend/Dockerfile), [`frontend/Dockerfile`](frontend/Dockerfile), [`docker-compose.yml`](docker-compose.yml) |
-| M5 CI/CD | Test, build, scan, publish SHA-tagged images to GHCR | [`../.github/workflows/campusdesk.yml`](../.github/workflows/campusdesk.yml) |
+| M5 CI/CD | Test, build, scan, publish SHA-tagged images to GHCR | [`.github/workflows/campusdesk.yml`](.github/workflows/campusdesk.yml) |
 | M6 DevSecOps | Trivy gate on HIGH/CRITICAL for both images | [CI/CD And Security](#cicd-and-security) |
 | M7 Terraform | VPC with public/private subnets, NAT, EKS, node group | [`terraform/`](terraform/), [runbook](terraform/README.md) |
 | M8 Kubernetes + Helm | Namespace, Helm chart, 2+ replicas, ClusterIP, Ingress | [`k8s/`](k8s/), [`helm/campusdesk/`](helm/campusdesk/) |
@@ -151,9 +151,8 @@ start without `DATABASE_URL` rather than silently using a local file database.
 
 ## CI/CD And Security
 
-The active workflow is at the **repository root**,
-[`../.github/workflows/campusdesk.yml`](../.github/workflows/campusdesk.yml).
-It triggers on pushes to `main`, capstone pull requests, and manual runs. GitOps
+The workflow is [`.github/workflows/campusdesk.yml`](.github/workflows/campusdesk.yml).
+It triggers on pushes to `main`, pull requests, and manual runs. GitOps
 promotion and evidence-only snapshot commits use `[skip ci]` to avoid redundant builds.
 
 1. Ruff, Alembic, pytest against PostgreSQL, and the frontend production build run.

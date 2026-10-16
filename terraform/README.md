@@ -12,9 +12,9 @@ This folder creates:
 | IAM | Cluster/node roles, IRSA role for the EBS CSI driver |
 
 The student runs this runbook against their own AWS account and stores the
-screenshots in `../evidence/aws/` (create that folder). Every step marked
+screenshots in `evidence/aws/` at the repository root (create that folder). Every step marked
 **SCREENSHOT** is evidence for the M7 rubric. All commands are for Windows
-PowerShell 5.1 and are run from the `capstone-campusdesk\terraform` folder unless stated.
+PowerShell 5.1 and are run from the `terraform` folder unless stated.
 
 ## Cost (read first)
 
@@ -90,7 +90,7 @@ gets Kubernetes admin access.
 ## 3. Configure variables
 
 ```powershell
-cd capstone-campusdesk\terraform
+cd terraform
 Copy-Item terraform.tfvars.example terraform.tfvars
 $ip = (Invoke-RestMethod https://checkip.amazonaws.com).Trim()
 "$ip/32"
@@ -164,7 +164,7 @@ Both nodes must show `Ready`.
 
 ## 8. (Optional) Deploy CampusDesk to EKS
 
-Run from the `capstone-campusdesk` folder. This creates a Network Load Balancer and an
+Run from the repository root. This creates a Network Load Balancer and an
 EBS volume, which step 9 removes again.
 
 ```powershell
@@ -221,7 +221,7 @@ for the Traefik `LoadBalancer` Service and EBS volumes for PVCs. If they still e
 while the cluster still exists:
 
 ```powershell
-cd terraform        # only needed if you are in capstone-campusdesk after step 8
+cd terraform        # only needed if you are at the repository root after step 8
 powershell -ExecutionPolicy Bypass -File .\scripts\pre-destroy.ps1
 ```
 

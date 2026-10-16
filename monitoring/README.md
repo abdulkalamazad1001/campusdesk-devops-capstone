@@ -20,7 +20,7 @@ Tested with `prometheus-community/prometheus` 29.37.0 (Prometheus v3.15.0) and
 `grafana/grafana` chart in `https://grafana.github.io/helm-charts` is deprecated and was
 moved to `grafana-community`. The same values also render with `grafana/grafana` 10.5.15.
 
-Run these commands from `capstone-campusdesk/`:
+Run these commands from the repository root:
 
 ```bash
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts

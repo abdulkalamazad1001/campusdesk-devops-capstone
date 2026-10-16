@@ -45,16 +45,14 @@ class PromotionTests(unittest.TestCase):
         self.git(folder, "add", ".")
         self.git(folder, "commit", "-m", message)
 
-    def test_publishes_on_top_of_other_promotion_and_preserves_unrelated_changes(self):
+    def test_publishes_on_top_of_another_promotion(self):
         (self.writer / RELEASE).write_text(json.dumps({"backend": {"tag": "earlier-run"}, "frontend": {"tag": "earlier-run"}}))
-        (self.writer / "homework.txt").write_text("keep unrelated work\n", encoding="utf-8")
-        self.commit(self.writer, "another promotion and homework update")
+        self.commit(self.writer, "another promotion")
         self.git(self.writer, "push", "origin", "main")
         self.assertEqual(publish(self.runner, self.sha), "promoted")
         values = json.loads(self.git(self.remote, "show", f"main:{RELEASE}"))
         self.assertEqual(values["backend"]["tag"], self.sha)
         self.assertEqual(values["frontend"]["tag"], self.sha)
-        self.assertEqual(self.git(self.remote, "show", "main:homework.txt"), "keep unrelated work")
         self.assertEqual(publish(self.runner, self.sha), "unchanged")
 
     def test_newer_source_prevents_stale_promotion(self):

@@ -29,7 +29,7 @@ class SecurityCheckTests(unittest.TestCase):
             self.assertEqual(execute.call_count, 4)
             command = execute.call_args_list[-1].args[0]
             self.assertIn("--redact", command)
-            self.assertIn("--log-opts=--all -- capstone-campusdesk .github/workflows/campusdesk.yml", command)
+            self.assertIn("--log-opts=--all", command)
             return code, summary
 
     def test_all_checks_must_pass(self):

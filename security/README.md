@@ -21,8 +21,7 @@ failure; image build/publication and GitOps promotion depend on this job succeed
 | Secrets | Gitleaks 8.30.1 built-in rules; fetched Git history for the capstone and active workflow | Any finding; redacted logs/reports, one narrowly scoped public-fingerprint exception |
 | Containers | Existing Trivy steps; both built application images | HIGH/CRITICAL findings |
 
-Secret scanning is scoped to `capstone-campusdesk/` and
-`.github/workflows/campusdesk.yml`, not the unrelated historical course homework.
+Secret scanning covers the full Git history of this repository.
 It scans committed history, not ignored `.env` files or uncommitted edits. Run it
 after committing changes; CI checks the pushed commit before publication. Redaction
 is not a substitute for rotating an exposed credential and removing it from history.

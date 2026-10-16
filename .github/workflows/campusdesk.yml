@@ -2,9 +2,7 @@ name: CampusDesk CI/CD
 on:
   push:
     branches: [main]
-    paths: ['capstone-campusdesk/**', '.github/workflows/campusdesk.yml']
   pull_request:
-    paths: ['capstone-campusdesk/**', '.github/workflows/campusdesk.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -13,7 +11,7 @@ concurrency:
   # Never cancel main: a cancelled run could stop between publish and promotion.
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 env:
-  PROJECT: capstone-campusdesk
+  PROJECT: .
 jobs:
   source-security:
     runs-on: ubuntu-latest
@@ -24,7 +22,7 @@ jobs:
       - uses: actions/setup-python@v5
         with: {python-version: '3.13'}
       - uses: actions/setup-node@v4
-        with: {node-version: '24', cache: npm, cache-dependency-path: capstone-campusdesk/frontend/package-lock.json}
+        with: {node-version: '24', cache: npm, cache-dependency-path: frontend/package-lock.json}
       - name: Install pinned source security tools
         run: |
           pip install -r "$PROJECT/security/requirements.txt"
@@ -37,7 +35,7 @@ jobs:
         if: always()
         with:
           name: source-security-reports
-          path: capstone-campusdesk/evidence/local/security/
+          path: evidence/local/security/
   test:
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -55,7 +53,7 @@ jobs:
       - uses: actions/setup-python@v5
         with: {python-version: '3.13'}
       - name: Test against an isolated PostgreSQL database
-        working-directory: capstone-campusdesk/backend
+        working-directory: backend
         env:
           TEST_DATABASE_URL: postgresql+psycopg://test:test-only@localhost:5432/campusdesk_test
         run: |
@@ -71,9 +69,9 @@ jobs:
       - name: Test GitOps promotion concurrency guard
         run: python "$PROJECT/scripts/test_publish_gitops.py"
       - uses: actions/setup-node@v4
-        with: {node-version: '24', cache: npm, cache-dependency-path: capstone-campusdesk/frontend/package-lock.json}
+        with: {node-version: '24', cache: npm, cache-dependency-path: frontend/package-lock.json}
       - name: Build the frontend
-        working-directory: capstone-campusdesk/frontend
+        working-directory: frontend
         run: npm ci && npm run build
       - uses: azure/setup-helm@v4.3.0
         with: {version: v3.17.4}
@@ -84,7 +82,7 @@ jobs:
       - uses: hashicorp/setup-terraform@v3
         with: {terraform_version: 1.11.4}
       - name: Validate Terraform without creating cloud resources
-        working-directory: capstone-campusdesk/terraform
+        working-directory: terraform
         run: |
           terraform fmt -check
           terraform init -backend=false -input=false
@@ -93,7 +91,7 @@ jobs:
         if: always()
         with:
           name: test-results
-          path: capstone-campusdesk/backend/pytest-results.xml
+          path: backend/pytest-results.xml
   build-scan-deploy:
     needs: [test, source-security]
     runs-on: ubuntu-latest
@@ -135,16 +133,16 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
         run: bash "$PROJECT/scripts/ci-k8s.sh"
       - uses: actions/setup-node@v4
-        with: {node-version: '24', cache: npm, cache-dependency-path: capstone-campusdesk/frontend/package-lock.json}
+        with: {node-version: '24', cache: npm, cache-dependency-path: frontend/package-lock.json}
       - name: Install browser test dependencies
-        working-directory: capstone-campusdesk/frontend
+        working-directory: frontend
         run: |
           npm ci
           npx playwright install --with-deps chromium
       - name: Browser regression checks against the deployed Kubernetes application
         env:
           APP_URL: http://127.0.0.1:3000
-          EVIDENCE_DIR: ${{ github.workspace }}/capstone-campusdesk/evidence/local/ci-browser
+          EVIDENCE_DIR: ${{ github.workspace }}/evidence/local/ci-browser
         run: |
           kubectl -n campusdesk port-forward service/frontend 3000:8080 > /tmp/campusdesk-forward.log 2>&1 &
           FORWARD_PID=$!
@@ -155,7 +153,7 @@ jobs:
         if: always()
         with:
           name: browser-results
-          path: capstone-campusdesk/evidence/local/ci-browser/
+          path: evidence/local/ci-browser/
       - name: Collect cluster diagnostics
         if: always()
         run: |

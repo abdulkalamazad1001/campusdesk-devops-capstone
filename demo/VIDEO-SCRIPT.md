@@ -10,7 +10,7 @@ The order follows the rubric: slides first, then the live walkthrough.
 ## Before Recording (do not record this part)
 
 ```powershell
-cd C:\Users\abdul\Downloads\devops\scaler-devops-homework\capstone-campusdesk
+cd C:\Users\abdul\Downloads\devops\campusdesk-devops-capstone
 docker compose up -d --wait              # app at http://localhost:3000
 kubectl config use-context kind-campusdesk
 kubectl get pods -A                      # everything Running
@@ -23,7 +23,7 @@ Open these tabs in advance:
 |---|---|
 | Slides | `demo/slides.pdf` (full screen) |
 | App via Ingress | http://campusdesk.localhost:8088 |
-| GitHub Actions | https://github.com/abdulkalamazad1001/scaler-devops-homework/actions |
+| GitHub Actions | https://github.com/abdulkalamazad1001/campusdesk-devops-capstone/actions |
 | GHCR packages | https://github.com/abdulkalamazad1001?tab=packages |
 | Argo CD | http://argocd.localhost:8088 (user `admin`) |
 | Prometheus targets | http://localhost:9090/targets |

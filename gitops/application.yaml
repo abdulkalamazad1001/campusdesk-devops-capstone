@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/abdulkalamazad1001/scaler-devops-homework.git
+    repoURL: https://github.com/abdulkalamazad1001/campusdesk-devops-capstone.git
     targetRevision: main
-    path: capstone-campusdesk/helm/campusdesk
+    path: helm/campusdesk
     helm:
       releaseName: campusdesk
       valueFiles: [values-local.yaml, values-release.json]

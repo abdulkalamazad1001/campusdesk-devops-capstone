@@ -9,7 +9,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-REPO = ROOT.parent
+REPO = ROOT
 OUTPUT = Path(os.environ.get("SECURITY_OUTPUT", ROOT / "evidence/local/security")).resolve()
 
 
@@ -27,8 +27,8 @@ def main():
         ("gitleaks", ["docker", "run", "--rm", "-v", f"{REPO}:/repo:ro",
                       "-v", f"{OUTPUT}:/reports", "-w", "/repo",
                       "zricethezav/gitleaks:v8.30.1", "git", "--redact", "--no-banner",
-                      "--config=/repo/capstone-campusdesk/security/gitleaks.toml",
-                      "--log-opts=--all -- capstone-campusdesk .github/workflows/campusdesk.yml",
+                      "--config=/repo/security/gitleaks.toml",
+                      "--log-opts=--all",
                       "--report-format=json", "--report-path=/reports/gitleaks.json"]),
     ]
     results = []

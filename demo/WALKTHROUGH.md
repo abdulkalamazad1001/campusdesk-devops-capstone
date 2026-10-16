@@ -50,4 +50,4 @@ browser authorization codes or decoded Kubernetes Secrets in the recording.
 - The current shared images are terminal captures, not Console proof. Add genuine
   VPC/EKS Console material or the instructor-approved alternative before finalizing.
 - Keep the rehearsal labeled as such; upload the complete final recording separately.
-- Use the [grading audit](../GRADING-AUDIT.md) to check outstanding items before submitting.
+- Use the [submission checklist](../SUBMISSION.md) to check outstanding items before submitting.

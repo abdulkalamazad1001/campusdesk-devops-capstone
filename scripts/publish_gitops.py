@@ -6,8 +6,9 @@ import subprocess
 import sys
 from pathlib import Path
 
-PROJECT = "capstone-campusdesk"
-RELEASE = f"{PROJECT}/helm/campusdesk/values-release.json"
+# The repository root is the project; every change except the release values counts as source.
+PROJECT = "."
+RELEASE = "helm/campusdesk/values-release.json"
 
 
 def publish(root, sha, attempts=3):
@@ -20,14 +21,14 @@ def publish(root, sha, attempts=3):
     for _ in range(attempts):
         git("fetch", "origin", "main")
         changed = git("diff", "--quiet", sha, "origin/main", "--", PROJECT,
-                      ".github/workflows/campusdesk.yml", f":(exclude){RELEASE}", check=False)
+                      f":(exclude){RELEASE}", check=False)
         if changed.returncode == 1:
-            print("A newer capstone source revision exists; this run will not promote stale images.")
+            print("A newer source revision exists; this run will not promote stale images.")
             return "superseded"
         changed.check_returncode()
         # This runs in an isolated CI checkout. Never reset a developer's working tree.
         git("switch", "--detach", "origin/main")
-        subprocess.run([sys.executable, str(root / PROJECT / "scripts/promote.py")],
+        subprocess.run([sys.executable, str(root / "scripts/promote.py")],
                        cwd=root, env={**os.environ, "GITHUB_SHA": sha}, check=True)
         git("add", RELEASE)
         staged = git("diff", "--cached", "--quiet", check=False)
@@ -43,4 +44,4 @@ def publish(root, sha, attempts=3):
 
 
 if __name__ == "__main__":
-    print(publish(Path(__file__).resolve().parents[2], os.environ["GITHUB_SHA"]))
+    print(publish(Path(__file__).resolve().parents[1], os.environ["GITHUB_SHA"]))
