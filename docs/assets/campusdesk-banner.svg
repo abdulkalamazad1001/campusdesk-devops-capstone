@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300" role="img" aria-labelledby="title desc">
+  <title id="title">CampusDesk — from campus support to cloud delivery</title>
+  <desc id="desc">A DevSecOps capstone with React, FastAPI, PostgreSQL, GitHub Actions, Terraform, Kubernetes and observability.</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#102f2b"/><stop offset="1" stop-color="#1b5149"/></linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#fff" stroke-opacity=".035"/></pattern>
+  </defs>
+  <rect width="1200" height="300" rx="18" fill="url(#bg)"/>
+  <rect width="1200" height="300" rx="18" fill="url(#grid)"/>
+  <circle cx="1140" cy="36" r="160" fill="#6ad3b4" opacity=".06"/>
+  <circle cx="1090" cy="280" r="105" fill="#6ad3b4" opacity=".05"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="52" y="49" font-size="12" font-weight="700" letter-spacing="3" fill="#96d8c7">DEVSECOPS CAPSTONE</text>
+    <text x="50" y="113" font-size="54" font-weight="700" fill="#fff">CampusDesk</text>
+    <text x="53" y="151" font-size="21" fill="#d0e8e1">From campus support to cloud delivery.</text>
+    <text x="53" y="182" font-size="15" fill="#a4c9be">Build. Test. Secure. Deploy. Observe.</text>
+    <line x1="52" y1="211" x2="1148" y2="211" stroke="#fff" stroke-opacity=".15"/>
+    <text x="53" y="248" font-size="14" fill="#e7f4ef">React + FastAPI</text>
+    <text x="234" y="248" font-size="14" fill="#81bdac">/</text>
+    <text x="267" y="248" font-size="14" fill="#e7f4ef">GitHub Actions</text>
+    <text x="438" y="248" font-size="14" fill="#81bdac">/</text>
+    <text x="471" y="248" font-size="14" fill="#e7f4ef">Terraform + EKS</text>
+    <text x="655" y="248" font-size="14" fill="#81bdac">/</text>
+    <text x="688" y="248" font-size="14" fill="#e7f4ef">Argo CD</text>
+    <text x="805" y="248" font-size="14" fill="#81bdac">/</text>
+    <text x="838" y="248" font-size="14" fill="#e7f4ef">Prometheus + Grafana</text>
+    <text x="1148" y="51" text-anchor="end" font-size="12" fill="#a4c9be">T. ABDUL KALAM AZAD · 24BCS10053</text>
+  </g>
+</svg>

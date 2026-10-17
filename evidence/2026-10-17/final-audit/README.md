@@ -11,4 +11,5 @@ repair and cleanup session. [Chapters](supplement-chapters.json) index the separ
 [supplement video](../../../demo/verification-supplement.mp4).
 
 The browser report explicitly identifies its mocked cases. AWS checks are read-only;
-this review did not recreate cloud resources. The form remains deferred.
+this review did not recreate cloud resources. The form was deferred at the time of
+this review; the owner has since confirmed submission.

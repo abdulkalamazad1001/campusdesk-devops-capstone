@@ -8,7 +8,7 @@
 
 The existing CampusDesk repository and its development history are preserved.
 The [final assignment audit](FINAL-AUDIT.md) maps the current instructor requirements
-to verified results and identifies the deferred form submission.
+to verified results. The owner has confirmed that the course form has been submitted.
 The dated evidence below comes from this project's own application and AWS deployment.
 
 | Module | Implementation and review evidence |
@@ -36,5 +36,6 @@ owner’s recorded narration. Historical `evidence/shared-aws/` belongs to the c
 TaskBoard exercise and is not used as CampusDesk deployment proof.
 
 The course [submission form](https://forms.gle/XWAP1vAumDJgAPM1A) accepts this
-repository URL. Form submission is intentionally deferred at the owner’s request. Publishing
-this project does not submit the form, and no submission receipt is claimed.
+repository URL. The owner has confirmed that the form has already been submitted.
+This status records that confirmation; no independently verified submission receipt
+or instructor grade is claimed.
