@@ -1,5 +1,8 @@
 # Verification Evidence
 
+**Current verification:** [17 October 2026 — CampusDesk on macOS, Kind and AWS EKS](2026-10-17/README.md). Earlier reports below remain historical records.
+
+
 These files come from actual local commands, real browser interactions and GitHub
 Actions artifacts. The sample ticket records are explicitly synthetic demo data.
 

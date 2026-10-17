@@ -1,0 +1,59 @@
+{
+  "status": "success",
+  "data": {
+    "activeTargets": [
+      {
+        "discoveredLabels": {
+          "__address__": "10.244.0.41:8000",
+          "__meta_dns_name": "backend-metrics.campusdesk.svc.cluster.local",
+          "__metrics_path__": "/metrics",
+          "__scheme__": "http",
+          "__scrape_interval__": "15s",
+          "__scrape_timeout__": "10s",
+          "job": "campusdesk"
+        },
+        "labels": {
+          "instance": "10.244.0.41:8000",
+          "job": "campusdesk"
+        },
+        "scrapePool": "campusdesk",
+        "scrapeUrl": "http://10.244.0.41:8000/metrics",
+        "globalUrl": "http://10.244.0.41:8000/metrics",
+        "lastError": "",
+        "lastScrape": "2026-10-17T16:56:47.497788543Z",
+        "lastScrapeDuration": 0.004960834,
+        "health": "up",
+        "scrapeInterval": "15s",
+        "scrapeTimeout": "10s"
+      },
+      {
+        "discoveredLabels": {
+          "__address__": "10.244.0.38:8000",
+          "__meta_dns_name": "backend-metrics.campusdesk.svc.cluster.local",
+          "__metrics_path__": "/metrics",
+          "__scheme__": "http",
+          "__scrape_interval__": "15s",
+          "__scrape_timeout__": "10s",
+          "job": "campusdesk"
+        },
+        "labels": {
+          "instance": "10.244.0.38:8000",
+          "job": "campusdesk"
+        },
+        "scrapePool": "campusdesk",
+        "scrapeUrl": "http://10.244.0.38:8000/metrics",
+        "globalUrl": "http://10.244.0.38:8000/metrics",
+        "lastError": "",
+        "lastScrape": "2026-10-17T16:56:46.926096508Z",
+        "lastScrapeDuration": 0.005601209,
+        "health": "up",
+        "scrapeInterval": "15s",
+        "scrapeTimeout": "10s"
+      }
+    ],
+    "droppedTargets": [],
+    "droppedTargetCounts": {
+      "campusdesk": 0
+    }
+  }
+}

@@ -27,11 +27,17 @@ Other guides: [demo script](demo/VIDEO-SCRIPT.md) | [evidence](evidence/README.m
 
 The [17 October verification record](evidence/2026-10-17/README.md) contains the
 current Compose, Kind, AWS EKS, browser, autoscaling and monitoring results.
-[Run 39049385857](https://github.com/abdulkalamazad1001/campusdesk-devops-capstone/actions/runs/39049385857)
+[Run 39050953328](https://github.com/abdulkalamazad1001/campusdesk-devops-capstone/actions/runs/39050953328)
 passed native AMD64 and ARM64 tests, scans and Helm/browser checks before publishing
 the multi-platform release. The app's DM Sans font is bundled locally with its
 [SIL Open Font License](frontend/public/fonts/OFL.txt), so rendering does not depend
 on an external font service.
+
+Watch the [computer-narrated walkthrough](demo/walkthrough.mp4) or open the
+[12-slide PDF](demo/slides.pdf). The [submission checklist](SUBMISSION.md) maps
+each module to evidence. The temporary AWS deployment was destroyed after recording;
+[cleanup verification](evidence/2026-10-17/aws-cleanup-verification.txt) found no
+remaining active resources in the project checks. Local Kind remains available.
 
 ![CampusDesk running through local Kubernetes Ingress](evidence/application-ingress.png)
 
@@ -213,9 +219,8 @@ Test and scan reports are uploaded as workflow artifacts. There is no `continue-
 on quality/security gates and no fabricated successful scan output. A failed scan must
 be resolved before release. Trivy covers installed OS and application packages; it
 does not establish that application authorization or business logic is secure.
-See [security scopes, thresholds and local commands](security/README.md). The
-source-security addition has separate reports; the earlier successful run linked
-above predates that addition.
+See [security scopes, thresholds and local commands](security/README.md). The current successful run includes every source-security gate; the dated
+evidence index retains the reports.
 
 Registry names:
 

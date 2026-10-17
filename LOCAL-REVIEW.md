@@ -1,8 +1,11 @@
 # Local Quality Review
 
+> Historical record. See [17 October verification](evidence/2026-10-17/README.md) for the current AWS deployment, multi-platform CI, and presentation evidence.
+
+
 Reviewed on 15 October 2026 (Asia/Calcutta). Scope: the implemented local application
 and DevOps workflow. This is a verification record, not a claim of perfect software
-or a guaranteed grade. AWS execution remains outside this completed local scope.
+or a guaranteed grade. AWS execution was outside that local review scope.
 
 ## Issues Corrected
 
@@ -54,5 +57,6 @@ Older CI reports remain as historical records, not the latest release's results.
 The app intentionally lacks authentication/RBAC and is kept on loopback interfaces.
 PostgreSQL remains single-instance and monitoring storage ephemeral. Pytest reports
 one upstream Starlette/httpx deprecation warning; it does not fail the tests.
-The local video is a silent rehearsal. Real AWS deployment, cloud cleanup evidence,
-the complete student-narrated walkthrough and submission remain pending.
+At this review date, the local video was a silent rehearsal; AWS deployment,
+cleanup, the final narrated walkthrough and submission were pending. The dated
+17 October index above records subsequent work.

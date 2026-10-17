@@ -1,0 +1,19 @@
+{
+  "capturedAt": "2026-10-17T16:41:42.109597+00:00",
+  "finishedAt": "2026-10-17T16:41:42.830633+00:00",
+  "command": [
+    "aws",
+    "ec2",
+    "describe-route-tables",
+    "--filters",
+    "Name=vpc-id,Values=vpc-09f58b5fefcde394e",
+    "--query",
+    "RouteTables[].{RouteTable:RouteTableId,Routes:Routes,Subnets:Associations[].SubnetId}",
+    "--output",
+    "json"
+  ],
+  "cwd": "/Users/abdulkalamazad/Documents/campusdesk-devops-capstone",
+  "exitCode": 0,
+  "durationSeconds": 0.72,
+  "stdout": "[\n    {\n        \"RouteTable\": \"rtb-088e92c4909a8114f\",\n        \"Routes\": [\n            {\n                \"DestinationCidrBlock\": \"10.42.0.0/16\",\n                \"GatewayId\": \"local\",\n                \"Origin\": \"CreateRouteTable\",\n                \"State\": \"active\"\n            },\n            {\n                \"DestinationCidrBlock\": \"0.0.0.0/0\",\n                \"GatewayId\": \"igw-0ea54508805700169\",\n                \"Origin\": \"CreateRoute\",\n                \"State\": \"active\"\n            }\n        ],\n        \"Subnets\": [\n            \"subnet-08e8767f5ffb9716b\",\n            \"subnet-03873c649a0a04ca5\"\n        ]\n    },\n    {\n        \"RouteTable\": \"rtb-0ead8381595b3ab9d\",\n        \"Routes\": [\n            {\n                \"DestinationCidrBlock\": \"10.42.0.0/16\",\n                \"GatewayId\": \"local\",\n                \"Origin\": \"CreateRouteTable\",\n                \"State\": \"active\"\n            },\n            {\n                \"DestinationCidrBlock\": \"0.0.0.0/0\",\n                \"NatGatewayId\": \"nat-06ca71e1cb72c7930\",\n                \"Origin\": \"CreateRoute\",\n                \"State\": \"active\"\n            }\n        ],\n        \"Subnets\": [\n            \"subnet-02ae72237701ed2c6\",\n            \"subnet-0bb25480a9005c25e\"\n        ]\n    },\n    {\n        \"RouteTable\": \"rtb-01e947448315617c6\",\n        \"Routes\": [\n            {\n                \"DestinationCidrBlock\": \"10.42.0.0/16\",\n                \"GatewayId\": \"local\",\n                \"Origin\": \"CreateRouteTable\",\n                \"State\": \"active\"\n            }\n        ],\n        \"Subnets\": []\n    }\n]\n"
+}

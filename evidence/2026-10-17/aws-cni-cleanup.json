@@ -1,0 +1,17 @@
+{
+  "capturedAt": "2026-10-17T17:08:54.412563+00:00",
+  "finishedAt": "2026-10-17T17:08:55.421076+00:00",
+  "command": [
+    "aws",
+    "ec2",
+    "delete-network-interface",
+    "--network-interface-id",
+    "eni-0b3afdae6db7a309a",
+    "--region",
+    "ap-south-1"
+  ],
+  "cwd": "/Users/abdulkalamazad/Documents/campusdesk-devops-capstone",
+  "exitCode": 0,
+  "durationSeconds": 1.01,
+  "stdout": ""
+}

@@ -1,0 +1,18 @@
+{
+  "capturedAt": "2026-10-17T16:54:06.628513+00:00",
+  "finishedAt": "2026-10-17T16:54:08.297530+00:00",
+  "command": [
+    "gh",
+    "run",
+    "view",
+    "39050953328",
+    "--json",
+    "url,headSha,status,conclusion,jobs",
+    "--jq",
+    "{url,headSha,status,conclusion,jobs:[.jobs[]|{name,conclusion}]}"
+  ],
+  "cwd": "/Users/abdulkalamazad/Documents/campusdesk-devops-capstone",
+  "exitCode": 0,
+  "durationSeconds": 1.67,
+  "stdout": "{\"conclusion\":\"success\",\"headSha\":\"f9bdd3af7bae550b433845272db006b7a08e34e2\",\"jobs\":[{\"conclusion\":\"success\",\"name\":\"test\"},{\"conclusion\":\"success\",\"name\":\"source-security\"},{\"conclusion\":\"success\",\"name\":\"build-scan-deploy (amd64, ubuntu-24.04)\"},{\"conclusion\":\"success\",\"name\":\"build-scan-deploy (arm64, ubuntu-24.04-arm)\"},{\"conclusion\":\"success\",\"name\":\"publish\"}],\"status\":\"completed\",\"url\":\"https://github.com/abdulkalamazad1001/campusdesk-devops-capstone/actions/runs/39050953328\"}\n"
+}

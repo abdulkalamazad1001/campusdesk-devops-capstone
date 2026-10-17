@@ -1,0 +1,15 @@
+Captured at: 2026-10-17T16:41:41.104153+00:00
+Command: aws ec2 describe-subnets --filters Name=vpc-id,Values=vpc-09f58b5fefcde394e --query Subnets[].{ID:SubnetId,CIDR:CidrBlock,AZ:AvailabilityZone,AutoAssignPublicIPv4:MapPublicIpOnLaunch} --output table
+Exit code: 0
+Duration: 0.93s
+
+--------------------------------------------------------------------------------------
+|                                   DescribeSubnets                                  |
++-------------+------------------------+----------------+----------------------------+
+|     AZ      | AutoAssignPublicIPv4   |     CIDR       |            ID              |
++-------------+------------------------+----------------+----------------------------+
+|  ap-south-1a|  False                 |  10.42.11.0/24 |  subnet-02ae72237701ed2c6  |
+|  ap-south-1a|  False                 |  10.42.1.0/24  |  subnet-03873c649a0a04ca5  |
+|  ap-south-1b|  False                 |  10.42.2.0/24  |  subnet-08e8767f5ffb9716b  |
+|  ap-south-1b|  False                 |  10.42.12.0/24 |  subnet-0bb25480a9005c25e  |
++-------------+------------------------+----------------+----------------------------+

@@ -1,5 +1,10 @@
 # Presentation Video Script
 
+The delivered video is [`walkthrough.mp4`](walkthrough.mp4), with explicitly
+disclosed computer narration. See [the delivery notes](README.md) and
+[the exact narration](NARRATION.md). The manual recording guide below is retained
+for anyone who wants to record a personal presentation.
+
 Target length: **12-15 minutes**. Record the screen with your voice (OBS Studio, or
 Windows `Win + Alt + R` / Clipchamp). Export as MP4 and save it as
 `demo/campusdesk-presentation.mp4`. Speak in your own words; the lines below are a

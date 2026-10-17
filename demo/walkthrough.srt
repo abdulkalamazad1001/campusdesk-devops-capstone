@@ -1,0 +1,511 @@
+1
+00:00:00,552 --> 00:00:05,168
+This is a computer narrated demonstration of CampusDesk, the DevOps capstone repository
+
+2
+00:00:05,168 --> 00:00:09,783
+of T. Abdul Kalam Azad, roll number 24 B C S 10053.
+
+3
+00:00:09,783 --> 00:00:14,399
+The voice is synthetic. The application, commands, deployments, and verification results shown
+
+4
+00:00:14,399 --> 00:00:19,014
+are real. We begin with twelve slides, followed by the working systems.
+
+5
+00:00:25,423 --> 00:00:29,526
+CampusDesk organizes campus IT support. Students and staff report issues, and the
+
+6
+00:00:29,526 --> 00:00:33,628
+support team assigns ownership, prioritizes work, and tracks resolution. This project connects
+
+7
+00:00:33,628 --> 00:00:37,731
+that application to a reproducible DevOps delivery process.
+
+8
+00:00:42,769 --> 00:00:46,487
+Requests cover network, hardware, software, and account access. The interface provides search,
+
+9
+00:00:46,487 --> 00:00:50,205
+status filters, priority, assignment, and an editable ticket workflow. All records used
+
+10
+00:00:50,205 --> 00:00:53,923
+in this demonstration are synthetic.
+
+11
+00:01:00,617 --> 00:01:04,976
+React and Nginx provide the browser interface. FastAPI validates API requests. SQLAlchemy
+
+12
+00:01:04,976 --> 00:01:09,335
+talks to PostgreSQL, while Alembic versions the database schema. Forty API tests
+
+13
+00:01:09,335 --> 00:01:13,694
+cover isolated test databases, and CI repeats them against PostgreSQL.
+
+14
+00:01:20,793 --> 00:01:24,447
+Traffic enters through Traefik. The frontend and backend use Kubernetes Services. PostgreSQL
+
+15
+00:01:24,447 --> 00:01:28,101
+keeps ticket data in a persistent volume. GitHub Actions tests and scans
+
+16
+00:01:28,101 --> 00:01:31,755
+images, then publishes them to GHCR. Argo CD reconciles the Helm configuration
+
+17
+00:01:31,755 --> 00:01:35,408
+from Git.
+
+18
+00:01:40,022 --> 00:01:44,509
+The responsive helpdesk is an original CampusDesk implementation. The browser checks verify
+
+19
+00:01:44,509 --> 00:01:48,996
+real creation, update, persistence, and deletion, together with narrow screen layouts and
+
+20
+00:01:48,996 --> 00:01:53,484
+accessible controls. Mocked edge cases are separately identified in the reports.
+
+21
+00:01:58,769 --> 00:02:02,712
+Publication is gated. Source security and tests must pass before image builds.
+
+22
+00:02:02,712 --> 00:02:06,654
+Native AMD64 and ARM64 jobs scan both images with Trivy, deploy Helm
+
+23
+00:02:06,654 --> 00:02:10,596
+into Kind, and run seventeen browser checks. Only those exact verified images
+
+24
+00:02:10,596 --> 00:02:14,538
+become the commit SHA release.
+
+25
+00:02:18,922 --> 00:02:23,057
+Kubernetes runs two frontend and at least two backend replicas. Readiness checks
+
+26
+00:02:23,057 --> 00:02:27,192
+database access, while liveness checks the API process. A real load test
+
+27
+00:02:27,192 --> 00:02:31,326
+completed thirty one thousand two hundred seventy four successful requests and scaled
+
+28
+00:02:31,326 --> 00:02:35,461
+the backend from two replicas to four.
+
+29
+00:02:37,365 --> 00:02:41,853
+Argo CD reads this repository. The migration hook runs before the application
+
+30
+00:02:41,853 --> 00:02:46,340
+rollout. CI promotes the verified image tags in Git, and Argo synchronizes
+
+31
+00:02:46,340 --> 00:02:50,827
+the desired state. Secrets are generated separately and kept outside Git.
+
+32
+00:02:54,577 --> 00:02:58,552
+Prometheus scrapes each backend replica. Grafana displays availability, request rate, latency, and
+
+33
+00:02:58,552 --> 00:03:02,526
+response codes. The dashboard is populated by real requests. Monitoring makes the
+
+34
+00:03:02,526 --> 00:03:06,501
+effect of traffic and rollout changes visible.
+
+35
+00:03:11,939 --> 00:03:15,862
+Terraform created a VPC in Mumbai with two public and two private
+
+36
+00:03:15,862 --> 00:03:19,785
+subnets, a NAT gateway, EKS version one point thirty five, and two
+
+37
+00:03:19,785 --> 00:03:23,708
+private worker nodes. The initial plan contained sixty one resources. A DNS
+
+38
+00:03:23,708 --> 00:03:27,631
+interruption was recovered using the existing state, and the follow up plan
+
+39
+00:03:27,631 --> 00:03:31,554
+found no drift.
+
+40
+00:03:33,732 --> 00:03:37,290
+The troubleshooting exercises deliberately use an invalid image, a wrong Service selector,
+
+41
+00:03:37,290 --> 00:03:40,847
+and an invalid readiness path. The evidence shows the failure, diagnosis, repair,
+
+42
+00:03:40,847 --> 00:03:44,405
+and cleanup. These exercises use disposable resources and keep the actual application
+
+43
+00:03:44,405 --> 00:03:47,963
+available.
+
+44
+00:03:53,800 --> 00:03:57,935
+Verification includes cleanup. Kubernetes created load balancers and persistent volumes must be
+
+45
+00:03:57,935 --> 00:04:02,069
+removed before Terraform destroys the cluster and network. The evidence index separates
+
+46
+00:04:02,069 --> 00:04:06,204
+current CampusDesk results from historical examples. The classroom app still needs authentication,
+
+47
+00:04:06,204 --> 00:04:10,339
+TLS, and database resilience before production use.
+
+48
+00:04:17,661 --> 00:04:22,276
+The repository keeps the API, frontend, chart, workflow, and infrastructure together. This
+
+49
+00:04:22,276 --> 00:04:26,891
+is an excerpt from the actual API source. Validation and database handling
+
+50
+00:04:26,891 --> 00:04:31,507
+live in the application, while the delivery scripts make its deployment repeatable.
+
+51
+00:04:35,366 --> 00:04:39,597
+The repository separates backend, frontend, Helm, Kubernetes, Terraform, GitOps, monitoring, and delivery
+
+52
+00:04:39,597 --> 00:04:43,828
+scripts. These are the real API route declarations: health, readiness, metrics, statistics,
+
+53
+00:04:43,828 --> 00:04:48,059
+and ticket list, read, create, update, and delete. A commit SHA connects
+
+54
+00:04:48,059 --> 00:04:52,289
+this source to the exact published container release.
+
+55
+00:04:59,735 --> 00:05:03,581
+Alembic creates the tickets schema before the application starts. The tests use
+
+56
+00:05:03,581 --> 00:05:07,427
+a dedicated database and a transaction per test. The dependency override supplies
+
+57
+00:05:07,427 --> 00:05:11,273
+the test session, and rollback removes the test changes. CI exercises the
+
+58
+00:05:11,273 --> 00:05:15,119
+same migration on PostgreSQL.
+
+59
+00:05:18,523 --> 00:05:22,754
+The backend installs dependencies and runs as user ten thousand and one.
+
+60
+00:05:22,754 --> 00:05:26,984
+The frontend uses a Node build stage and copies only the compiled
+
+61
+00:05:26,984 --> 00:05:31,215
+site into unprivileged Nginx, running as user one hundred and one. Trivy
+
+62
+00:05:31,215 --> 00:05:35,446
+scans both runtime images before CI publishes them.
+
+63
+00:05:37,422 --> 00:05:41,653
+We are now using the running Kubernetes application through Ingress. This ticket
+
+64
+00:05:41,653 --> 00:05:45,884
+is created through the real API, assigned to campus support, marked resolved,
+
+65
+00:05:45,884 --> 00:05:50,115
+and deleted. The database and interface are responding live.
+
+66
+00:05:53,037 --> 00:05:57,652
+The API tests now execute again in an isolated local database. The
+
+67
+00:05:57,652 --> 00:06:02,267
+CI run additionally verifies PostgreSQL migration upgrade, schema consistency, and downgrade. The
+
+68
+00:06:02,267 --> 00:06:06,883
+test output shown here is produced by this command during the recording.
+
+69
+00:06:10,686 --> 00:06:14,532
+This is a real commit and push of the reviewed changes, including
+
+70
+00:06:14,532 --> 00:06:18,378
+the bundled font and portable AWS deployment script. The push starts the
+
+71
+00:06:18,378 --> 00:06:22,225
+required main branch workflow. We will return to its result after the
+
+72
+00:06:22,225 --> 00:06:26,071
+cloud and monitoring demonstration.
+
+73
+00:06:27,144 --> 00:06:31,118
+We now check the workflow triggered by the live push. The status
+
+74
+00:06:31,118 --> 00:06:35,092
+below comes directly from GitHub. Publication is allowed only after every required
+
+75
+00:06:35,092 --> 00:06:39,067
+test, scan, deployment, and browser job passes.
+
+76
+00:07:07,144 --> 00:07:10,990
+The workflow triggered by the recorded push completed successfully. Both native architectures
+
+77
+00:07:10,990 --> 00:07:14,836
+passed their build, Trivy scan, Kubernetes deployment, and browser checks. The publish
+
+78
+00:07:14,836 --> 00:07:18,682
+job then released both images and updated GitOps. This result comes from
+
+79
+00:07:18,682 --> 00:07:22,528
+the GitHub API, and the full workflow URL and source commit are
+
+80
+00:07:22,528 --> 00:07:26,374
+shown here.
+
+81
+00:07:29,391 --> 00:07:33,621
+The original Terraform plan proposed sixty one resources. This excerpt is from
+
+82
+00:07:33,621 --> 00:07:37,852
+the captured nonempty plan. The following apply and follow up plan establish
+
+83
+00:07:37,852 --> 00:07:42,083
+that the infrastructure was created and matches the configuration.
+
+84
+00:07:44,852 --> 00:07:49,082
+These are the original Terraform results from this AWS deployment. The first
+
+85
+00:07:49,082 --> 00:07:53,313
+apply stopped because local DNS could not resolve the AWS OIDC endpoint.
+
+86
+00:07:53,313 --> 00:07:57,544
+Resuming from state created the remaining seven resources without recreating the cluster.
+
+87
+00:07:57,544 --> 00:08:01,775
+The next plan verified there were no differences.
+
+88
+00:08:04,967 --> 00:08:08,814
+This screenshot was captured from the real AWS Console during this run.
+
+89
+00:08:08,814 --> 00:08:12,660
+It identifies the CampusDesk cluster in Mumbai, shows Active status, and shows
+
+90
+00:08:12,660 --> 00:08:16,506
+Kubernetes version one point thirty five. The AWS session used for evidence
+
+91
+00:08:16,506 --> 00:08:20,352
+has read only permissions.
+
+92
+00:08:23,074 --> 00:08:27,305
+The VPC console shows the CampusDesk network created by Terraform. Public subnet
+
+93
+00:08:27,305 --> 00:08:31,536
+routes use the internet gateway, and private worker subnet routes use the
+
+94
+00:08:31,536 --> 00:08:35,767
+NAT gateway. The route table evidence identifies each association.
+
+95
+00:08:39,115 --> 00:08:43,474
+The following command queries the live AWS cluster. Both managed worker nodes
+
+96
+00:08:43,474 --> 00:08:47,832
+are Ready. The application uses private nodes, ClusterIP Services, an Ingress, and
+
+97
+00:08:47,832 --> 00:08:52,191
+a PostgreSQL persistent volume provisioned by the EBS CSI driver.
+
+98
+00:08:56,282 --> 00:09:00,769
+The same application was verified through the AWS load balancer, with all
+
+99
+00:09:00,769 --> 00:09:05,256
+seventeen browser checks passing. These captures come from that cloud deployment, including
+
+100
+00:09:05,256 --> 00:09:09,744
+real CRUD operations. They are separate from the local Kind evidence.
+
+101
+00:09:12,335 --> 00:09:16,085
+Argo CD is connected to this repository and shows the application as
+
+102
+00:09:16,085 --> 00:09:19,835
+synchronized and healthy. The image tag is the source commit that passed
+
+103
+00:09:19,835 --> 00:09:23,585
+the pipeline. Git records the desired state, and the controller reconciles it
+
+104
+00:09:23,585 --> 00:09:27,335
+into the cluster.
+
+105
+00:09:28,744 --> 00:09:32,590
+Here are the live local workloads, Services, Ingress, and autoscaler. The backend
+
+106
+00:09:32,590 --> 00:09:36,436
+and frontend have multiple healthy replicas. PostgreSQL and monitoring remain in the
+
+107
+00:09:36,436 --> 00:09:40,282
+same project namespace. Each command explicitly names the cluster to avoid accidental
+
+108
+00:09:40,282 --> 00:09:44,128
+operations on another environment.
+
+109
+00:09:49,073 --> 00:09:52,919
+Prometheus discovers each backend replica and scrapes the metrics endpoint. These targets
+
+110
+00:09:52,919 --> 00:09:56,765
+are live. A successful scrape establishes monitoring connectivity; the dashboard then turns
+
+111
+00:09:56,765 --> 00:10:00,611
+those time series into service measurements.
+
+112
+00:10:04,646 --> 00:10:08,748
+Grafana is reading the live Prometheus datasource. Request traffic, response codes, latency,
+
+113
+00:10:08,748 --> 00:10:12,851
+and healthy replica count are visible. The earlier load run shows how
+
+114
+00:10:12,851 --> 00:10:16,953
+traffic and scaling change these measurements over time.
+
+115
+00:10:20,684 --> 00:10:24,434
+The saved Trivy reports contain zero high or critical findings for both
+
+116
+00:10:24,434 --> 00:10:28,184
+images on both CPU architectures. Source security also passed. Separately, the autoscaler
+
+117
+00:10:28,184 --> 00:10:31,934
+event records a successful increase from two to four replicas in response
+
+118
+00:10:31,934 --> 00:10:35,684
+to CPU demand.
+
+119
+00:10:38,851 --> 00:10:43,274
+The demonstration covers the application, tests, container security, cloud infrastructure, GitOps, and
+
+120
+00:10:43,274 --> 00:10:47,698
+observability. The AWS resources are temporary. Cleanup completion and final verification are
+
+121
+00:10:47,698 --> 00:10:52,121
+recorded in the evidence index and the cleanup appendix. The application is
+
+122
+00:10:52,121 --> 00:10:56,544
+a classroom demonstration with synthetic data, not a production service.
+
+123
+00:11:03,895 --> 00:11:07,806
+After recording the live AWS demonstration, the application and ingress releases were
+
+124
+00:11:07,806 --> 00:11:11,716
+removed, including the load balancer and database volume. Terraform then destroyed the
+
+125
+00:11:11,716 --> 00:11:15,626
+sixty one managed resources. The follow up AWS queries found no remaining
+
+126
+00:11:15,626 --> 00:11:19,536
+active resources in the listed project checks. The KMS key is scheduled
+
+127
+00:11:19,536 --> 00:11:23,447
+for deletion after its required waiting period. Local Kind remains available for
+
+128
+00:11:23,447 --> 00:11:27,357
+review.

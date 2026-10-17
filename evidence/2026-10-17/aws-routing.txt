@@ -1,0 +1,61 @@
+Captured at: 2026-10-17T16:41:42.109597+00:00
+Command: aws ec2 describe-route-tables --filters Name=vpc-id,Values=vpc-09f58b5fefcde394e --query RouteTables[].{RouteTable:RouteTableId,Routes:Routes,Subnets:Associations[].SubnetId} --output json
+Exit code: 0
+Duration: 0.72s
+
+[
+    {
+        "RouteTable": "rtb-088e92c4909a8114f",
+        "Routes": [
+            {
+                "DestinationCidrBlock": "10.42.0.0/16",
+                "GatewayId": "local",
+                "Origin": "CreateRouteTable",
+                "State": "active"
+            },
+            {
+                "DestinationCidrBlock": "0.0.0.0/0",
+                "GatewayId": "igw-0ea54508805700169",
+                "Origin": "CreateRoute",
+                "State": "active"
+            }
+        ],
+        "Subnets": [
+            "subnet-08e8767f5ffb9716b",
+            "subnet-03873c649a0a04ca5"
+        ]
+    },
+    {
+        "RouteTable": "rtb-0ead8381595b3ab9d",
+        "Routes": [
+            {
+                "DestinationCidrBlock": "10.42.0.0/16",
+                "GatewayId": "local",
+                "Origin": "CreateRouteTable",
+                "State": "active"
+            },
+            {
+                "DestinationCidrBlock": "0.0.0.0/0",
+                "NatGatewayId": "nat-06ca71e1cb72c7930",
+                "Origin": "CreateRoute",
+                "State": "active"
+            }
+        ],
+        "Subnets": [
+            "subnet-02ae72237701ed2c6",
+            "subnet-0bb25480a9005c25e"
+        ]
+    },
+    {
+        "RouteTable": "rtb-01e947448315617c6",
+        "Routes": [
+            {
+                "DestinationCidrBlock": "10.42.0.0/16",
+                "GatewayId": "local",
+                "Origin": "CreateRouteTable",
+                "State": "active"
+            }
+        ],
+        "Subnets": []
+    }
+]

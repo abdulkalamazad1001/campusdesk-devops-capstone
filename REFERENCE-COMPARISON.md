@@ -1,5 +1,8 @@
 # Reference Comparison
 
+> Historical record. See [17 October verification](evidence/2026-10-17/README.md) for the current AWS deployment, multi-platform CI, and presentation evidence.
+
+
 Compared the owner's suggested [Session 21 example](https://github.com/Shaikh-Suja-Rahaman/devops-heros/tree/a966ab3a8f9772e69e786f411a9f1ccbb3765701/session21-python)
 and its `MyReadme.md`, workflow and security configuration with CampusDesk and the
 [instructor rubric](https://github.com/Nency-Ravaliya/devsecops-python/blob/main/GRADING.md).
@@ -10,7 +13,7 @@ screenshots; three unchanged images are now included in the separately credited
 [shared evidence appendix](evidence/shared-aws/README.md). They are not CampusDesk
 deployment results. CampusDesk remains an original campus IT helpdesk.
 
-| Area in the example | CampusDesk comparison and action |
+| Area in the example | CampusDesk status at the historical review date |
 |---|---|
 | App, migrations, CRUD, responsive UI | Already implemented; 20 API tests and 17 browser checks in the previous verified release |
 | Docker, GHCR SHA tags, CI, Helm, Ingress | Already implemented and verified in local/CI Kubernetes |
@@ -31,7 +34,7 @@ The active workflow belongs at the repository root, `.github/workflows/campusdes
 A workflow only nested inside a project subdirectory is not automatically discovered
 by GitHub Actions. Our existing workflow is already correctly located.
 
-## Verification And Remaining Work
+## Verification And Remaining Work At That Review
 
 The added checks were executed locally: Bandit, pip-audit, npm audit and Gitleaks
 all exited zero. [Saved scanner reports](evidence/source-security-local/summary.json)
@@ -53,5 +56,4 @@ image scans, Kubernetes/browser checks, publication and GitOps promotion.
 Security report directories record each scanner's actual exit code and timestamp;
 they are not fabricated successful output. Local scans are not a substitute for a
 successful run of the revised GitHub workflow. See `security/README.md` for scope
-and limitations and `SUBMISSION.md` for the previous release evidence and remaining
-AWS/video/submission work. No full-marks claim follows from this comparison.
+and limitations and `SUBMISSION.md` for the current release evidence and submission status. No full-marks claim follows from this comparison.

@@ -1,5 +1,8 @@
 # Submission Screenshots (16 October 2026)
 
+Historical captures. See [17 October evidence](../2026-10-17/README.md) for
+the current release, own AWS Console captures, cleanup and final video.
+
 All captured from the running systems on 16 October 2026. Terminal images show the
 real output of the commands named in their title bar; browser images are direct
 captures of the live pages.
@@ -12,7 +15,7 @@ captures of the live pages.
 | M4 | [`docker compose up --build`](m4-docker-compose-up-build.png), [app at localhost:3000](m4-browser-localhost-3000.png), [non-root users](m4-non-root-users.png) |
 | M5 | [Green pipeline run 38917011474](m5-pipeline-success.png), [Actions runs](m5-actions-runs.png), [GHCR backend](m5-ghcr-backend-sha-tag.png), [GHCR frontend](m5-ghcr-frontend-sha-tag.png) |
 | M6 | [Trivy backend](m6-trivy-backend.png), [Trivy frontend](m6-trivy-frontend.png): 0 HIGH/CRITICAL |
-| M7 | Pending: captured from the student's own AWS account per the [runbook](../../terraform/README.md) |
+| M7 | Pending on 16 October; see [17 October AWS evidence](../2026-10-17/README.md) for the subsequent run |
 | M8 | [Namespace](m8-namespace-apply.png), [`helm upgrade --install`](m8-helm-upgrade-install.png), [pods](m8-kubectl-get-pods.png), [svc/ingress](m8-kubectl-get-svc-ingress.png), [`helm list`](m8-helm-list.png), [app via Ingress](m8-app-via-ingress.png) |
 | M9 | [`/metrics`](m9-metrics-endpoint.png), [Prometheus targets UP](m9-prometheus-targets-up.png), [Grafana dashboard](m9-grafana-dashboard.png) |
 

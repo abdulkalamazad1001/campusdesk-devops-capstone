@@ -1,41 +1,38 @@
-# CampusDesk Submission
+# CampusDesk submission
 
 **Name:** T. Abdul Kalam Azad
+
 **Roll number:** 24BCS10053
+
 **Repository:** https://github.com/abdulkalamazad1001/campusdesk-devops-capstone
 
-The capstone was developed inside the course homework repository
-(`scaler-devops-homework/capstone-campusdesk`) and extracted here with its full Git
-history, so every rubric path (`backend/`, `frontend/`, `helm/`, `k8s/`, `terraform/`,
-`monitoring/`, `demo/`) is at the repository root.
+The existing CampusDesk repository and its development history are preserved.
+The dated evidence below comes from this project's own application and AWS deployment.
 
-## Checklist
+| Module | Implementation and review evidence |
+|---|---|
+| M1 — application | [FastAPI CRUD](backend/app/main.py), [Alembic migration](backend/alembic/versions/0001_tickets.py), [React frontend](frontend/), [desktop/mobile and CRUD captures](evidence/2026-10-17/browser-compose/) |
+| M2 — tests | [40 isolated API tests](backend/tests/), [pytest output](evidence/2026-10-17/pytest-output.png), [PostgreSQL CI results](evidence/2026-10-17/ci-39050953328/test-results/pytest-results.xml) |
+| M3 — Git | [Meaningful commit history](evidence/2026-10-17/commit-history-output.png), public repository, [ignore rules](.gitignore), [full-history secret scan](evidence/2026-10-17/ci-39050953328/source-security-reports/gitleaks.txt) |
+| M4 — containers | [Backend Dockerfile](backend/Dockerfile), [multi-stage frontend Dockerfile](frontend/Dockerfile), both non-root; [Compose](docker-compose.yml), [successful build](evidence/2026-10-17/compose-build-output.png) |
+| M5 — CI / registry | [Successful run 39050953328](https://github.com/abdulkalamazad1001/campusdesk-devops-capstone/actions/runs/39050953328), [workflow](.github/workflows/campusdesk.yml), [backend package](https://github.com/users/abdulkalamazad1001/packages/container/package/campusdesk-capstone-backend), [frontend package](https://github.com/users/abdulkalamazad1001/packages/container/package/campusdesk-capstone-frontend) |
+| M6 — security | Trivy blocks HIGH/CRITICAL before publishing; [AMD64 reports](evidence/2026-10-17/ci-39050953328/trivy-reports-amd64/), [ARM64 reports](evidence/2026-10-17/ci-39050953328/trivy-reports-arm64/), [findings explanation](README.md#trivy-result-explained) |
+| M7 — Terraform / AWS | [61-resource plan](evidence/2026-10-17/terraform-plan.txt), [successful apply recovery](evidence/2026-10-17/terraform-apply-resume.txt), [no-drift plan](evidence/2026-10-17/terraform-post-apply-plan.txt), [own VPC/EKS Console captures](evidence/2026-10-17/aws/), [cleanup](evidence/2026-10-17/README.md) |
+| M8 — Kubernetes / Helm | [Chart](helm/campusdesk/), [EKS workloads](evidence/2026-10-17/aws-helm-deploy-output.png), [Helm list](evidence/2026-10-17/aws-helm-list-output.png), [AWS browser checks](evidence/2026-10-17/browser-aws/), [local resources](evidence/2026-10-17/kubernetes-output.png) |
+| M9 — observability | [Prometheus targets and Grafana dashboard](evidence/2026-10-17/monitoring/), [actual HPA scale-out](evidence/2026-10-17/autoscaling-output.png) |
+| M10 — documentation / demo | [README](README.md), [12-slide PDF](demo/slides.pdf), [computer-narrated MP4](demo/walkthrough.mp4), [chapters / transcript](demo/NARRATION.md), [subtitles](demo/walkthrough.srt) |
 
-| Item | Where | Status |
-|---|---|---|
-| App runs via `docker compose up --build` | [`docker-compose.yml`](docker-compose.yml) | Done |
-| At least 4 REST endpoints | [`backend/app/main.py`](backend/app/main.py) | Done: GET/POST/PUT/DELETE `/api/tickets`, plus `/api/stats` |
-| Alembic migration | [`backend/alembic/versions/`](backend/alembic/versions/) | Done |
-| pytest passes, 5+ tests | [`backend/tests/`](backend/tests/) | Done: 40 tests |
-| `backend/Dockerfile` builds, non-root | [`backend/Dockerfile`](backend/Dockerfile) | Done: UID 10001 |
-| `frontend/Dockerfile` multi-stage, non-root | [`frontend/Dockerfile`](frontend/Dockerfile) | Done: Node build, Nginx runtime, UID 101 |
-| Workflow runs on push to `main`, pytest in pipeline | [`.github/workflows/campusdesk.yml`](.github/workflows/campusdesk.yml) | Done |
-| Images in GHCR with SHA tags | `ghcr.io/abdulkalamazad1001/campusdesk-capstone-backend` / `-frontend` | Done: [green run 38917011474](https://github.com/abdulkalamazad1001/campusdesk-devops-capstone/actions/runs/38917011474) |
-| Trivy scan in pipeline, fails on HIGH/CRITICAL | Workflow `build-scan-deploy` job | Done; [explanation](README.md#trivy-result-explained) |
-| No secrets committed | Gitleaks scans the full history in CI | Done: no leaks |
-| `terraform plan`, VPC + EKS Console, `terraform destroy` | [`terraform/`](terraform/), [runbook](terraform/README.md) | **Student to run in AWS**; screenshots go in `evidence/aws/` |
-| `kubectl get pods`, `helm list`, app via Ingress | [`k8s/`](k8s/), [`helm/campusdesk/`](helm/campusdesk/) | Done on local Kind |
-| `/metrics`, Prometheus targets UP, Grafana dashboard | [`monitoring/`](monitoring/) | Done on local Kind |
-| README with all technical sections | [`README.md`](README.md) | Done |
-| Slides (8+ slides) | [`demo/slides.pdf`](demo/slides.pdf) | Done: 12 slides |
-| Narrated presentation video | `demo/` | **Student to record** using [the script](demo/VIDEO-SCRIPT.md) |
+The final tested application source is `f9bdd3af7bae550b433845272db006b7a08e34e2`.
+Both public images carry that full SHA and support AMD64 and ARM64. CI tests and
+scans each architecture, then publishes the exact verified images and promotes
+`helm/campusdesk/values-release.json`. Subsequent evidence/documentation commits
+are identified separately from the application release.
 
-## Evidence
+See the [dated evidence index](evidence/2026-10-17/README.md) for timestamps,
+recording notes, the DNS recovery and cleanup status. The video explicitly uses
+synthetic narration. Historical `evidence/shared-aws/` belongs to the credited
+TaskBoard exercise and is not used as CampusDesk deployment proof.
 
-Screenshots for every module: [evidence/screenshots/](evidence/screenshots/README.md).
-
-[`evidence/`](evidence/README.md) holds real test reports, scan reports and captures
-from the running system. `evidence/shared-aws/` contains screenshots from a shared
-TaskBoard AWS exercise with collaborator attribution; it is not CampusDesk's own AWS
-deployment, which is documented in the Terraform runbook.
-`demo/local-walkthrough.mp4` is a silent automated rehearsal, not the final video.
+The course [submission form](https://forms.gle/XWAP1vAumDJgAPM1A) accepts this
+repository URL. Form submission is intentionally deferred at the owner’s request. Publishing
+this project does not submit the form, and no submission receipt is claimed.

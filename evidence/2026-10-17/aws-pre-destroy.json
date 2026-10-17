@@ -1,0 +1,13 @@
+{
+  "capturedAt": "2026-10-17T16:55:14.819096+00:00",
+  "finishedAt": "2026-10-17T16:55:55.784733+00:00",
+  "command": [
+    "bash",
+    "terraform/scripts/pre-destroy.sh",
+    "--yes"
+  ],
+  "cwd": "/Users/abdulkalamazad/Documents/campusdesk-devops-capstone",
+  "exitCode": 0,
+  "durationSeconds": 40.97,
+  "stdout": "Region:  ap-south-1\nCluster: campusdesk-24bcs10053\nVPC:     vpc-09f58b5fefcde394e\narn:aws:iam::273528188747:user/command-line\n\n==> Updating kubeconfig (context 'campusdesk-24bcs10053')\n\n==> Uninstalling Helm releases\nhelm uninstall campusdesk -n campusdesk\nrelease \"campusdesk\" uninstalled\nhelm uninstall traefik -n ingress-system\nrelease \"traefik\" uninstalled\n\n==> Deleting PersistentVolumeClaims in namespace campusdesk (EBS volumes are deleted with them)\npersistentvolumeclaim \"data-postgres-0\" deleted from campusdesk namespace\n\n==> Deleting every Service of type LoadBalancer (all namespaces)\n\n==> Waiting for LoadBalancer Services and EBS-backed PersistentVolumes to disappear\nKubernetes cleanup finished.\n\n==> Checking AWS for load balancers left in vpc-09f58b5fefcde394e\nOK: no load balancers remain in vpc-09f58b5fefcde394e.\n\n==> Checking for EBS volumes created by the EBS CSI driver for namespace campusdesk\nOK: no CampusDesk EBS volumes remain.\n\n==> Pre-destroy cleanup complete. Next: cd terraform; terraform destroy\n"
+}

@@ -1,0 +1,15 @@
+{
+  "capturedAt": "2026-10-17T16:44:24.463198+00:00",
+  "finishedAt": "2026-10-17T16:44:25.829046+00:00",
+  "command": [
+    "helm",
+    "list",
+    "--kube-context",
+    "campusdesk-24bcs10053",
+    "-A"
+  ],
+  "cwd": "/Users/abdulkalamazad/Documents/campusdesk-devops-capstone",
+  "exitCode": 0,
+  "durationSeconds": 1.37,
+  "stdout": "NAME      \tNAMESPACE     \tREVISION\tUPDATED                             \tSTATUS  \tCHART           \tAPP VERSION\ncampusdesk\tcampusdesk    \t1       \t2026-10-17 22:03:23.184752 +0530 IST\tdeployed\tcampusdesk-1.0.0\t1.0.0      \ntraefik   \tingress-system\t3       \t2026-10-17 22:03:16.134591 +0530 IST\tdeployed\ttraefik-34.4.1  \tv3.3.4     \n"
+}

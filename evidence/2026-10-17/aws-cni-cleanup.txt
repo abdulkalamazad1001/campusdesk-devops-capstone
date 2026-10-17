@@ -1,0 +1,5 @@
+Captured at: 2026-10-17T17:08:54.412563+00:00
+Command: aws ec2 delete-network-interface --network-interface-id eni-0b3afdae6db7a309a --region ap-south-1
+Exit code: 0
+Duration: 1.01s
+

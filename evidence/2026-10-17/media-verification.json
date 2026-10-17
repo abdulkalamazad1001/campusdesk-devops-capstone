@@ -1,0 +1,12 @@
+{
+  "capturedAt": "2026-10-17T17:10:18.235694+00:00",
+  "finishedAt": "2026-10-17T17:10:18.474530+00:00",
+  "command": [
+    ".venv/bin/python",
+    "evidence/2026-10-17/verify-media.py"
+  ],
+  "cwd": "/Users/abdulkalamazad/Documents/campusdesk-devops-capstone",
+  "exitCode": 0,
+  "durationSeconds": 0.24,
+  "stdout": "{\n  \"checkedAt\": \"2026-10-17T17:10:18.459487+00:00\",\n  \"video\": {\n    \"programs\": [],\n    \"stream_groups\": [],\n    \"streams\": [\n      {\n        \"codec_name\": \"h264\",\n        \"codec_type\": \"video\",\n        \"width\": 1280,\n        \"height\": 720\n      },\n      {\n        \"codec_name\": \"aac\",\n        \"codec_type\": \"audio\"\n      }\n    ],\n    \"format\": {\n      \"duration\": \"691.149922\",\n      \"size\": \"14687511\"\n    }\n  },\n  \"slideCount\": 12,\n  \"sha256\": {\n    \"demo/walkthrough.mp4\": \"de22e473590944fe5622f4af60af41c3235dbea783b549f1aa05f1fd99072a0f\",\n    \"demo/slides.pdf\": \"056dfcef7e1039210474f773e68fa0c2f1ecfbad911c8c41fa04b9f95fbfef9b\",\n    \"demo/walkthrough.srt\": \"53d6614611cb604785942bda8185ec532a0f2e7c5fdcfc28974a083d1331dc03\"\n  }\n}\nPASS: narrated 720p MP4 below GitHub file-size limit, 12-slide PDF and subtitles present.\n"
+}

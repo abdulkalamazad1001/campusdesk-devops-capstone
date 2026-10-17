@@ -1,0 +1,35 @@
+Captured at: 2026-10-17T17:10:18.235694+00:00
+Command: .venv/bin/python evidence/2026-10-17/verify-media.py
+Exit code: 0
+Duration: 0.24s
+
+{
+  "checkedAt": "2026-10-17T17:10:18.459487+00:00",
+  "video": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "codec_name": "aac",
+        "codec_type": "audio"
+      }
+    ],
+    "format": {
+      "duration": "691.149922",
+      "size": "14687511"
+    }
+  },
+  "slideCount": 12,
+  "sha256": {
+    "demo/walkthrough.mp4": "de22e473590944fe5622f4af60af41c3235dbea783b549f1aa05f1fd99072a0f",
+    "demo/slides.pdf": "056dfcef7e1039210474f773e68fa0c2f1ecfbad911c8c41fa04b9f95fbfef9b",
+    "demo/walkthrough.srt": "53d6614611cb604785942bda8185ec532a0f2e7c5fdcfc28974a083d1331dc03"
+  }
+}
+PASS: narrated 720p MP4 below GitHub file-size limit, 12-slide PDF and subtitles present.

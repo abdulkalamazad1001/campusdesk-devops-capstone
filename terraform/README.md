@@ -11,10 +11,36 @@ This folder creates:
 | Node group | Managed node group `application-*`: 2 x `t3.medium` (min 1, max 3), 30 GB disk, in the private subnets |
 | IAM | Cluster/node roles, IRSA role for the EBS CSI driver |
 
-The student runs this runbook against their own AWS account and stores the
-screenshots in `evidence/aws/` at the repository root (create that folder). Every step marked
-**SCREENSHOT** is evidence for the M7 rubric. All commands are for Windows
-PowerShell 5.1 and are run from the `terraform` folder unless stated.
+The completed CampusDesk deployment is documented in
+[`evidence/2026-10-17/`](../evidence/2026-10-17/README.md), including actual AWS
+Console captures. Use the following commands to reproduce it in your own AWS
+account. The numbered walkthrough below uses Windows PowerShell; this section
+provides the macOS/Linux equivalent.
+
+## macOS / Linux
+
+Install AWS CLI v2, Terraform, kubectl, Helm 3 and Python 3. Authenticate using your
+AWS SSO profile or environment credentials outside Git, then run from the repository root:
+
+```bash
+aws sts get-caller-identity
+cp terraform/terraform.tfvars.example terraform/terraform.tfvars
+# Edit api_allowed_cidrs to your current public IPv4 /32.
+terraform -chdir=terraform init
+terraform -chdir=terraform validate
+terraform -chdir=terraform plan -out=campusdesk.tfplan
+terraform -chdir=terraform apply campusdesk.tfplan
+bash scripts/aws-k8s.sh
+# Capture Console, nodes, pods, Services, Ingress and the running application.
+bash terraform/scripts/pre-destroy.sh --yes
+terraform -chdir=terraform destroy
+terraform -chdir=terraform state list
+kubectl config use-context kind-campusdesk
+```
+
+The deployment script uses Terraform outputs, an explicit EKS context and random
+Kubernetes secrets generated in memory. Retain local state until destruction and
+AWS inventory checks finish. Never commit credentials, plans or state.
 
 ## Cost (read first)
 
@@ -329,3 +355,24 @@ EKS cluster, NAT gateway, Elastic IP, VPC.
   configure an encrypted, access-controlled remote backend (S3 + DynamoDB lock).
 - The EKS API is public but limited to `api_allowed_cidrs`; `0.0.0.0/0` is rejected
   by variable validation.
+
+## Detached CNI interface during cleanup
+
+In the 17 October run, EKS removed its nodes but left one unattached network
+interface whose description was `aws-K8S-<terminated-worker-id>`. That interface
+blocked deletion of its subnet and security group. Inspect interfaces scoped to
+your Terraform VPC:
+
+```bash
+aws ec2 describe-network-interfaces --region ap-south-1 \
+  --filters Name=vpc-id,Values=YOUR_PROJECT_VPC \
+  --query 'NetworkInterfaces[].{id:NetworkInterfaceId,status:Status,description:Description,instance:Attachment.InstanceId,managed:RequesterManaged}'
+```
+
+Only after confirming the cluster/workers have been removed, the interface is
+owned by this project, `status` is `available`, `instance` is null and `managed`
+is false, delete that specific interface with `aws ec2 delete-network-interface
+--network-interface-id VERIFIED_INTERFACE_ID --region ap-south-1`. Terraform's
+ongoing destroy can then retry the dependency deletion. Do not remove interfaces
+belonging to other VPCs or active instances. The actual cleanup command and exit
+code are saved in [the dated transcript](../evidence/2026-10-17/aws-cni-cleanup.txt).
