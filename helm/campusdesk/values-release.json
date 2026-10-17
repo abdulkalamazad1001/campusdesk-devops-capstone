@@ -1,11 +1,11 @@
 {
   "backend": {
     "repository": "ghcr.io/abdulkalamazad1001/campusdesk-capstone-backend",
-    "tag": "736090660383464cbec4e5f6dcaa29b6fcdef2cc"
+    "tag": "f9bdd3af7bae550b433845272db006b7a08e34e2"
   },
   "frontend": {
     "repository": "ghcr.io/abdulkalamazad1001/campusdesk-capstone-frontend",
-    "tag": "736090660383464cbec4e5f6dcaa29b6fcdef2cc"
+    "tag": "f9bdd3af7bae550b433845272db006b7a08e34e2"
   },
   "imagePullSecrets": []
 }
