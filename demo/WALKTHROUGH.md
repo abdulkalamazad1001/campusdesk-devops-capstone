@@ -3,7 +3,7 @@
 The delivered [walkthrough.mp4](walkthrough.mp4) begins with the 12-slide deck,
 then demonstrates the source, application, live tests and push, successful CI,
 Terraform and this project's own AWS Console evidence, Argo CD, Kubernetes,
-Prometheus, Grafana and cleanup. [Delivery notes](README.md) explain the computer
+Prometheus, Grafana and cleanup. [Delivery notes](README.md) explain the recorded human
 narration and editing; [the transcript](NARRATION.md) provides chapter times.
 
 `local-walkthrough.mp4` remains a historical silent rehearsal. Shared TaskBoard

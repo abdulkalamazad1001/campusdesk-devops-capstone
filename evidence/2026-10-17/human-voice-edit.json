@@ -1,0 +1,232 @@
+{
+  "checkedAt": "2026-10-17T17:43:15.867055+00:00",
+  "narrator": "T. Abdul Kalam Azad \u2014 own microphone recording",
+  "syntheticVoice": false,
+  "originalDurationSeconds": 837.162667,
+  "finalDurationSeconds": 665.36,
+  "removedDurationSeconds": 171.803,
+  "captionCues": 168,
+  "chapters": 35,
+  "audio": {
+    "integratedLoudnessLUFS": -18.0,
+    "truePeakDBFS": -1.5,
+    "loudnessRangeLU": 2.8,
+    "sampleRate": 48000,
+    "processing": "65 Hz high-pass, light 6 dB FFT noise reduction, loudness normalization; no pitch or speech-speed change"
+  },
+  "editing": "Removed lead/trailing waits, repeated AWS take, interruption and reading slips. Slides and recorded demonstrations retimed to speech. Optional English captions lightly edited for readability.",
+  "sha256": {
+    "originalRecording": "02c39b0cbc0423ca09a549a19a9b5fa46cc6e17a631de15dde04ba7b59f70e85",
+    "finalVideo": "6bb8065895390836843a80b5d3c61618f93191e03e6ef0d44a4c4725f9f87ffc",
+    "finalCaptions": "1c81c10f0c46f5e59568ef6014e4f562d06793b41ccf934affd4020d8bcb9fe3"
+  },
+  "streams": [
+    {
+      "codec_name": "h264",
+      "codec_type": "video",
+      "width": 1280,
+      "height": 720,
+      "duration": "665.360000"
+    },
+    {
+      "codec_name": "aac",
+      "codec_type": "audio",
+      "duration": "665.360000"
+    },
+    {
+      "codec_name": "mov_text",
+      "codec_type": "subtitle",
+      "duration": "665.160000"
+    },
+    {
+      "codec_name": "bin_data",
+      "codec_type": "data",
+      "duration": "665.360000"
+    }
+  ],
+  "scenes": [
+    {
+      "name": "Introduction",
+      "startSeconds": 0,
+      "endSeconds": 28.64
+    },
+    {
+      "name": "Slide 1",
+      "startSeconds": 28.64,
+      "endSeconds": 47.92
+    },
+    {
+      "name": "Slide 2",
+      "startSeconds": 47.92,
+      "endSeconds": 64.48
+    },
+    {
+      "name": "Slide 3",
+      "startSeconds": 64.48,
+      "endSeconds": 87.16
+    },
+    {
+      "name": "Slide 4",
+      "startSeconds": 87.16,
+      "endSeconds": 109.4
+    },
+    {
+      "name": "Slide 5",
+      "startSeconds": 109.4,
+      "endSeconds": 128.36
+    },
+    {
+      "name": "Slide 6",
+      "startSeconds": 128.36,
+      "endSeconds": 150.8
+    },
+    {
+      "name": "Slide 7",
+      "startSeconds": 150.8,
+      "endSeconds": 172.48
+    },
+    {
+      "name": "Slide 8",
+      "startSeconds": 172.48,
+      "endSeconds": 189.36
+    },
+    {
+      "name": "Slide 9",
+      "startSeconds": 189.36,
+      "endSeconds": 206.28
+    },
+    {
+      "name": "Slide 10",
+      "startSeconds": 206.28,
+      "endSeconds": 228.68
+    },
+    {
+      "name": "Slide 11",
+      "startSeconds": 228.68,
+      "endSeconds": 248.52
+    },
+    {
+      "name": "Slide 12",
+      "startSeconds": 248.52,
+      "endSeconds": 269.6
+    },
+    {
+      "name": "Source code",
+      "startSeconds": 269.6,
+      "endSeconds": 287.04
+    },
+    {
+      "name": "Codebase | folders and REST endpoints",
+      "startSeconds": 287.04,
+      "endSeconds": 310.96
+    },
+    {
+      "name": "Codebase | migration and isolated test database",
+      "startSeconds": 310.96,
+      "endSeconds": 331.64
+    },
+    {
+      "name": "Codebase | non-root container builds",
+      "startSeconds": 331.64,
+      "endSeconds": 349.4
+    },
+    {
+      "name": "Live ticket workflow",
+      "startSeconds": 349.4,
+      "endSeconds": 364.08
+    },
+    {
+      "name": "Live tests",
+      "startSeconds": 364.08,
+      "endSeconds": 382.88
+    },
+    {
+      "name": "Live commit and push",
+      "startSeconds": 382.88,
+      "endSeconds": 398.72
+    },
+    {
+      "name": "Current pipeline result",
+      "startSeconds": 398.72,
+      "endSeconds": 416.52
+    },
+    {
+      "name": "Verified result | the workflow triggered in this video",
+      "startSeconds": 416.52,
+      "endSeconds": 438.92
+    },
+    {
+      "name": "Terraform plan record",
+      "startSeconds": 438.92,
+      "endSeconds": 454.6
+    },
+    {
+      "name": "AWS provisioning record",
+      "startSeconds": 454.6,
+      "endSeconds": 476.24
+    },
+    {
+      "name": "AWS Console",
+      "startSeconds": 476.24,
+      "endSeconds": 491.32
+    },
+    {
+      "name": "AWS VPC Console",
+      "startSeconds": 491.32,
+      "endSeconds": 504.72
+    },
+    {
+      "name": "Live EKS verification",
+      "startSeconds": 504.72,
+      "endSeconds": 522.16
+    },
+    {
+      "name": "AWS application",
+      "startSeconds": 522.16,
+      "endSeconds": 534.96
+    },
+    {
+      "name": "Live Argo CD",
+      "startSeconds": 534.96,
+      "endSeconds": 553.2
+    },
+    {
+      "name": "Live Kubernetes",
+      "startSeconds": 553.2,
+      "endSeconds": 572.4
+    },
+    {
+      "name": "Live Prometheus",
+      "startSeconds": 572.4,
+      "endSeconds": 586.6
+    },
+    {
+      "name": "Live Grafana",
+      "startSeconds": 586.6,
+      "endSeconds": 601.48
+    },
+    {
+      "name": "Security and autoscaling evidence",
+      "startSeconds": 601.48,
+      "endSeconds": 620.0
+    },
+    {
+      "name": "Close and cleanup",
+      "startSeconds": 620.0,
+      "endSeconds": 643.04
+    },
+    {
+      "name": "Verified AWS cleanup | actual command results",
+      "startSeconds": 643.04,
+      "endSeconds": 665.36
+    }
+  ],
+  "downloadsCopyMatches": true,
+  "checks": {
+    "all35ScenesVisuallyReviewed": true,
+    "audioAndVideoDurationMatch": true,
+    "fullAudioVideoDecodeErrors": 0,
+    "captionTimingValid": true,
+    "selectedEditedSpeechCheckedWithLocalTranscription": true
+  }
+}

@@ -33,7 +33,7 @@ the multi-platform release. The app's DM Sans font is bundled locally with its
 [SIL Open Font License](frontend/public/fonts/OFL.txt), so rendering does not depend
 on an external font service.
 
-Watch the [computer-narrated walkthrough](demo/walkthrough.mp4) or open the
+Watch the [walkthrough narrated in my own voice](demo/walkthrough.mp4) or open the
 [12-slide PDF](demo/slides.pdf). The [submission checklist](SUBMISSION.md) maps
 each module to evidence. The temporary AWS deployment was destroyed after recording;
 [cleanup verification](evidence/2026-10-17/aws-cleanup-verification.txt) found no

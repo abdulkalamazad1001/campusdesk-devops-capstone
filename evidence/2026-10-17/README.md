@@ -16,7 +16,7 @@ screenshots may display the Mac's India time zone.
 | M8: local Ingress | [17 browser checks](browser-kind/browser-results.json), [application](application-desktop.png) |
 | M9: observability | [Final release monitoring and Argo CD](monitoring-final/), [31,274 successful requests](load.txt), [HPA scaled 2 → 4](autoscaling.txt) |
 | Troubleshooting | [Bad image and Service selector](troubleshooting.txt), [404 readiness failure and repair](readiness-troubleshooting.txt) |
-| M10: presentation | [12-slide PDF](../../demo/slides.pdf), [computer-narrated MP4](../../demo/walkthrough.mp4), [chapters and narration](../../demo/NARRATION.md), [subtitles](../../demo/walkthrough.srt) |
+| M10: presentation | [12-slide PDF](../../demo/slides.pdf), [MP4 narrated in my own voice](../../demo/walkthrough.mp4), [chapters and narration](../../demo/NARRATION.md), [subtitles](../../demo/walkthrough.srt) |
 
 Both images on both architectures reported **zero HIGH/CRITICAL findings** in
 this run; the gate would have failed on either severity. This result describes
@@ -45,7 +45,7 @@ interface was verified unattached and removed to unblock the final subnet/securi
 [the command succeeded](aws-cni-cleanup.txt). No unrelated account resources were deleted.
 
 The final narrated MP4 includes this cleanup result; [media verification](media-verification.txt)
-records its 11:31 duration, audio/video streams and file hashes. [Local release verification](final-local-verification.txt)
+records its 11:05 duration, audio/video streams and file hashes. [Local release verification](final-local-verification.txt)
 confirms the expected image SHA, two available replicas per application tier,
 Argo CD Synced/Healthy and Prometheus targets UP. The local Kind environment remains
 available for review. Older `evidence/shared-aws/` images belong to the credited

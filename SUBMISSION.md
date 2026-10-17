@@ -20,7 +20,7 @@ The dated evidence below comes from this project's own application and AWS deplo
 | M7 — Terraform / AWS | [61-resource plan](evidence/2026-10-17/terraform-plan.txt), [successful apply recovery](evidence/2026-10-17/terraform-apply-resume.txt), [no-drift plan](evidence/2026-10-17/terraform-post-apply-plan.txt), [own VPC/EKS Console captures](evidence/2026-10-17/aws/), [cleanup](evidence/2026-10-17/README.md) |
 | M8 — Kubernetes / Helm | [Chart](helm/campusdesk/), [EKS workloads](evidence/2026-10-17/aws-helm-deploy-output.png), [Helm list](evidence/2026-10-17/aws-helm-list-output.png), [AWS browser checks](evidence/2026-10-17/browser-aws/), [local resources](evidence/2026-10-17/kubernetes-output.png) |
 | M9 — observability | [Prometheus targets and Grafana dashboard](evidence/2026-10-17/monitoring/), [actual HPA scale-out](evidence/2026-10-17/autoscaling-output.png) |
-| M10 — documentation / demo | [README](README.md), [12-slide PDF](demo/slides.pdf), [computer-narrated MP4](demo/walkthrough.mp4), [chapters / transcript](demo/NARRATION.md), [subtitles](demo/walkthrough.srt) |
+| M10 — documentation / demo | [README](README.md), [12-slide PDF](demo/slides.pdf), [MP4 narrated in my own voice](demo/walkthrough.mp4), [chapters / transcript](demo/NARRATION.md), [subtitles](demo/walkthrough.srt) |
 
 The final tested application source is `f9bdd3af7bae550b433845272db006b7a08e34e2`.
 Both public images carry that full SHA and support AMD64 and ARM64. CI tests and

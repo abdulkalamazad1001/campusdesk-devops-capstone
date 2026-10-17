@@ -1,8 +1,8 @@
 # Presentation Video Script
 
-The delivered video is [`walkthrough.mp4`](walkthrough.mp4), with explicitly
-disclosed computer narration. See [the delivery notes](README.md) and
-[the exact narration](NARRATION.md). The manual recording guide below is retained
+The delivered video is [`walkthrough.mp4`](walkthrough.mp4), with T. Abdul Kalam Azad’s
+own recorded narration. See [the delivery notes](README.md) and
+[the narration and chapter times](NARRATION.md). The manual recording guide below is retained
 for anyone who wants to record a personal presentation.
 
 Target length: **12-15 minutes**. Record the screen with your voice (OBS Studio, or
