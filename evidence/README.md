@@ -54,7 +54,8 @@ verify both published images. This is a point-in-time result against Trivy's dat
 not a guarantee of complete application security.
 
 The earlier CI directories are historical. The latest verified release is the one
-identified in `SUBMISSION.md` and `LOCAL-REVIEW.md`; each report preserves its own origin.
+identified in [the submission checklist](../SUBMISSION.md) and
+[final audit](../FINAL-AUDIT.md); each report preserves its own origin.
 
 ## Reproduce
 
@@ -70,7 +71,6 @@ and `node frontend/node_modules/playwright/cli.js install chromium`.
 Use `collect-evidence.py --compose-build` to additionally capture a real rebuild/start.
 For architecture rendering only, install Graphviz WASM in the ignored tools directory:
 `npm install --prefix ../tools/browser @hpcc-js/wasm-graphviz`.
-PDF/video build dependencies are `reportlab`, `pymupdf`, and `imageio-ffmpeg`.
 ## Reference-Inspired Follow-Up
 
 - `source-security-local/`: actual local Bandit, pip-audit, npm audit and redacted
@@ -79,9 +79,9 @@ PDF/video build dependencies are `reportlab`, `pymupdf`, and `imageio-ffmpeg`.
   false positives, with the exact-value exception explained in `../security/README.md`.
 - `readiness-troubleshooting.txt`: isolated Running/NotReady failure, repair,
   successful Service request and namespace cleanup.
-- [Comparison and verification scope](../REFERENCE-COMPARISON.md), including the
-  revised CI run link. That remote run subsequently passed; its artifacts are now
-  committed under `ci-run-38765329150/`.
+- `ci-run-38765329150/`: historical artifacts from the successful workflow run
+  that verified the source-security and readiness follow-up. Current release
+  coverage is documented in [the final audit](../FINAL-AUDIT.md).
 
 ## Shared AWS Material
 

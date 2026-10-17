@@ -17,3 +17,17 @@ tfplan
 terraform.tfvars
 !terraform.tfvars.example
 evidence/local/
+
+# Local presentation preparation and superseded working notes.
+/LOCAL-REVIEW.md
+/REFERENCE-COMPARISON.md
+/demo/NARRATION.md
+/demo/RECORD-YOUR-VOICE.md
+/demo/VIDEO-SCRIPT.md
+/demo/WALKTHROUGH.md
+/demo/local-walkthrough.mp4
+/scripts/build-slides.py
+/scripts/record-demo.mjs
+/scripts/record-walkthrough.mjs
+/scripts/finalize-walkthrough.mjs
+/scripts/record-verification-supplement.mjs

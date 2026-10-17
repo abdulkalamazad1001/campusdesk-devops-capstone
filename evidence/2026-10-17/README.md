@@ -19,7 +19,7 @@ screenshots may display the Mac's India time zone.
 | M8: local Ingress | [17 browser checks](browser-kind/browser-results.json), [application](application-desktop.png) |
 | M9: observability | [Final release monitoring and Argo CD](monitoring-final/), [31,274 successful requests](load.txt), [HPA scaled 2 → 4](autoscaling.txt) |
 | Troubleshooting | [Bad image and Service selector](troubleshooting.txt), [404 readiness failure and repair](readiness-troubleshooting.txt) |
-| M10: presentation | [12-slide PDF](../../demo/slides.pdf), [MP4 narrated in my own voice](../../demo/walkthrough.mp4), [chapters and narration](../../demo/NARRATION.md), [subtitles](../../demo/walkthrough.srt) |
+| M10: presentation | [12-slide PDF](../../demo/slides.pdf), [MP4 narrated in my own voice](../../demo/walkthrough.mp4), [video chapters](../../demo/README.md#main-video-chapters), [subtitles](../../demo/walkthrough.srt) |
 
 Both images on both architectures reported **zero HIGH/CRITICAL findings** in
 this run; the gate would have failed on either severity. This result describes

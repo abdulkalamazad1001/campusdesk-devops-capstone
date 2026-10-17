@@ -24,7 +24,7 @@ the temporary AWS environment was destroyed after the demonstration.
 |---|---|
 | Review the requirements | [Final assignment audit](FINAL-AUDIT.md) and [submission checklist](SUBMISSION.md) |
 | Run the application | [Docker Compose quick start](#docker-compose-quick-start) |
-| Watch the demonstration | [Main walkthrough — 11 min 5 sec](demo/walkthrough.mp4), [chapters and transcript](demo/NARRATION.md), [subtitles](demo/walkthrough.srt) |
+| Watch the demonstration | [Main walkthrough — 11 min 5 sec](demo/walkthrough.mp4), [video chapters](demo/README.md#main-video-chapters), [subtitles](demo/walkthrough.srt) |
 | Inspect troubleshooting demonstrations | [Verification supplement — 1 min 55 sec](demo/verification-supplement.mp4), with on-screen explanations |
 | View the presentation | [12-slide PDF](demo/slides.pdf) |
 | Inspect test and deployment proof | [Dated evidence index](evidence/2026-10-17/README.md) and [final verification](evidence/2026-10-17/final-audit/README.md) |
@@ -185,9 +185,9 @@ campusdesk-devops-capstone/
 ├── monitoring/               Built-in and community-chart monitoring guides
 ├── security/                 Source security tools, policy and findings notes
 ├── troubleshooting/          Disposable failure demonstrations and repair instructions
-├── scripts/                  Deployment, browser, evidence, load and video utilities
+├── scripts/                  Deployment, browser, evidence, load and security utilities
 ├── evidence/                 Timestamped reports, screenshots and verification records
-├── demo/                     Walkthrough, supplement, subtitles, slides and transcript
+├── demo/                     Final walkthrough, supplement, subtitles and slides
 ├── FINAL-AUDIT.md             Module-by-module verification and evidence map
 └── SUBMISSION.md              Student details and submission deliverables
 ```
@@ -892,7 +892,7 @@ under `evidence/local/` until it has been reviewed for publication.
 | [Main walkthrough](demo/walkthrough.mp4) | 11 min 5 sec, 720p, recorded narration, slides followed by real project screenshots and demonstrations |
 | [Verification supplement](demo/verification-supplement.mp4) | 1 min 55 sec, silent with on-screen explanations; Swagger, database, non-root containers, registry, Helm and failure recovery |
 | [Slides](demo/slides.pdf) | 12-slide project presentation |
-| [Transcript and chapters](demo/NARRATION.md) | Navigation through the final main video |
+| [Video chapters](demo/README.md#main-video-chapters) | Navigation through the final main video |
 | [Subtitles](demo/walkthrough.srt) | English caption file for the main video |
 | [Video notes](demo/README.md) | Recording sources, editing details and deliverable information |
 

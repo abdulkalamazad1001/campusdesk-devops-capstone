@@ -36,7 +36,7 @@ for kind, name in [('service', 'campusdesk-audit-selector'), ('deployment', 'cam
     assert not remaining.strip(), name
 checks['supplement-failure-repair-cleanup'] = 'PASS'
 missing = []
-for filename in ['FINAL-AUDIT.md', 'README.md', 'SUBMISSION.md', 'demo/README.md', 'demo/NARRATION.md',
+for filename in ['FINAL-AUDIT.md', 'README.md', 'SUBMISSION.md', 'demo/README.md',
                  'evidence/2026-10-17/README.md']:
     p = ROOT / filename
     for link in re.findall(r'\]\(([^)]+)\)', p.read_text()):
