@@ -1,0 +1,15 @@
+{
+  "capturedAt": "2026-10-17T17:54:53.777479+00:00",
+  "finishedAt": "2026-10-17T17:54:53.847269+00:00",
+  "command": [
+    ".venv/bin/python",
+    "-m",
+    "ruff",
+    "check",
+    "backend"
+  ],
+  "cwd": "/Users/abdulkalamazad/Documents/campusdesk-devops-capstone",
+  "exitCode": 0,
+  "durationSeconds": 0.07,
+  "stdout": "All checks passed!\n"
+}

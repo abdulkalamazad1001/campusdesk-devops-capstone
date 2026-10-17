@@ -1,5 +1,8 @@
 # Verification — 17 October 2026
 
+[Final assignment audit](../../FINAL-AUDIT.md) provides the module-by-module review,
+fresh validation results and supplementary live demonstration.
+
 Owner: **T. Abdul Kalam Azad, 24BCS10053**. This directory records real runs for
 CampusDesk in this repository. All dates in JSON/transcripts use UTC; browser
 screenshots may display the Mac's India time zone.

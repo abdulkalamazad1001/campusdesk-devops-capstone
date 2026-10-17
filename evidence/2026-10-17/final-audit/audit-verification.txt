@@ -1,0 +1,39 @@
+Captured at: 2026-10-17T18:00:16.395616+00:00
+Command: .venv/bin/python evidence/2026-10-17/final-audit/verify-audit.py
+Exit code: 0
+Duration: 0.14s
+
+{
+  "checkedAt": "2026-10-17T18:00:16.532846+00:00",
+  "checks": {
+    "pytest": "PASS",
+    "lint": "PASS",
+    "frontend-build": "PASS",
+    "helm-lint": "PASS",
+    "terraform-validate": "PASS",
+    "release-health": "PASS",
+    "metrics": "PASS",
+    "registry": "PASS",
+    "aws-cleanup": "PASS",
+    "full-history-secrets": "PASS",
+    "supplement-failure-repair-cleanup": "PASS",
+    "local-documentation-links": "PASS"
+  },
+  "apiTestsPassed": 40,
+  "browserChecksPassed": 17,
+  "ciJobsPassed": 5,
+  "media": {
+    "walkthrough.mp4": {
+      "durationSeconds": 665.36,
+      "bytes": 20341343,
+      "sha256": "2faea64b8fa815ce4aad52210d9ca7b4af196fa47b75b907ca096477d78680e1"
+    },
+    "verification-supplement.mp4": {
+      "durationSeconds": 115.16,
+      "bytes": 1215275,
+      "sha256": "8276934a3f2845ba3134976a69be82d99136a8f30a4bcefd5738c4294372b1ee"
+    }
+  },
+  "deferredAction": "Course submission form, at owner request"
+}
+PASS: project evidence, presentation files, documentation links and demo cleanup verified.

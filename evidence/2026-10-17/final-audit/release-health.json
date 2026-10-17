@@ -1,0 +1,12 @@
+{
+  "capturedAt": "2026-10-17T17:54:38.703258+00:00",
+  "finishedAt": "2026-10-17T17:54:38.996830+00:00",
+  "command": [
+    ".venv/bin/python",
+    "evidence/2026-10-17/verify-local.py"
+  ],
+  "cwd": "/Users/abdulkalamazad/Documents/campusdesk-devops-capstone",
+  "exitCode": 0,
+  "durationSeconds": 0.29,
+  "stdout": "{\n  \"checkedAt\": \"2026-10-17T17:54:38.990494+00:00\",\n  \"context\": \"kind-campusdesk\",\n  \"argo\": {\n    \"sync\": \"Synced\",\n    \"health\": \"Healthy\",\n    \"revision\": \"5fc820b1c3d8de0bb9b72305f0124b986704e780\"\n  },\n  \"deployments\": [\n    {\n      \"name\": \"backend\",\n      \"image\": \"ghcr.io/abdulkalamazad1001/campusdesk-capstone-backend:f9bdd3af7bae550b433845272db006b7a08e34e2\",\n      \"availableReplicas\": 2\n    },\n    {\n      \"name\": \"frontend\",\n      \"image\": \"ghcr.io/abdulkalamazad1001/campusdesk-capstone-frontend:f9bdd3af7bae550b433845272db006b7a08e34e2\",\n      \"availableReplicas\": 2\n    }\n  ],\n  \"prometheusTargets\": [\n    {\n      \"url\": \"http://10.244.0.38:8000/metrics\",\n      \"health\": \"up\"\n    },\n    {\n      \"url\": \"http://10.244.0.41:8000/metrics\",\n      \"health\": \"up\"\n    }\n  ],\n  \"composeReadiness\": {\n    \"status\": \"ready\"\n  }\n}\nPASS: final application release is healthy and monitored.\n"
+}

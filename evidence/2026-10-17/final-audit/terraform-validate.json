@@ -1,0 +1,13 @@
+{
+  "capturedAt": "2026-10-17T17:54:55.163822+00:00",
+  "finishedAt": "2026-10-17T17:54:56.883525+00:00",
+  "command": [
+    "/Users/abdulkalamazad/.local/bin/terraform",
+    "-chdir=terraform",
+    "validate"
+  ],
+  "cwd": "/Users/abdulkalamazad/Documents/campusdesk-devops-capstone",
+  "exitCode": 0,
+  "durationSeconds": 1.72,
+  "stdout": "\u001b[32m\u001b[1mSuccess!\u001b[0m The configuration is valid.\n\u001b[0m\n"
+}

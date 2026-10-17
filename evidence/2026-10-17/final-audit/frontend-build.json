@@ -1,0 +1,15 @@
+{
+  "capturedAt": "2026-10-17T17:54:53.874954+00:00",
+  "finishedAt": "2026-10-17T17:54:54.998678+00:00",
+  "command": [
+    "npm",
+    "--prefix",
+    "frontend",
+    "run",
+    "build"
+  ],
+  "cwd": "/Users/abdulkalamazad/Documents/campusdesk-devops-capstone",
+  "exitCode": 0,
+  "durationSeconds": 1.12,
+  "stdout": "\n> campusdesk-frontend@1.0.0 build\n> vite build\n\nvite v6.4.4 building for production...\ntransforming...\n\u2713 1578 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                   0.42 kB \u2502 gzip:  0.29 kB\ndist/assets/index-DRK55TgP.css   11.15 kB \u2502 gzip:  3.32 kB\ndist/assets/index-xxr39YJl.js   244.96 kB \u2502 gzip: 75.42 kB\n\u2713 built in 709ms\n"
+}

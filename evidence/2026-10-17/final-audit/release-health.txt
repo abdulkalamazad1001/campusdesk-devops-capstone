@@ -1,0 +1,40 @@
+Captured at: 2026-10-17T17:54:38.703258+00:00
+Command: .venv/bin/python evidence/2026-10-17/verify-local.py
+Exit code: 0
+Duration: 0.29s
+
+{
+  "checkedAt": "2026-10-17T17:54:38.990494+00:00",
+  "context": "kind-campusdesk",
+  "argo": {
+    "sync": "Synced",
+    "health": "Healthy",
+    "revision": "5fc820b1c3d8de0bb9b72305f0124b986704e780"
+  },
+  "deployments": [
+    {
+      "name": "backend",
+      "image": "ghcr.io/abdulkalamazad1001/campusdesk-capstone-backend:f9bdd3af7bae550b433845272db006b7a08e34e2",
+      "availableReplicas": 2
+    },
+    {
+      "name": "frontend",
+      "image": "ghcr.io/abdulkalamazad1001/campusdesk-capstone-frontend:f9bdd3af7bae550b433845272db006b7a08e34e2",
+      "availableReplicas": 2
+    }
+  ],
+  "prometheusTargets": [
+    {
+      "url": "http://10.244.0.38:8000/metrics",
+      "health": "up"
+    },
+    {
+      "url": "http://10.244.0.41:8000/metrics",
+      "health": "up"
+    }
+  ],
+  "composeReadiness": {
+    "status": "ready"
+  }
+}
+PASS: final application release is healthy and monitored.

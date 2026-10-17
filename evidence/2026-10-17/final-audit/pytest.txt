@@ -1,0 +1,55 @@
+Captured at: 2026-10-17T17:54:38.703237+00:00
+Command: .venv/bin/python -m pytest -c backend/pytest.ini backend/tests -v
+Exit code: 0
+Duration: 0.83s
+
+============================= test session starts ==============================
+platform darwin -- Python 3.13.15, pytest-9.1.1, pluggy-1.7.0 -- /Users/abdulkalamazad/Documents/campusdesk-devops-capstone/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/abdulkalamazad/Documents/campusdesk-devops-capstone/backend
+configfile: pytest.ini
+plugins: platformdirs-4.13.3, anyio-4.15.1
+collecting ... collected 40 items
+
+backend/tests/test_api.py::test_health_ready_metrics PASSED              [  2%]
+backend/tests/test_api.py::test_crud PASSED                              [  5%]
+backend/tests/test_api.py::test_filters_and_stats PASSED                 [  7%]
+backend/tests/test_api.py::test_validation[title- ] PASSED               [ 10%]
+backend/tests/test_api.py::test_validation[requester-] PASSED            [ 12%]
+backend/tests/test_api.py::test_validation[priority-critical] PASSED     [ 15%]
+backend/tests/test_api.py::test_validation[status-closed] PASSED         [ 17%]
+backend/tests/test_api.py::test_validation[category-invalid] PASSED      [ 20%]
+backend/tests/test_api.py::test_validation[location-A] PASSED            [ 22%]
+backend/tests/test_api.py::test_validation[unknown-extra] PASSED         [ 25%]
+backend/tests/test_api.py::test_missing_ticket[get] PASSED               [ 27%]
+backend/tests/test_api.py::test_missing_ticket[put] PASSED               [ 30%]
+backend/tests/test_api.py::test_missing_ticket[delete] PASSED            [ 32%]
+backend/tests/test_api.py::test_invalid_query PASSED                     [ 35%]
+backend/tests/test_api.py::test_search_escapes_wildcards PASSED          [ 37%]
+backend/tests/test_api.py::test_readiness_failure PASSED                 [ 40%]
+backend/tests/test_api.py::test_unhandled_failure_is_counted PASSED      [ 42%]
+backend/tests/test_api.py::test_metrics_use_bounded_routes_and_exclude_scrapes PASSED [ 45%]
+backend/tests/test_api.py::test_invalid_update_preserves_existing_ticket PASSED [ 47%]
+backend/tests/test_api.py::test_pagination_has_stable_order PASSED       [ 50%]
+backend/tests/test_api.py::test_out_of_range_ticket_id[get-0] PASSED     [ 52%]
+backend/tests/test_api.py::test_out_of_range_ticket_id[get--1] PASSED    [ 55%]
+backend/tests/test_api.py::test_out_of_range_ticket_id[get-2147483648] PASSED [ 57%]
+backend/tests/test_api.py::test_out_of_range_ticket_id[get-100000000000000000000] PASSED [ 60%]
+backend/tests/test_api.py::test_out_of_range_ticket_id[put-0] PASSED     [ 62%]
+backend/tests/test_api.py::test_out_of_range_ticket_id[put--1] PASSED    [ 65%]
+backend/tests/test_api.py::test_out_of_range_ticket_id[put-2147483648] PASSED [ 67%]
+backend/tests/test_api.py::test_out_of_range_ticket_id[put-100000000000000000000] PASSED [ 70%]
+backend/tests/test_api.py::test_out_of_range_ticket_id[delete-0] PASSED  [ 72%]
+backend/tests/test_api.py::test_out_of_range_ticket_id[delete--1] PASSED [ 75%]
+backend/tests/test_api.py::test_out_of_range_ticket_id[delete-2147483648] PASSED [ 77%]
+backend/tests/test_api.py::test_out_of_range_ticket_id[delete-100000000000000000000] PASSED [ 80%]
+backend/tests/test_api.py::test_nul_in_body_is_rejected[title] PASSED    [ 82%]
+backend/tests/test_api.py::test_nul_in_body_is_rejected[description] PASSED [ 85%]
+backend/tests/test_api.py::test_nul_in_body_is_rejected[requester] PASSED [ 87%]
+backend/tests/test_api.py::test_nul_in_body_is_rejected[location] PASSED [ 90%]
+backend/tests/test_api.py::test_nul_in_body_is_rejected[assignee] PASSED [ 92%]
+backend/tests/test_api.py::test_nul_in_search_and_large_offset_are_rejected PASSED [ 95%]
+backend/tests/test_api.py::test_write_failure_returns_503_and_rolls_back PASSED [ 97%]
+backend/tests/test_api.py::test_missing_database_url_fails_clearly PASSED [100%]
+
+============================== 40 passed in 0.19s ==============================

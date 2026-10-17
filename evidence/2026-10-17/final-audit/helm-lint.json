@@ -1,0 +1,13 @@
+{
+  "capturedAt": "2026-10-17T17:54:55.022357+00:00",
+  "finishedAt": "2026-10-17T17:54:55.144119+00:00",
+  "command": [
+    "helm",
+    "lint",
+    "helm/campusdesk"
+  ],
+  "cwd": "/Users/abdulkalamazad/Documents/campusdesk-devops-capstone",
+  "exitCode": 0,
+  "durationSeconds": 0.12,
+  "stdout": "==> Linting helm/campusdesk\n[INFO] Chart.yaml: icon is recommended\n\n1 chart(s) linted, 0 chart(s) failed\n"
+}

@@ -1,0 +1,12 @@
+{
+  "capturedAt": "2026-10-17T17:55:17.970997+00:00",
+  "finishedAt": "2026-10-17T17:55:19.639730+00:00",
+  "command": [
+    ".venv/bin/python",
+    "evidence/local/assignment-audit/verify-registry.py"
+  ],
+  "cwd": "/Users/abdulkalamazad/Documents/campusdesk-devops-capstone",
+  "exitCode": 0,
+  "durationSeconds": 1.67,
+  "stdout": "{\n  \"checkedAt\": \"2026-10-17T17:55:19.626165+00:00\",\n  \"images\": [\n    {\n      \"image\": \"ghcr.io/abdulkalamazad1001/campusdesk-capstone-backend:f9bdd3af7bae550b433845272db006b7a08e34e2\",\n      \"digest\": \"sha256:06f2ce43bfc35048c5a636712861a4f983e03d8781be6e8005687ca1f1a2a351\",\n      \"architectures\": [\n        \"amd64\",\n        \"arm64\"\n      ],\n      \"anonymousPull\": true\n    },\n    {\n      \"image\": \"ghcr.io/abdulkalamazad1001/campusdesk-capstone-frontend:f9bdd3af7bae550b433845272db006b7a08e34e2\",\n      \"digest\": \"sha256:13c8483d755f564a4712b165521b5a2b22ae61f151ed8c47f1f409ee7724c12e\",\n      \"architectures\": [\n        \"amd64\",\n        \"arm64\"\n      ],\n      \"anonymousPull\": true\n    }\n  ]\n}\n"
+}

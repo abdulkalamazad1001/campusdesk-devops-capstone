@@ -1,0 +1,89 @@
+{
+  "duration": 115.16,
+  "chapters": [
+    {
+      "name": "Verification supplement",
+      "start": 0.20990575
+    },
+    {
+      "name": "FastAPI documentation",
+      "start": 5.2415681670000005
+    },
+    {
+      "name": "Database | Alembic revision and ticket schema",
+      "start": 10.669609125
+    },
+    {
+      "name": "Database | Persisted demonstration tickets",
+      "start": 17.901519875
+    },
+    {
+      "name": "Containers | Running stack and non-root users",
+      "start": 22.531071209
+    },
+    {
+      "name": "Container identity | backend",
+      "start": 27.131248
+    },
+    {
+      "name": "Container identity | frontend",
+      "start": 31.761614667
+    },
+    {
+      "name": "Registry | Public, SHA-tagged images",
+      "start": 36.375840417
+    },
+    {
+      "name": "Terraform | Infrastructure source",
+      "start": 46.140278209
+    },
+    {
+      "name": "Helm | Release inventory",
+      "start": 52.68591129200001
+    },
+    {
+      "name": "Service fault | Create an incorrect selector",
+      "start": 59.344269542
+    },
+    {
+      "name": "Diagnose | No matching endpoints",
+      "start": 63.92781875
+    },
+    {
+      "name": "Repair | Select the real backend labels",
+      "start": 68.49284733399999
+    },
+    {
+      "name": "Verify | Ready endpoints restored",
+      "start": 73.077497292
+    },
+    {
+      "name": "Image fault | Create a nonexistent tag",
+      "start": 77.721468625
+    },
+    {
+      "name": "Diagnose | Image pull failure",
+      "start": 82.337362834
+    },
+    {
+      "name": "Repair | Use the verified image SHA",
+      "start": 89.921413542
+    },
+    {
+      "name": "Verify | Successful rollout",
+      "start": 94.492530209
+    },
+    {
+      "name": "Verify | Repaired pod is Running",
+      "start": 99.075057042
+    },
+    {
+      "name": "Cleanup | Remove only the demo objects",
+      "start": 103.65835216699999
+    },
+    {
+      "name": "Final health | Original application is ready",
+      "start": 108.242602709
+    }
+  ]
+}

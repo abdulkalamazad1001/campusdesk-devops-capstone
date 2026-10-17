@@ -7,6 +7,8 @@
 **Repository:** https://github.com/abdulkalamazad1001/campusdesk-devops-capstone
 
 The existing CampusDesk repository and its development history are preserved.
+The [final assignment audit](FINAL-AUDIT.md) maps the current instructor requirements
+to verified results and identifies the deferred form submission.
 The dated evidence below comes from this project's own application and AWS deployment.
 
 | Module | Implementation and review evidence |
@@ -29,8 +31,8 @@ scans each architecture, then publishes the exact verified images and promotes
 are identified separately from the application release.
 
 See the [dated evidence index](evidence/2026-10-17/README.md) for timestamps,
-recording notes, the DNS recovery and cleanup status. The video explicitly uses
-synthetic narration. Historical `evidence/shared-aws/` belongs to the credited
+recording notes, the DNS recovery and cleanup status. The final video uses the
+owner’s recorded narration. Historical `evidence/shared-aws/` belongs to the credited
 TaskBoard exercise and is not used as CampusDesk deployment proof.
 
 The course [submission form](https://forms.gle/XWAP1vAumDJgAPM1A) accepts this

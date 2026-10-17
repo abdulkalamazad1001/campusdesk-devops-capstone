@@ -1,0 +1,12 @@
+{
+  "capturedAt": "2026-10-17T18:00:16.395616+00:00",
+  "finishedAt": "2026-10-17T18:00:16.536651+00:00",
+  "command": [
+    ".venv/bin/python",
+    "evidence/2026-10-17/final-audit/verify-audit.py"
+  ],
+  "cwd": "/Users/abdulkalamazad/Documents/campusdesk-devops-capstone",
+  "exitCode": 0,
+  "durationSeconds": 0.14,
+  "stdout": "{\n  \"checkedAt\": \"2026-10-17T18:00:16.532846+00:00\",\n  \"checks\": {\n    \"pytest\": \"PASS\",\n    \"lint\": \"PASS\",\n    \"frontend-build\": \"PASS\",\n    \"helm-lint\": \"PASS\",\n    \"terraform-validate\": \"PASS\",\n    \"release-health\": \"PASS\",\n    \"metrics\": \"PASS\",\n    \"registry\": \"PASS\",\n    \"aws-cleanup\": \"PASS\",\n    \"full-history-secrets\": \"PASS\",\n    \"supplement-failure-repair-cleanup\": \"PASS\",\n    \"local-documentation-links\": \"PASS\"\n  },\n  \"apiTestsPassed\": 40,\n  \"browserChecksPassed\": 17,\n  \"ciJobsPassed\": 5,\n  \"media\": {\n    \"walkthrough.mp4\": {\n      \"durationSeconds\": 665.36,\n      \"bytes\": 20341343,\n      \"sha256\": \"2faea64b8fa815ce4aad52210d9ca7b4af196fa47b75b907ca096477d78680e1\"\n    },\n    \"verification-supplement.mp4\": {\n      \"durationSeconds\": 115.16,\n      \"bytes\": 1215275,\n      \"sha256\": \"8276934a3f2845ba3134976a69be82d99136a8f30a4bcefd5738c4294372b1ee\"\n    }\n  },\n  \"deferredAction\": \"Course submission form, at owner request\"\n}\nPASS: project evidence, presentation files, documentation links and demo cleanup verified.\n"
+}

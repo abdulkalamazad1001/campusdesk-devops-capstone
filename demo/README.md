@@ -8,6 +8,8 @@ records the file hashes, audio/video streams and slide count.
   a recorded commit/push and its CI result, Terraform/AWS, Argo CD, Kubernetes,
   Prometheus, Grafana, security, autoscaling and verified cleanup.
 - [12-slide PDF](slides.pdf).
+- [Additional verification recording](verification-supplement.mp4) — Swagger, database,
+  container identities, registry, Helm and live troubleshooting with on-screen explanations.
 - [Narration and chapter times](NARRATION.md).
 - [English subtitles](walkthrough.srt), also embedded as an optional MP4 track.
 - [Original recording script](RECORD-YOUR-VOICE.md); its timestamps refer to the earlier edit.
@@ -46,3 +48,14 @@ The original `scripts/record-walkthrough.mjs` and
 `scripts/finalize-walkthrough.mjs` reproduce the earlier synthetic-voice recording
 from the live application and dated evidence; they do not rebuild this human-voice
 edit. Do not run the finalizer on the already finalized video.
+
+## Supplementary demonstration
+
+`verification-supplement.mp4` is a separate silent screen recording with readable
+on-screen explanations. It supplements the main narrated presentation. The
+[commands](../evidence/2026-10-17/final-audit/supplement-commands.txt) and
+[chapter index](../evidence/2026-10-17/final-audit/supplement-chapters.json) retain the
+actual outputs and timings. The demo creates and cleans up two dedicated Kubernetes
+objects to show an incorrect Service selector and a nonexistent image tag, their
+diagnosis, repair and cleanup. `scripts/record-verification-supplement.mjs` records
+this session against the existing local project.

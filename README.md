@@ -22,6 +22,8 @@ implementation for the DevOps capstone, using the course architecture.
 | M9 Observability | `/metrics`, Prometheus and Grafana Helm values, dashboard | [`monitoring/`](monitoring/), [`helm/campusdesk/dashboards/`](helm/campusdesk/dashboards/) |
 | M10 Presentation | Slides, video, this README | [`demo/`](demo/) |
 
+[Final assignment audit](FINAL-AUDIT.md) — module coverage, current verification and deliverables.
+
 Other guides: [demo script](demo/VIDEO-SCRIPT.md) | [evidence](evidence/README.md) |
 [troubleshooting exercises](troubleshooting/README.md) | [security gates](security/README.md)
 
@@ -286,7 +288,7 @@ If your system does not resolve `campusdesk.localhost`, use `curl.exe -H
 `/metrics` is served by the backend and, through the Ingress, at
 <http://campusdesk.localhost:8088/metrics>.
 
-**Community Helm charts (submission path).** [`monitoring/`](monitoring/) holds
+**Community Helm chart alternative.** [`monitoring/`](monitoring/) holds
 values files for `prometheus-community/prometheus` and the Grafana chart. They
 install into the `monitoring` namespace, scrape the backend pods and provision the
 CampusDesk dashboard. Exact install and verification commands are in

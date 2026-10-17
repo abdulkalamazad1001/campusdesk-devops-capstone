@@ -1,0 +1,599 @@
+2026-10-17T17:58:09.473Z
+$ kubectl --context kind-campusdesk -n campusdesk get service campusdesk-audit-selector --ignore-not-found -o name
+
+Exit code: 0
+
+2026-10-17T17:58:09.507Z
+$ kubectl --context kind-campusdesk -n campusdesk get deployment campusdesk-audit-image --ignore-not-found -o name
+
+Exit code: 0
+
+2026-10-17T17:58:20.174Z
+$ docker compose exec -T postgres psql -U campusdesk -d campusdesk -c SELECT version_num FROM alembic_version; -c \d tickets
+ version_num
+-------------
+ 0001
+(1 row)
+
+                                       Table "public.tickets"
+   Column    |           Type           | Collation | Nullable |               Default
+-------------+--------------------------+-----------+----------+-------------------------------------
+ id          | integer                  |           | not null | nextval('tickets_id_seq'::regclass)
+ title       | character varying(120)   |           | not null |
+ description | text                     |           | not null |
+ category    | character varying(30)    |           | not null |
+ priority    | character varying(20)    |           | not null |
+ status      | character varying(20)    |           | not null |
+ requester   | character varying(80)    |           | not null |
+ location    | character varying(80)    |           | not null |
+ assignee    | character varying(80)    |           | not null |
+ created_at  | timestamp with time zone |           | not null |
+ updated_at  | timestamp with time zone |           | not null |
+Indexes:
+    "tickets_pkey" PRIMARY KEY, btree (id)
+    "ix_tickets_status" btree (status)
+
+
+Exit code: 0
+
+2026-10-17T17:58:27.301Z
+$ docker compose exec -T postgres psql -U campusdesk -d campusdesk -c SELECT id,title,status,priority FROM tickets ORDER BY id LIMIT 5;
+ id |                  title                   |   status    | priority
+----+------------------------------------------+-------------+----------
+  1 | Library Wi-Fi keeps disconnecting        | open        | high
+  2 | Projector display flickers in Lab 3      | in_progress | medium
+  3 | Student portal account locked            | open        | urgent
+  4 | Python environment setup for workshop    | resolved    | low
+  5 | Printer queue stuck in department office | in_progress | medium
+(5 rows)
+
+
+Exit code: 0
+
+2026-10-17T17:58:31.902Z
+$ docker compose ps
+NAME                    IMAGE                                                                     COMMAND                  SERVICE    CREATED             STATUS                       PORTS
+campusdesk-backend-1    sha256:7d7f9dd6dd5fbad016286107a4507d6742c9b00e52560a171d4e45c7904a255b   "uvicorn app.main:ap…"   backend    2 hours ago         Up 2 hours (healthy)         127.0.0.1:8000->8000/tcp
+campusdesk-frontend-1   campusdesk-frontend:local                                                 "/docker-entrypoint.…"   frontend   About an hour ago   Up About an hour (healthy)   127.0.0.1:3000->8080/tcp
+campusdesk-postgres-1   postgres:17-alpine                                                        "docker-entrypoint.s…"   postgres   2 hours ago         Up 2 hours (healthy)         5432/tcp
+
+Exit code: 0
+
+2026-10-17T17:58:36.530Z
+$ docker compose exec -T backend id
+uid=10001(app) gid=10001(app) groups=10001(app)
+
+Exit code: 0
+
+2026-10-17T17:58:41.153Z
+$ docker compose exec -T frontend id
+uid=101(nginx) gid=101(nginx) groups=101(nginx)
+
+Exit code: 0
+
+2026-10-17T17:58:47.897Z
+$ .venv/bin/python evidence/2026-10-17/final-audit/verify-registry.py
+{
+  "checkedAt": "2026-10-17T17:58:47.884138+00:00",
+  "images": [
+    {
+      "image": "ghcr.io/abdulkalamazad1001/campusdesk-capstone-backend:f9bdd3af7bae550b433845272db006b7a08e34e2",
+      "digest": "sha256:06f2ce43bfc35048c5a636712861a4f983e03d8781be6e8005687ca1f1a2a351",
+      "architectures": [
+        "amd64",
+        "arm64"
+      ],
+      "anonymousPull": true
+    },
+    {
+      "image": "ghcr.io/abdulkalamazad1001/campusdesk-capstone-frontend:f9bdd3af7bae550b433845272db006b7a08e34e2",
+      "digest": "sha256:13c8483d755f564a4712b165521b5a2b22ae61f151ed8c47f1f409ee7724c12e",
+      "architectures": [
+        "amd64",
+        "arm64"
+      ],
+      "anonymousPull": true
+    }
+  ]
+}
+
+Exit code: 0
+
+2026-10-17T17:58:55.453Z
+$ sed -n 1,30p terraform/main.tf
+data "aws_availability_zones" "available" {
+  state = "available"
+}
+
+module "vpc" {
+  source  = "terraform-aws-modules/vpc/aws"
+  version = "5.21.0"
+
+  name                 = "${var.cluster_name}-vpc"
+  cidr                 = "10.42.0.0/16"
+  azs                  = slice(data.aws_availability_zones.available.names, 0, 2)
+  public_subnets       = ["10.42.1.0/24", "10.42.2.0/24"]
+  private_subnets      = ["10.42.11.0/24", "10.42.12.0/24"]
+  enable_nat_gateway   = true
+  single_nat_gateway   = true
+  enable_dns_hostnames = true
+  public_subnet_tags   = { "kubernetes.io/role/elb" = "1" }
+  private_subnet_tags  = { "kubernetes.io/role/internal-elb" = "1" }
+}
+
+module "eks" {
+  source  = "terraform-aws-modules/eks/aws"
+  version = "20.37.0"
+
+  cluster_name                             = var.cluster_name
+  cluster_version                          = var.kubernetes_version
+  cluster_endpoint_private_access          = true
+  cluster_endpoint_public_access           = true
+  cluster_endpoint_public_access_cidrs     = var.api_allowed_cidrs
+  enable_cluster_creator_admin_permissions = true
+
+Exit code: 0
+
+2026-10-17T17:59:02.113Z
+$ helm --kube-context kind-campusdesk list -n campusdesk
+NAME      	NAMESPACE 	REVISION	UPDATED                             	STATUS  	CHART           	APP VERSION
+campusdesk	campusdesk	1       	2026-10-17 21:46:00.063279 +0530 IST	deployed	campusdesk-1.0.0	1.0.0
+
+Exit code: 0
+
+2026-10-17T17:59:08.701Z
+$ kubectl --context kind-campusdesk -n campusdesk create service clusterip campusdesk-audit-selector --tcp=8000:8000
+service/campusdesk-audit-selector created
+
+Exit code: 0
+
+2026-10-17T17:59:13.261Z
+$ kubectl --context kind-campusdesk -n campusdesk get endpointslices -l kubernetes.io/service-name=campusdesk-audit-selector -o wide
+NAME                              ADDRESSTYPE   PORTS     ENDPOINTS   AGE
+campusdesk-audit-selector-9lj58   IPv4          <unset>   <unset>     5s
+
+Exit code: 0
+
+2026-10-17T17:59:17.847Z
+$ kubectl --context kind-campusdesk -n campusdesk set selector service/campusdesk-audit-selector app=backend
+service/campusdesk-audit-selector selector updated
+
+Exit code: 0
+
+2026-10-17T17:59:22.434Z
+$ kubectl --context kind-campusdesk -n campusdesk get endpointslices -l kubernetes.io/service-name=campusdesk-audit-selector -o wide
+NAME                              ADDRESSTYPE   PORTS   ENDPOINTS                 AGE
+campusdesk-audit-selector-9lj58   IPv4          8000    10.244.0.38,10.244.0.41   14s
+
+Exit code: 0
+
+2026-10-17T17:59:27.019Z
+$ kubectl --context kind-campusdesk -n campusdesk get endpointslices -l kubernetes.io/service-name=campusdesk-audit-selector -o json
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "addressType": "IPv4",
+            "apiVersion": "discovery.k8s.io/v1",
+            "endpoints": [
+                {
+                    "addresses": [
+                        "10.244.0.38"
+                    ],
+                    "conditions": {
+                        "ready": true,
+                        "serving": true,
+                        "terminating": false
+                    },
+                    "nodeName": "campusdesk-control-plane",
+                    "targetRef": {
+                        "kind": "Pod",
+                        "name": "backend-6b4bd589c4-nvltn",
+                        "namespace": "campusdesk",
+                        "uid": "2987ea97-1d00-43d0-9583-949cd4f83164"
+                    }
+                },
+                {
+                    "addresses": [
+                        "10.244.0.41"
+                    ],
+                    "conditions": {
+                        "ready": true,
+                        "serving": true,
+                        "terminating": false
+                    },
+                    "nodeName": "campusdesk-control-plane",
+                    "targetRef": {
+                        "kind": "Pod",
+                        "name": "backend-6b4bd589c4-plkmt",
+                        "namespace": "campusdesk",
+                        "uid": "5a13da10-3a1b-437d-ac5e-8246d6cdf35b"
+                    }
+                }
+            ],
+            "kind": "EndpointSlice",
+            "metadata": {
+                "annotations": {
+                    "endpoints.kubernetes.io/last-change-trigger-time": "2026-10-17T16:55:03Z"
+                },
+                "creationTimestamp": "2026-10-17T17:59:08Z",
+                "generateName": "campusdesk-audit-selector-",
+                "generation": 2,
+                "labels": {
+                    "app": "campusdesk-audit-selector",
+                    "endpointslice.kubernetes.io/managed-by": "endpointslice-controller.k8s.io",
+                    "kubernetes.io/service-name": "campusdesk-audit-selector"
+                },
+                "name": "campusdesk-audit-selector-9lj58",
+                "namespace": "campusdesk",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "Service",
+                        "name": "campusdesk-audit-selector",
+                        "uid": "bfcb6db0-36ea-4b2d-9a02-1a12560cf500"
+                    }
+                ],
+                "resourceVersion": "11453",
+                "uid": "96f2a5ec-8617-4e18-ab94-624ac4f817e8"
+            },
+            "ports": [
+                {
+                    "name": "8000-8000",
+                    "port": 8000,
+                    "protocol": "TCP"
+                }
+            ]
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
+
+Exit code: 0
+
+2026-10-17T17:59:27.056Z
+$ kubectl --context kind-campusdesk -n campusdesk create deployment campusdesk-audit-image --image=ghcr.io/abdulkalamazad1001/campusdesk-capstone-frontend:intentionally-missing-audit
+deployment.apps/campusdesk-audit-image created
+
+Exit code: 0
+
+2026-10-17T17:59:31.635Z
+$ kubectl --context kind-campusdesk -n campusdesk get pods -l app=campusdesk-audit-image -o json
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2026-10-17T17:59:27Z",
+                "generateName": "campusdesk-audit-image-69d9cddf57-",
+                "generation": 1,
+                "labels": {
+                    "app": "campusdesk-audit-image",
+                    "pod-template-hash": "69d9cddf57"
+                },
+                "name": "campusdesk-audit-image-69d9cddf57-7lcz9",
+                "namespace": "campusdesk",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "apps/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "ReplicaSet",
+                        "name": "campusdesk-audit-image-69d9cddf57",
+                        "uid": "34ef85d5-d668-4209-846b-7a12abb22c0f"
+                    }
+                ],
+                "resourceVersion": "11488",
+                "uid": "550c7139-687d-4b77-8989-b930dfd53258"
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "image": "ghcr.io/abdulkalamazad1001/campusdesk-capstone-frontend:intentionally-missing-audit",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "campusdesk-capstone-frontend",
+                        "resources": {},
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-hc7q8",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "nodeName": "campusdesk-control-plane",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {},
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "name": "kube-api-access-hc7q8",
+                        "projected": {
+                            "defaultMode": 420,
+                            "sources": [
+                                {
+                                    "serviceAccountToken": {
+                                        "expirationSeconds": 3607,
+                                        "path": "token"
+                                    }
+                                },
+                                {
+                                    "configMap": {
+                                        "items": [
+                                            {
+                                                "key": "ca.crt",
+                                                "path": "ca.crt"
+                                            }
+                                        ],
+                                        "name": "kube-root-ca.crt"
+                                    }
+                                },
+                                {
+                                    "downwardAPI": {
+                                        "items": [
+                                            {
+                                                "fieldRef": {
+                                                    "apiVersion": "v1",
+                                                    "fieldPath": "metadata.namespace"
+                                                },
+                                                "path": "namespace"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-17T17:59:27Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-17T17:59:27Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-17T17:59:27Z",
+                        "message": "containers with unready status: [campusdesk-capstone-frontend]",
+                        "observedGeneration": 1,
+                        "reason": "ContainersNotReady",
+                        "status": "False",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-17T17:59:27Z",
+                        "message": "containers with unready status: [campusdesk-capstone-frontend]",
+                        "observedGeneration": 1,
+                        "reason": "ContainersNotReady",
+                        "status": "False",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-17T17:59:27Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "image": "ghcr.io/abdulkalamazad1001/campusdesk-capstone-frontend:intentionally-missing-audit",
+                        "imageID": "",
+                        "lastState": {},
+                        "name": "campusdesk-capstone-frontend",
+                        "ready": false,
+                        "restartCount": 0,
+                        "started": false,
+                        "state": {
+                            "waiting": {
+                                "message": "rpc error: code = NotFound desc = failed to pull and unpack image \"ghcr.io/abdulkalamazad1001/campusdesk-capstone-frontend:intentionally-missing-audit\": failed to resolve reference \"ghcr.io/abdulkalamazad1001/campusdesk-capstone-frontend:intentionally-missing-audit\": ghcr.io/abdulkalamazad1001/campusdesk-capstone-frontend:intentionally-missing-audit: not found",
+                                "reason": "ErrImagePull"
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-hc7q8",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "172.30.0.2",
+                "hostIPs": [
+                    {
+                        "ip": "172.30.0.2"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Pending",
+                "podIP": "10.244.0.43",
+                "podIPs": [
+                    {
+                        "ip": "10.244.0.43"
+                    }
+                ],
+                "qosClass": "BestEffort",
+                "resources": {},
+                "startTime": "2026-10-17T17:59:27Z"
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
+
+Exit code: 0
+
+2026-10-17T17:59:31.683Z
+$ kubectl --context kind-campusdesk -n campusdesk describe pods -l app=campusdesk-audit-image
+Name:             campusdesk-audit-image-69d9cddf57-7lcz9
+Namespace:        campusdesk
+Priority:         0
+Service Account:  default
+Node:             campusdesk-control-plane/172.30.0.2
+Start Time:       Sat, 17 Oct 2026 23:29:27 +0530
+Labels:           app=campusdesk-audit-image
+                  pod-template-hash=69d9cddf57
+Annotations:      <none>
+Status:           Pending
+IP:               10.244.0.43
+IPs:
+  IP:           10.244.0.43
+Controlled By:  ReplicaSet/campusdesk-audit-image-69d9cddf57
+Containers:
+  campusdesk-capstone-frontend:
+    Container ID:
+    Image:          ghcr.io/abdulkalamazad1001/campusdesk-capstone-frontend:intentionally-missing-audit
+    Image ID:
+    Port:           <none>
+    Host Port:      <none>
+    State:          Waiting
+      Reason:       ErrImagePull
+    Ready:          False
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-hc7q8 (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True
+  Initialized                 True
+  Ready                       False
+  ContainersReady             False
+  PodScheduled                True
+Volumes:
+  kube-api-access-hc7q8:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason     Age   From               Message
+  ----     ------     ----  ----               -------
+  Normal   Scheduled  4s    default-scheduler  Successfully assigned campusdesk/campusdesk-audit-image-69d9cddf57-7lcz9 to campusdesk-control-plane
+  Normal   Pulling    4s    kubelet            spec.containers{campusdesk-capstone-frontend}: Pulling image "ghcr.io/abdulkalamazad1001/campusdesk-capstone-frontend:intentionally-missing-audit"
+  Warning  Failed     3s    kubelet            spec.containers{campusdesk-capstone-frontend}: Failed to pull image "ghcr.io/abdulkalamazad1001/campusdesk-capstone-frontend:intentionally-missing-audit": rpc error: code = NotFound desc = failed to pull and unpack image "ghcr.io/abdulkalamazad1001/campusdesk-capstone-frontend:intentionally-missing-audit": failed to resolve reference "ghcr.io/abdulkalamazad1001/campusdesk-capstone-frontend:intentionally-missing-audit": ghcr.io/abdulkalamazad1001/campusdesk-capstone-frontend:intentionally-missing-audit: not found
+  Warning  Failed     3s    kubelet            spec.containers{campusdesk-capstone-frontend}: Error: ErrImagePull
+  Normal   BackOff    3s    kubelet            spec.containers{campusdesk-capstone-frontend}: Back-off pulling image "ghcr.io/abdulkalamazad1001/campusdesk-capstone-frontend:intentionally-missing-audit"
+  Warning  Failed     3s    kubelet            spec.containers{campusdesk-capstone-frontend}: Error: ImagePullBackOff
+
+Exit code: 0
+
+2026-10-17T17:59:39.270Z
+$ kubectl --context kind-campusdesk -n campusdesk set image deployment/campusdesk-audit-image *=ghcr.io/abdulkalamazad1001/campusdesk-capstone-frontend:f9bdd3af7bae550b433845272db006b7a08e34e2
+deployment.apps/campusdesk-audit-image image updated
+
+Exit code: 0
+
+2026-10-17T17:59:43.853Z
+$ kubectl --context kind-campusdesk -n campusdesk rollout status deployment/campusdesk-audit-image --timeout=120s
+deployment "campusdesk-audit-image" successfully rolled out
+
+Exit code: 0
+
+2026-10-17T17:59:48.433Z
+$ kubectl --context kind-campusdesk -n campusdesk get pods -l app=campusdesk-audit-image
+NAME                                      READY   STATUS    RESTARTS   AGE
+campusdesk-audit-image-5db7896755-pd4hq   1/1     Running   0          9s
+
+Exit code: 0
+
+2026-10-17T17:59:53.023Z
+$ kubectl --context kind-campusdesk -n campusdesk delete service/campusdesk-audit-selector deployment/campusdesk-audit-image
+service "campusdesk-audit-selector" deleted from campusdesk namespace
+deployment.apps "campusdesk-audit-image" deleted from campusdesk namespace
+
+Exit code: 0
+
+2026-10-17T17:59:57.742Z
+$ .venv/bin/python evidence/2026-10-17/verify-local.py
+{
+  "checkedAt": "2026-10-17T17:59:57.737738+00:00",
+  "context": "kind-campusdesk",
+  "argo": {
+    "sync": "Synced",
+    "health": "Healthy",
+    "revision": "5fc820b1c3d8de0bb9b72305f0124b986704e780"
+  },
+  "deployments": [
+    {
+      "name": "backend",
+      "image": "ghcr.io/abdulkalamazad1001/campusdesk-capstone-backend:f9bdd3af7bae550b433845272db006b7a08e34e2",
+      "availableReplicas": 2
+    },
+    {
+      "name": "frontend",
+      "image": "ghcr.io/abdulkalamazad1001/campusdesk-capstone-frontend:f9bdd3af7bae550b433845272db006b7a08e34e2",
+      "availableReplicas": 2
+    }
+  ],
+  "prometheusTargets": [
+    {
+      "url": "http://10.244.0.38:8000/metrics",
+      "health": "up"
+    },
+    {
+      "url": "http://10.244.0.41:8000/metrics",
+      "health": "up"
+    }
+  ],
+  "composeReadiness": {
+    "status": "ready"
+  }
+}
+PASS: final application release is healthy and monitored.
+
+Exit code: 0
