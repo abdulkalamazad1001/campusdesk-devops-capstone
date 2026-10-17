@@ -6,6 +6,10 @@
 
 **Repository:** https://github.com/abdulkalamazad1001/campusdesk-devops-capstone
 
+**Watch online:** [Main walkthrough](https://drive.google.com/file/d/18eu06pNq12Fd39i0GX1nMC_Otop2Kgqr/view)
+· [Verification supplement](https://drive.google.com/file/d/1loU7yK2Trj-gzkxCtAgLG4PcfAcciB3x/view).
+Both videos are also included as MP4 files in [demo/](demo/README.md).
+
 The existing CampusDesk repository and its development history are preserved.
 The [final assignment audit](FINAL-AUDIT.md) maps the current instructor requirements
 to verified results. The owner has confirmed that the course form has been submitted.

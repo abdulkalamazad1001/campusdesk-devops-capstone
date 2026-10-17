@@ -2,13 +2,13 @@
 
 | Deliverable | Description |
 |---|---|
-| [Main walkthrough](walkthrough.mp4) | 11 minutes 5 seconds; 1280 × 720; H.264 video with recorded AAC narration |
+| Main walkthrough · [Watch on Drive](https://drive.google.com/file/d/18eu06pNq12Fd39i0GX1nMC_Otop2Kgqr/view) · [Download MP4](walkthrough.mp4) | 11 minutes 5 seconds; 1280 × 720; H.264 video with recorded AAC narration |
 | [Presentation slides](slides.pdf) | 12-slide project overview |
-| [Verification supplement](verification-supplement.mp4) | 1 minute 55 seconds; silent demonstration with on-screen explanations |
+| Verification supplement · [Watch on Drive](https://drive.google.com/file/d/1loU7yK2Trj-gzkxCtAgLG4PcfAcciB3x/view) · [Download MP4](verification-supplement.mp4) | 1 minute 55 seconds; silent demonstration with on-screen explanations |
 | [English subtitles](walkthrough.srt) | Optional captions, also embedded in the main MP4 |
 
-Download the MP4 using GitHub's **View raw / Download** control if it does not
-play inline. Keep the SRT beside it for players that use external subtitles.
+Use the Google Drive links for browser playback, or download the MP4 using GitHub's
+**View raw / Download** control. Keep the SRT beside it for players that use external subtitles.
 The main video also contains embedded chapter markers.
 
 ## Main video chapters

@@ -24,8 +24,8 @@ the temporary AWS environment was destroyed after the demonstration.
 |---|---|
 | Review the requirements | [Final assignment audit](FINAL-AUDIT.md) and [submission checklist](SUBMISSION.md) |
 | Run the application | [Docker Compose quick start](#docker-compose-quick-start) |
-| Watch the demonstration | [Main walkthrough — 11 min 5 sec](demo/walkthrough.mp4), [video chapters](demo/README.md#main-video-chapters), [subtitles](demo/walkthrough.srt) |
-| Inspect troubleshooting demonstrations | [Verification supplement — 1 min 55 sec](demo/verification-supplement.mp4), with on-screen explanations |
+| Watch the demonstration | [Watch on Google Drive — 11 min 5 sec](https://drive.google.com/file/d/18eu06pNq12Fd39i0GX1nMC_Otop2Kgqr/view), [download MP4](demo/walkthrough.mp4), [video chapters](demo/README.md#main-video-chapters), [subtitles](demo/walkthrough.srt) |
+| Inspect troubleshooting demonstrations | [Watch on Google Drive — 1 min 55 sec](https://drive.google.com/file/d/1loU7yK2Trj-gzkxCtAgLG4PcfAcciB3x/view), [download MP4](demo/verification-supplement.mp4), with on-screen explanations |
 | View the presentation | [12-slide PDF](demo/slides.pdf) |
 | Inspect test and deployment proof | [Dated evidence index](evidence/2026-10-17/README.md) and [final verification](evidence/2026-10-17/final-audit/README.md) |
 | Inspect the successful application pipeline | [GitHub Actions run 39050953328](https://github.com/abdulkalamazad1001/campusdesk-devops-capstone/actions/runs/39050953328) |
@@ -889,8 +889,8 @@ under `evidence/local/` until it has been reviewed for publication.
 
 | Artifact | Contents |
 |---|---|
-| [Main walkthrough](demo/walkthrough.mp4) | 11 min 5 sec, 720p, recorded narration, slides followed by real project screenshots and demonstrations |
-| [Verification supplement](demo/verification-supplement.mp4) | 1 min 55 sec, silent with on-screen explanations; Swagger, database, non-root containers, registry, Helm and failure recovery |
+| Main walkthrough · [Watch on Drive](https://drive.google.com/file/d/18eu06pNq12Fd39i0GX1nMC_Otop2Kgqr/view) · [Download MP4](demo/walkthrough.mp4) | 11 min 5 sec, 720p, recorded narration, slides followed by real project screenshots and demonstrations |
+| Verification supplement · [Watch on Drive](https://drive.google.com/file/d/1loU7yK2Trj-gzkxCtAgLG4PcfAcciB3x/view) · [Download MP4](demo/verification-supplement.mp4) | 1 min 55 sec, silent with on-screen explanations; Swagger, database, non-root containers, registry, Helm and failure recovery |
 | [Slides](demo/slides.pdf) | 12-slide project presentation |
 | [Video chapters](demo/README.md#main-video-chapters) | Navigation through the final main video |
 | [Subtitles](demo/walkthrough.srt) | English caption file for the main video |
@@ -898,8 +898,9 @@ under `evidence/local/` until it has been reviewed for publication.
 
 The main walkthrough covers the application, source, tests, commit/push and CI,
 security, Terraform, AWS Console, EKS, Argo CD, monitoring and cleanup. The
-supplement provides additional database and troubleshooting demonstrations. If
-GitHub does not preview an MP4, download the file and play it locally.
+supplement provides additional database and troubleshooting demonstrations. Watch
+either video in Google Drive or download its MP4 from this repository. Both copies
+contain the same video; the repository retains the complete submission deliverables.
 
 The course submission has been completed according to the owner's confirmation.
 [SUBMISSION.md](SUBMISSION.md) keeps the repository and deliverables together;
