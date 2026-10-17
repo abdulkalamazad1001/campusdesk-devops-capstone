@@ -115,6 +115,18 @@ use route templates rather than ticket IDs to avoid unbounded label cardinality.
 
 ## Tests And Development
 
+macOS / Linux:
+
+```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install -r backend/requirements-dev.txt
+cd backend
+../.venv/bin/python -m pytest -v
+../.venv/bin/python -m ruff check .
+```
+
+Windows PowerShell:
+
 ```powershell
 python -m venv .venv
 .venv/Scripts/python -m pip install -r backend/requirements-dev.txt
@@ -159,11 +171,17 @@ promotion and evidence-only snapshot commits use `[skip ci]` to avoid redundant 
    A separate security job gates Bandit source analysis, pip-audit, npm audit and
    redacted Gitleaks scanning of capstone/workflow history before image builds.
 2. Helm and Terraform are validated without creating cloud resources.
-3. Both Docker images are built and tagged with the full Git commit SHA.
-4. Trivy scans both images and blocks the pipeline on any HIGH or CRITICAL finding.
-5. An ephemeral Kind cluster deploys the Helm chart and runs smoke and browser tests.
+3. Both Docker images are built natively on AMD64 and ARM64 runners and tagged with
+   the full Git commit SHA. ARM64 supports Apple Silicon's local Kind cluster;
+   AMD64 supports the AWS `t3` worker nodes.
+4. Trivy scans both images on each architecture and blocks the pipeline on any
+   HIGH or CRITICAL finding.
+5. Each architecture's ephemeral Kind cluster deploys the Helm chart and runs
+   smoke and browser tests.
 6. A separate `publish` job, the only job with write permissions, pushes the exact
-   scanned and tested images to GHCR. Main-branch runs are never cancelled midway.
+   scanned and tested images to GHCR, then publishes a multi-platform manifest
+   at the full commit SHA. Publication waits for both architectures to pass.
+   Main-branch runs are never cancelled midway.
 7. CI commits those verified SHA tags to `helm/campusdesk/values-release.json`.
    Argo CD automatically reconciles that release into the local cluster.
 
@@ -203,6 +221,23 @@ a Kubernetes image-pull Secret using a token with `read:packages`. Never commit 
 
 ## Local Kubernetes And Helm
 
+macOS prerequisites (Docker Desktop must be running):
+
+```bash
+brew install kind helm@3
+export PATH="$(brew --prefix helm@3)/bin:$PATH"
+bash scripts/local-k8s.sh
+python3 scripts/seed.py --url http://campusdesk.localhost:8088
+kubectl --context kind-campusdesk -n campusdesk get pods,svc,ingress,hpa
+helm --kube-context kind-campusdesk list -n campusdesk
+```
+
+Linux uses the same Bash script with Docker, Kind, Helm 3, kubectl and Python 3
+on `PATH`. The scripts target `kind-campusdesk` explicitly so another current
+Kubernetes context is not modified.
+
+Windows PowerShell:
+
 Install Kind, Helm 3 and kubectl (for example `winget install Kubernetes.kind Helm.Helm
 Kubernetes.kubectl`). With Docker running, bootstrap a new cluster:
 
@@ -227,6 +262,8 @@ database before backend readiness succeeds. PostgreSQL uses a StatefulSet and PV
 
 Grafana username: `admin`. Retrieve the generated password locally with
 `powershell -File scripts/grafana-password.ps1`. Do not include it in screenshots.
+On macOS/Linux, retrieve it privately with
+`kubectl --context kind-campusdesk -n campusdesk get secret campusdesk-grafana -o jsonpath='{.data.password}' | base64 --decode`.
 
 If your system does not resolve `campusdesk.localhost`, use `curl.exe -H
 "Host: campusdesk.localhost" http://127.0.0.1:8088/api/tickets` to verify routing.
@@ -271,6 +308,11 @@ For private packages, create an image-pull Secret outside Git and reference its 
 in the chart's `imagePullSecrets` values.
 
 After the local Helm bootstrap, transfer deployment ownership to Argo CD:
+
+```bash
+# macOS / Linux
+bash scripts/local-gitops.sh
+```
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts/local-gitops.ps1

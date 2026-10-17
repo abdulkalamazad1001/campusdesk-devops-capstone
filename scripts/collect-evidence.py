@@ -1,12 +1,14 @@
 """Capture actual command output with timestamps and exit codes; never synthesize results."""
 import argparse
 import json
+import os
+import shutil
 import subprocess
-from datetime import datetime, UTC
+import sys
+from datetime import UTC, datetime
 from pathlib import Path
 
 root = Path(__file__).resolve().parents[1]
-repo = root.parent
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument("--output", type=Path, default=root / "evidence")
 parser.add_argument("--compose-build", action="store_true")
@@ -14,9 +16,9 @@ options = parser.parse_args()
 evidence = options.output.resolve()
 evidence.mkdir(parents=True, exist_ok=True)
 kubectl = ["kubectl", "--context", "kind-campusdesk"]
-helm = str(repo / "tools/helm/windows-amd64/helm.exe")
-terraform = str(repo / "tools/terraform/terraform.exe")
-python = str(root / ".venv/Scripts/python.exe")
+helm = os.environ.get("HELM") or shutil.which("helm") or "helm"
+terraform = os.environ.get("TERRAFORM") or shutil.which("terraform") or "terraform"
+python = sys.executable
 checks = [
     ("pytest", [python, "-m", "pytest", "-v"], root / "backend"),
     ("ruff", [python, "-m", "ruff", "check", "."], root / "backend"),
@@ -26,15 +28,18 @@ checks = [
     ("helm", [helm, "--kube-context", "kind-campusdesk", "list", "-n", "campusdesk"], root),
     ("terraform-validate", [terraform, "-chdir=terraform", "validate", "-no-color"], root),
     ("argocd", kubectl + ["-n", "argocd", "get", "application", "campusdesk", "-o", "json"], root),
-    ("metrics", ["curl.exe", "-fsS", "http://localhost:8000/metrics"], root),
-    ("commit-history", ["git", "log", "-15", "--format=%h %s"], repo),
+    ("metrics", ["curl", "-fsS", "http://localhost:8000/metrics"], root),
+    ("commit-history", ["git", "log", "-15", "--format=%h %s"], root),
 ]
 summary = []
 if options.compose_build:
     checks.insert(0, ("compose-build", ["docker", "compose", "up", "--build", "-d"], root))
 for name, command, cwd in checks:
     captured = datetime.now(UTC).isoformat()
-    result = subprocess.run(command, cwd=cwd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=900 if name == "compose-build" else 180)
+    try:
+        result = subprocess.run(command, check=False, cwd=cwd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=900 if name == "compose-build" else 180)
+    except (OSError, subprocess.TimeoutExpired) as error:
+        result = subprocess.CompletedProcess(command, 1, "", str(error))
     record = {"name": name, "capturedAt": captured, "command": command, "exitCode": result.returncode,
               "stdout": result.stdout, "stderr": result.stderr}
     (evidence / f"{name}.json").write_text(json.dumps(record, indent=2), encoding="utf-8")

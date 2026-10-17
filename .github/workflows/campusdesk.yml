@@ -94,7 +94,17 @@ jobs:
           path: backend/pytest-results.xml
   build-scan-deploy:
     needs: [test, source-security]
-    runs-on: ubuntu-latest
+    # Build, scan and run Kubernetes/browser checks natively on both supported CPUs.
+    # Apple Silicon Kind needs arm64; the AWS t3 node group needs amd64.
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: amd64
+            runner: ubuntu-24.04
+          - arch: arm64
+            runner: ubuntu-24.04-arm
+    runs-on: ${{ matrix.runner }}
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
@@ -121,7 +131,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: trivy-reports
+          name: trivy-reports-${{ matrix.arch }}
           path: '*-trivy.txt'
       - name: Create an ephemeral Kubernetes cluster
         uses: helm/kind-action@v1.12.0
@@ -152,7 +162,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: browser-results
+          name: browser-results-${{ matrix.arch }}
           path: evidence/local/ci-browser/
       - name: Collect cluster diagnostics
         if: always()
@@ -166,7 +176,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         with:
-          name: campusdesk-images
+          name: campusdesk-images-${{ matrix.arch }}
           path: campusdesk-images.tar.gz
           retention-days: 1
   publish:
@@ -181,18 +191,32 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
-        with: {name: campusdesk-images}
+        with: {pattern: campusdesk-images-*}
       - name: Load the scanned images
-        run: gunzip -c campusdesk-images.tar.gz | docker load
+        run: |
+          for arch in amd64 arm64; do
+            gunzip -c "campusdesk-images-$arch/campusdesk-images.tar.gz" | docker load
+            for component in backend frontend; do
+              image="ghcr.io/abdulkalamazad1001/campusdesk-capstone-$component"
+              docker tag "$image:${{ github.sha }}" "$image:${{ github.sha }}-$arch"
+            done
+          done
       - uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Publish verified images
+      - name: Publish verified images and multi-platform SHA manifests
         run: |
-          docker push ghcr.io/abdulkalamazad1001/campusdesk-capstone-backend:${{ github.sha }}
-          docker push ghcr.io/abdulkalamazad1001/campusdesk-capstone-frontend:${{ github.sha }}
+          for component in backend frontend; do
+            image="ghcr.io/abdulkalamazad1001/campusdesk-capstone-$component"
+            for arch in amd64 arm64; do
+              docker push "$image:${{ github.sha }}-$arch"
+            done
+            docker manifest create "$image:${{ github.sha }}" \
+              "$image:${{ github.sha }}-amd64" "$image:${{ github.sha }}-arm64"
+            docker manifest push "$image:${{ github.sha }}"
+          done
       - name: Promote verified images to GitOps
         run: |
           git config user.name 'github-actions[bot]'
