@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-17T17:43:15.867055+00:00",
+  "checkedAt": "2026-10-17T17:49:27.880720+00:00",
   "narrator": "T. Abdul Kalam Azad \u2014 own microphone recording",
   "syntheticVoice": false,
   "originalDurationSeconds": 837.162667,
@@ -17,7 +17,7 @@
   "editing": "Removed lead/trailing waits, repeated AWS take, interruption and reading slips. Slides and recorded demonstrations retimed to speech. Optional English captions lightly edited for readability.",
   "sha256": {
     "originalRecording": "02c39b0cbc0423ca09a549a19a9b5fa46cc6e17a631de15dde04ba7b59f70e85",
-    "finalVideo": "6bb8065895390836843a80b5d3c61618f93191e03e6ef0d44a4c4725f9f87ffc",
+    "finalVideo": "2faea64b8fa815ce4aad52210d9ca7b4af196fa47b75b907ca096477d78680e1",
     "finalCaptions": "1c81c10f0c46f5e59568ef6014e4f562d06793b41ccf934affd4020d8bcb9fe3"
   },
   "streams": [
@@ -227,6 +227,8 @@
     "audioAndVideoDurationMatch": true,
     "fullAudioVideoDecodeErrors": 0,
     "captionTimingValid": true,
-    "selectedEditedSpeechCheckedWithLocalTranscription": true
+    "selectedEditedSpeechCheckedWithLocalTranscription": true,
+    "introVoiceLabelRemoved": true,
+    "audioUnchangedAfterTitleEdit": true
   }
 }

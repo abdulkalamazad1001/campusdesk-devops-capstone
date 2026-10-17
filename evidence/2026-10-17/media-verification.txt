@@ -1,10 +1,10 @@
-Captured at: 2026-10-17T17:43:35.710330+00:00
+Captured at: 2026-10-17T17:49:27.929000+00:00
 Command: .venv/bin/python evidence/2026-10-17/verify-media.py
 Exit code: 0
-Duration: 0.15s
+Duration: 0.13s
 
 {
-  "checkedAt": "2026-10-17T17:43:35.846460+00:00",
+  "checkedAt": "2026-10-17T17:49:28.041897+00:00",
   "video": {
     "programs": [],
     "stream_groups": [],
@@ -30,12 +30,12 @@ Duration: 0.15s
     ],
     "format": {
       "duration": "665.360000",
-      "size": "20354742"
+      "size": "20341343"
     }
   },
   "slideCount": 12,
   "sha256": {
-    "demo/walkthrough.mp4": "6bb8065895390836843a80b5d3c61618f93191e03e6ef0d44a4c4725f9f87ffc",
+    "demo/walkthrough.mp4": "2faea64b8fa815ce4aad52210d9ca7b4af196fa47b75b907ca096477d78680e1",
     "demo/slides.pdf": "056dfcef7e1039210474f773e68fa0c2f1ecfbad911c8c41fa04b9f95fbfef9b",
     "demo/walkthrough.srt": "1c81c10f0c46f5e59568ef6014e4f562d06793b41ccf934affd4020d8bcb9fe3"
   }
