@@ -1,0 +1,20 @@
+Captured at: 2026-10-17T16:40:21.079860+00:00
+Command: git log -15 --oneline
+Exit code: 0
+Duration: 0.01s
+
+a425f36 chore(gitops): promote verified CampusDesk images [skip ci]
+7360906 feat(devops): verify ARM64 releases and support macOS bootstrap
+8763ee5 chore(gitops): promote verified CampusDesk images [skip ci]
+f85cb16 docs(evidence): add 16 October screenshots for every module
+4c3226a chore(gitops): promote verified CampusDesk images [skip ci]
+cf47d78 ci: publish images under repository-owned GHCR packages
+eda9361 chore: make the capstone a standalone repository
+373ae19 docs(capstone): map rubric modules to files and add presentation script
+0405012 infra(terraform): add destroy safety script, outputs and AWS runbook
+5d3c378 fix(helm): make the chart installable on a fresh cluster and add monitoring values
+935f43b ci(campusdesk): publish scanned images from a separate least-privilege job
+4954012 fix(api): reject out-of-range ids and NUL input, handle failed writes
+d4c8d3d docs(review): record verified project checks and remaining gaps [skip ci]
+f94b7c8 chore(gitops): promote verified CampusDesk images [skip ci]
+307e52b fix(devops): verify Helm hooks and prevent stale GitOps promotions

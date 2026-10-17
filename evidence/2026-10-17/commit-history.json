@@ -1,0 +1,14 @@
+{
+  "capturedAt": "2026-10-17T16:40:21.079860+00:00",
+  "finishedAt": "2026-10-17T16:40:21.093478+00:00",
+  "command": [
+    "git",
+    "log",
+    "-15",
+    "--oneline"
+  ],
+  "cwd": "/Users/abdulkalamazad/Documents/campusdesk-devops-capstone",
+  "exitCode": 0,
+  "durationSeconds": 0.01,
+  "stdout": "a425f36 chore(gitops): promote verified CampusDesk images [skip ci]\n7360906 feat(devops): verify ARM64 releases and support macOS bootstrap\n8763ee5 chore(gitops): promote verified CampusDesk images [skip ci]\nf85cb16 docs(evidence): add 16 October screenshots for every module\n4c3226a chore(gitops): promote verified CampusDesk images [skip ci]\ncf47d78 ci: publish images under repository-owned GHCR packages\neda9361 chore: make the capstone a standalone repository\n373ae19 docs(capstone): map rubric modules to files and add presentation script\n0405012 infra(terraform): add destroy safety script, outputs and AWS runbook\n5d3c378 fix(helm): make the chart installable on a fresh cluster and add monitoring values\n935f43b ci(campusdesk): publish scanned images from a separate least-privilege job\n4954012 fix(api): reject out-of-range ids and NUL input, handle failed writes\nd4c8d3d docs(review): record verified project checks and remaining gaps [skip ci]\nf94b7c8 chore(gitops): promote verified CampusDesk images [skip ci]\n307e52b fix(devops): verify Helm hooks and prevent stale GitOps promotions\n"
+}

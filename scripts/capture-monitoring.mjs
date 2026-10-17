@@ -6,6 +6,8 @@ import { fileURLToPath } from 'node:url';
 const require = createRequire(new URL('../frontend/package.json', import.meta.url));
 const { chromium } = require('playwright');
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const output = path.resolve(process.env.EVIDENCE_DIR || path.join(root, 'evidence'));
+await fs.mkdir(output, {recursive:true});
 const browser = await chromium.launch();
 function secret(namespace, name, key) {
   const value = execFileSync('kubectl', ['--context','kind-campusdesk','-n',namespace,'get','secret',name,'-o',`jsonpath={.data.${key}}`], {encoding:'utf8'});
@@ -24,8 +26,8 @@ try {
   }
   await page.reload();
   await page.getByText('campusdesk',{exact:false}).first().waitFor();
-  await page.screenshot({path:path.join(root,'evidence/prometheus-targets.png'),fullPage:true});
-  await fs.writeFile(path.join(root,'evidence/prometheus-targets.json'),JSON.stringify(targets,null,2));
+  await page.screenshot({path:path.join(output,'prometheus-targets.png'),fullPage:true});
+  await fs.writeFile(path.join(output,'prometheus-targets.json'),JSON.stringify(targets,null,2));
   await page.goto('http://localhost:3001/login');
   await page.getByRole('textbox',{name:'Email or username'}).fill('admin');
   await page.getByRole('textbox',{name:'Password',exact:true}).fill(secret('campusdesk','campusdesk-grafana','password'));
@@ -36,10 +38,11 @@ try {
   await page.waitForFunction(()=>document.querySelectorAll('canvas').length>0);
   await page.getByText('Cancel',{exact:true}).waitFor({state:'hidden',timeout:60000});
   await page.waitForTimeout(2000);
-  await page.screenshot({path:path.join(root,'evidence/grafana-dashboard.png'),fullPage:true});
+  await page.screenshot({path:path.join(output,'grafana-dashboard.png'),fullPage:true});
   const query = await (await fetch('http://localhost:9090/api/v1/query?query='+encodeURIComponent('sum(rate(campusdesk_http_requests_total[5m]))'))).json();
   if (!query.data.result.length || Number(query.data.result[0].value[1])<=0) throw Error('No live request metrics');
-  await fs.writeFile(path.join(root,'evidence/live-metrics.json'),JSON.stringify(query,null,2));
+  await fs.writeFile(path.join(output,'live-metrics.json'),JSON.stringify(query,null,2));
+  if (process.env.SKIP_ARGO !== '1') {
   const argo = await browser.newPage({viewport:{width:1440,height:1000}});
   await argo.goto('http://argocd.localhost:8088');
   await argo.getByRole('textbox',{name:'Username',exact:true}).fill('admin');
@@ -49,6 +52,7 @@ try {
   await argo.goto('http://argocd.localhost:8088/applications/argocd/campusdesk');
   await argo.getByText('APP HEALTH',{exact:true}).waitFor();
   await argo.getByText('Healthy',{exact:true}).first().waitFor({timeout:60000});
-  await argo.screenshot({path:path.join(root,'evidence/argocd-application.png'),fullPage:true});
-  console.log('Captured Prometheus, live Grafana dashboard and Argo CD application.');
+  await argo.screenshot({path:path.join(output,'argocd-application.png'),fullPage:true});
+  }
+  console.log('Captured live monitoring evidence' + (process.env.SKIP_ARGO === '1' ? '.' : ' and Argo CD application.'));
 } finally { await browser.close(); }

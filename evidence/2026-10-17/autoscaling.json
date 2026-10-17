@@ -1,0 +1,18 @@
+{
+  "capturedAt": "2026-10-17T16:25:09.367246+00:00",
+  "finishedAt": "2026-10-17T16:25:09.408596+00:00",
+  "command": [
+    "kubectl",
+    "--context",
+    "kind-campusdesk",
+    "-n",
+    "campusdesk",
+    "describe",
+    "hpa",
+    "backend"
+  ],
+  "cwd": "/Users/abdulkalamazad/Documents/campusdesk-devops-capstone",
+  "exitCode": 0,
+  "durationSeconds": 0.04,
+  "stdout": "Name:                                                  backend\nNamespace:                                             campusdesk\nLabels:                                                app.kubernetes.io/managed-by=Helm\nAnnotations:                                           meta.helm.sh/release-name: campusdesk\n                                                       meta.helm.sh/release-namespace: campusdesk\nCreationTimestamp:                                     Sat, 17 Oct 2026 21:46:00 +0530\nReference:                                             Deployment/backend\nMetrics:                                               ( current / target )\n  resource cpu on pods  (as a percentage of request):  44% (44m) / 70%\nMin replicas:                                          2\nMax replicas:                                          4\nDeployment pods:                                       4 current / 4 desired\nConditions:\n  Type            Status  Reason               Message\n  ----            ------  ------               -------\n  AbleToScale     True    ScaleDownStabilized  recent recommendations were higher than current one, applying the highest recent recommendation\n  ScalingActive   True    ValidMetricFound     the HPA was able to successfully calculate a replica count from cpu resource utilization (percentage of request)\n  ScalingLimited  True    TooManyReplicas      the desired replica count is more than the maximum replica count\n  ScaledToZero    False   NotScaledToZero      the HPA controller did not scale the workload to zero\nEvents:\n  Type     Reason                        Age                   From                       Message\n  ----     ------                        ----                  ----                       -------\n  Warning  FailedGetResourceMetric       8m24s (x4 over 9m9s)  horizontal-pod-autoscaler  failed to get cpu utilization: unable to get metrics for resource cpu: unable to fetch metrics from resource metrics API: the server is currently unable to handle the request (get pods.metrics.k8s.io)\n  Warning  FailedComputeMetricsReplicas  8m24s (x4 over 9m9s)  horizontal-pod-autoscaler  invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: unable to get metrics for resource cpu: unable to fetch metrics from resource metrics API: the server is currently unable to handle the request (get pods.metrics.k8s.io)\n  Warning  FailedComputeMetricsReplicas  6m24s (x8 over 8m9s)  horizontal-pod-autoscaler  invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: unable to get metrics for resource cpu: no metrics returned from resource metrics API\n  Warning  FailedGetResourceMetric       6m9s (x9 over 8m9s)   horizontal-pod-autoscaler  failed to get cpu utilization: unable to get metrics for resource cpu: no metrics returned from resource metrics API\n  Normal   SuccessfulRescale             2m9s                  horizontal-pod-autoscaler  New size: 4; reason: cpu resource utilization (percentage of request) above target\n"
+}

@@ -1,0 +1,15 @@
+{
+  "capturedAt": "2026-10-17T16:12:31.251186+00:00",
+  "finishedAt": "2026-10-17T16:14:21.813504+00:00",
+  "command": [
+    "terraform",
+    "-chdir=terraform",
+    "init",
+    "-input=false",
+    "-no-color"
+  ],
+  "cwd": "/Users/abdulkalamazad/Documents/campusdesk-devops-capstone",
+  "exitCode": 0,
+  "durationSeconds": 110.56,
+  "stdout": "Initializing the backend...\nInitializing modules...\nDownloading registry.terraform.io/terraform-aws-modules/iam/aws 5.60.0 for ebs_csi...\n- ebs_csi in .terraform/modules/ebs_csi/modules/iam-role-for-service-accounts-eks\nDownloading registry.terraform.io/terraform-aws-modules/eks/aws 20.37.0 for eks...\n- eks in .terraform/modules/eks\n- eks.eks_managed_node_group in .terraform/modules/eks/modules/eks-managed-node-group\n- eks.eks_managed_node_group.user_data in .terraform/modules/eks/modules/_user_data\n- eks.fargate_profile in .terraform/modules/eks/modules/fargate-profile\nDownloading registry.terraform.io/terraform-aws-modules/kms/aws 2.1.0 for eks.kms...\n- eks.kms in .terraform/modules/eks.kms\n- eks.self_managed_node_group in .terraform/modules/eks/modules/self-managed-node-group\n- eks.self_managed_node_group.user_data in .terraform/modules/eks/modules/_user_data\nDownloading registry.terraform.io/terraform-aws-modules/vpc/aws 5.21.0 for vpc...\n- vpc in .terraform/modules/vpc\nInitializing provider plugins...\n- Reusing previous version of hashicorp/time from the dependency lock file\n- Reusing previous version of hashicorp/null from the dependency lock file\n- Reusing previous version of hashicorp/cloudinit from the dependency lock file\n- Reusing previous version of hashicorp/aws from the dependency lock file\n- Reusing previous version of hashicorp/tls from the dependency lock file\n- Installing hashicorp/time v0.14.2...\n- Installed hashicorp/time v0.14.2 (signed by HashiCorp)\n- Installing hashicorp/null v3.3.2...\n- Installed hashicorp/null v3.3.2 (signed by HashiCorp)\n- Installing hashicorp/cloudinit v2.4.1...\n- Installed hashicorp/cloudinit v2.4.1 (signed by HashiCorp)\n- Installing hashicorp/aws v5.100.0...\n- Installed hashicorp/aws v5.100.0 (signed by HashiCorp)\n- Installing hashicorp/tls v4.4.1...\n- Installed hashicorp/tls v4.4.1 (signed by HashiCorp)\nTerraform has made some changes to the provider dependency selections recorded\nin the .terraform.lock.hcl file. Review those changes and commit them to your\nversion control system if they represent changes you intended to make.\n\nTerraform has been successfully initialized!\n\nYou may now begin working with Terraform. Try running \"terraform plan\" to see\nany changes that are required for your infrastructure. All Terraform commands\nshould now work.\n\nIf you ever set or change modules or backend configuration for Terraform,\nrerun this command to reinitialize your working directory. If you forget, other\ncommands will detect it and remind you to do so if necessary.\n"
+}

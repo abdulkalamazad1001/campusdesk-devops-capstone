@@ -1,0 +1,67 @@
+Captured at: 2026-10-17T16:33:08.084208+00:00
+Command: bash scripts/aws-k8s.sh
+Exit code: 0
+Duration: 88.84s
+
+Updated context campusdesk-24bcs10053 in /Users/abdulkalamazad/.kube/config
+node/ip-10-42-11-120.ap-south-1.compute.internal condition met
+node/ip-10-42-12-146.ap-south-1.compute.internal condition met
+namespace/campusdesk unchanged
+storageclass.storage.k8s.io/gp3 unchanged
+"traefik" has been added to your repositories
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the "traefik" chart repository
+Update Complete. ⎈Happy Helming!⎈
+Release "traefik" has been upgraded. Happy Helming!
+NAME: traefik
+LAST DEPLOYED: Sat Oct 17 22:03:16 2026
+NAMESPACE: ingress-system
+STATUS: deployed
+REVISION: 3
+TEST SUITE: None
+NOTES:
+traefik with docker.io/traefik:v3.3.4 has been deployed successfully on ingress-system namespace !
+serviceaccount/metrics-server created
+clusterrole.rbac.authorization.k8s.io/system:aggregated-metrics-reader created
+clusterrole.rbac.authorization.k8s.io/system:metrics-server created
+rolebinding.rbac.authorization.k8s.io/metrics-server-auth-reader created
+clusterrolebinding.rbac.authorization.k8s.io/metrics-server:system:auth-delegator created
+clusterrolebinding.rbac.authorization.k8s.io/system:metrics-server created
+service/metrics-server created
+deployment.apps/metrics-server created
+apiservice.apiregistration.k8s.io/v1beta1.metrics.k8s.io created
+Release "campusdesk" does not exist. Installing it now.
+NAME: campusdesk
+LAST DEPLOYED: Sat Oct 17 22:03:23 2026
+NAMESPACE: campusdesk
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NAME                              READY   STATUS      RESTARTS   AGE
+pod/backend-59779b5b54-6tcrf      1/1     Running     0          72s
+pod/backend-59779b5b54-9tw5l      1/1     Running     0          72s
+pod/campusdesk-migrate-1-5fjk6    0/1     Completed   2          72s
+pod/frontend-698d979c6-b5hgv      1/1     Running     0          72s
+pod/frontend-698d979c6-cqjhr      1/1     Running     0          72s
+pod/grafana-598c5f554c-6qvh8      1/1     Running     0          72s
+pod/postgres-0                    1/1     Running     0          72s
+pod/prometheus-646894c77d-xs6qv   1/1     Running     0          72s
+
+NAME                      TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
+service/backend           ClusterIP   172.20.183.219   <none>        8000/TCP   72s
+service/backend-metrics   ClusterIP   None             <none>        8000/TCP   72s
+service/frontend          ClusterIP   172.20.240.149   <none>        8080/TCP   72s
+service/grafana           ClusterIP   172.20.34.183    <none>        3000/TCP   72s
+service/postgres          ClusterIP   None             <none>        5432/TCP   72s
+service/prometheus        ClusterIP   172.20.161.103   <none>        9090/TCP   72s
+
+NAME                                   CLASS     HOSTS                                                                            ADDRESS                                                                          PORTS   AGE
+ingress.networking.k8s.io/campusdesk   traefik   a7773e7a261504f5bb536b6de4e41e72-2ef7fca296b07a02.elb.ap-south-1.amazonaws.com   a7773e7a261504f5bb536b6de4e41e72-2ef7fca296b07a02.elb.ap-south-1.amazonaws.com   80      72s
+
+NAME                                          REFERENCE            TARGETS              MINPODS   MAXPODS   REPLICAS   AGE
+horizontalpodautoscaler.autoscaling/backend   Deployment/backend   cpu: <unknown>/70%   2         4         2          72s
+
+NAME                                    STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+persistentvolumeclaim/data-postgres-0   Bound    pvc-4d00cdfc-04ce-48f3-b324-6dce7c2166c8   2Gi        RWO            gp3            <unset>                 72s
+
+CampusDesk: http://a7773e7a261504f5bb536b6de4e41e72-2ef7fca296b07a02.elb.ap-south-1.amazonaws.com

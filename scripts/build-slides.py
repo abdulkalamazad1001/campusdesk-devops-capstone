@@ -1,6 +1,5 @@
 """Create the rubric-accepted PDF deck and render every page for visual review."""
 from pathlib import Path
-from xml.sax.saxutils import escape
 
 import fitz
 from reportlab.lib.colors import HexColor
@@ -80,23 +79,23 @@ if diagram.exists():
 c.showPage()
 
 start("The service desk runs in the browser", "Working application")
-screenshot = ROOT / "evidence" / "application-desktop.png"
+screenshot = ROOT / "evidence" / "2026-10-17" / "application-desktop.png"
 if screenshot.exists():
     c.drawImage(str(screenshot), 52, 67, width=856, height=337, preserveAspectRatio=True, anchor="c")
 c.showPage()
 
 start("Quality gates precede publication", "CI/CD and security")
-bullets(["Ruff, database migrations, pytest and the frontend build run first.",
-         "Both images are scanned for HIGH and CRITICAL vulnerabilities.",
-         "The Helm release is smoke-tested in an ephemeral Kind cluster.",
-         "Successful main-branch runs publish images tagged with the commit SHA."])
+bullets(["40 API tests, migrations, Ruff and source-security gates run first.",
+         "Trivy blocks HIGH and CRITICAL findings in both application images.",
+         "Native AMD64 and ARM64 jobs verify Helm and 17 browser checks each.",
+         "Only verified images become the multi-platform commit-SHA release."])
 c.showPage()
 
 start("Kubernetes manages application replicas", "Deployment")
 bullets(["Helm defines Deployments, Services, Secrets and PostgreSQL storage.",
          "Traefik routes the UI and API through one Ingress hostname.",
          "Readiness checks database access; liveness checks the process.",
-         "Metrics Server supports an HPA with a range of two to four API replicas."])
+         "Live load scaled the API from two replicas to four: 31,274 successful requests."])
 c.showPage()
 
 start("Git records the desired deployment", "GitOps")
@@ -113,11 +112,11 @@ bullets(["Prometheus discovers and scrapes each backend replica.",
          "Backend availability and error-ratio alert rules detect service problems."])
 c.showPage()
 
-start("AWS infrastructure is prepared in code", "Terraform - deployment deferred")
+start("AWS infrastructure runs from code", "Terraform and Amazon EKS")
 bullets(["Two public subnets and two private subnets span availability zones.",
          "A NAT gateway connects private worker nodes to external registries.",
-         "EKS, a managed node group and EBS CSI provide the deployment foundation.",
-         "Cloud plan, apply, console evidence and destroy remain pending AWS access."])
+         "EKS 1.35 and two private t3.medium workers are verified in Mumbai.",
+         "Plan: 61 resources. Apply recovered from DNS failure; the follow-up plan is clean."])
 c.showPage()
 
 start("Failures become evidence for diagnosis", "Troubleshooting")
@@ -127,11 +126,11 @@ bullets(["A nonexistent image tag demonstrates ImagePullBackOff and pod events."
          "Image scans guide remediation; successful deployment alone is not security proof."])
 c.showPage()
 
-start("Verification is part of the deliverable", "Learnings and remaining work")
+start("Verification is part of the deliverable", "Learnings and responsible cleanup")
 bullets(["A working app needs tests, repeatable deployment and observable behavior.",
          "Screenshots and reports should show actual runs and identify their environment.",
-         "Complete the deferred AWS deployment and record its real evidence.",
-         "Use the repository submission checklist before presenting the final walkthrough."])
+         "Delete load balancers and database volumes before Terraform destroys EKS.",
+         "The evidence index records results, limitations and the final cleanup checks."])
 text("Brief, rubric and submission guide: github.com/Nency-Ravaliya/devsecops-python", 60, 95, 815, small)
 c.showPage()
 c.save()

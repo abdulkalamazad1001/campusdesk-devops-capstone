@@ -1,0 +1,17 @@
+{
+  "capturedAt": "2026-10-17T16:29:39.078398+00:00",
+  "finishedAt": "2026-10-17T16:29:40.229449+00:00",
+  "command": [
+    "kubectl",
+    "--context",
+    "campusdesk-24bcs10053",
+    "get",
+    "nodes",
+    "-o",
+    "wide"
+  ],
+  "cwd": "/Users/abdulkalamazad/Documents/campusdesk-devops-capstone",
+  "exitCode": 0,
+  "durationSeconds": 1.15,
+  "stdout": "NAME                                          STATUS   ROLES    AGE     VERSION               INTERNAL-IP    EXTERNAL-IP   OS-IMAGE                        KERNEL-VERSION                     CONTAINER-RUNTIME\nip-10-42-11-120.ap-south-1.compute.internal   Ready    <none>   2m22s   v1.35.8-eks-b9510e3   10.42.11.120   <none>        Amazon Linux 2023.12.20261012   6.12.111-136.204.amzn2023.x86_64   containerd://2.3.5+unknown\nip-10-42-12-146.ap-south-1.compute.internal   Ready    <none>   2m21s   v1.35.8-eks-b9510e3   10.42.12.146   <none>        Amazon Linux 2023.12.20261012   6.12.111-136.204.amzn2023.x86_64   containerd://2.3.5+unknown\n"
+}

@@ -1,0 +1,369 @@
+Captured at: 2026-10-17T16:28:18.963298+00:00
+Command: terraform -chdir=terraform apply -input=false -auto-approve -no-color
+Exit code: 0
+Duration: 64.56s
+
+module.eks.data.aws_partition.current[0]: Reading...
+module.eks.module.eks_managed_node_group["application"].data.aws_partition.current: Reading...
+module.eks.module.kms.data.aws_partition.current[0]: Reading...
+module.eks.data.aws_caller_identity.current[0]: Reading...
+module.ebs_csi.data.aws_caller_identity.current: Reading...
+data.aws_availability_zones.available: Reading...
+module.eks.module.eks_managed_node_group["application"].data.aws_iam_policy_document.assume_role_policy[0]: Reading...
+module.eks.data.aws_iam_policy_document.assume_role_policy[0]: Reading...
+module.vpc.aws_vpc.this[0]: Refreshing state... [id=vpc-09f58b5fefcde394e]
+module.eks.aws_cloudwatch_log_group.this[0]: Refreshing state... [id=/aws/eks/campusdesk-24bcs10053/cluster]
+module.eks.data.aws_partition.current[0]: Read complete after 0s [id=aws]
+module.eks.module.eks_managed_node_group["application"].data.aws_partition.current: Read complete after 0s [id=aws]
+module.eks.module.kms.data.aws_partition.current[0]: Read complete after 0s [id=aws]
+module.eks.data.aws_iam_policy_document.assume_role_policy[0]: Read complete after 0s [id=2830595799]
+module.eks.module.eks_managed_node_group["application"].data.aws_iam_policy_document.assume_role_policy[0]: Read complete after 0s [id=2560088296]
+module.ebs_csi.data.aws_region.current: Reading...
+module.eks.module.eks_managed_node_group["application"].data.aws_caller_identity.current: Reading...
+module.eks.module.kms.data.aws_caller_identity.current[0]: Reading...
+module.ebs_csi.data.aws_partition.current: Reading...
+module.ebs_csi.data.aws_region.current: Read complete after 0s [id=ap-south-1]
+module.ebs_csi.data.aws_partition.current: Read complete after 0s [id=aws]
+module.eks.aws_iam_role.this[0]: Refreshing state... [id=campusdesk-24bcs10053-cluster-20261017161529333600000002]
+module.eks.module.eks_managed_node_group["application"].aws_iam_role.this[0]: Refreshing state... [id=application-eks-node-group-20261017161529333600000001]
+module.eks.data.aws_iam_policy_document.custom[0]: Reading...
+module.eks.data.aws_iam_policy_document.custom[0]: Read complete after 0s [id=513122117]
+module.ebs_csi.data.aws_iam_policy_document.ebs_csi[0]: Reading...
+module.ebs_csi.data.aws_iam_policy_document.ebs_csi[0]: Read complete after 0s [id=4189668531]
+module.eks.aws_iam_policy.custom[0]: Refreshing state... [id=arn:aws:iam::273528188747:policy/campusdesk-24bcs10053-cluster-20261017161529333700000003]
+module.ebs_csi.data.aws_caller_identity.current: Read complete after 0s [id=273528188747]
+module.ebs_csi.aws_iam_policy.ebs_csi[0]: Refreshing state... [id=arn:aws:iam::273528188747:policy/AmazonEKS_EBS_CSI_Policy-20261017161529334100000004]
+module.eks.data.aws_caller_identity.current[0]: Read complete after 0s [id=273528188747]
+module.eks.data.aws_iam_session_context.current[0]: Reading...
+module.eks.data.aws_iam_session_context.current[0]: Read complete after 0s [id=arn:aws:iam::273528188747:user/command-line]
+module.eks.module.eks_managed_node_group["application"].data.aws_caller_identity.current: Read complete after 0s [id=273528188747]
+module.eks.module.kms.data.aws_caller_identity.current[0]: Read complete after 0s [id=273528188747]
+data.aws_availability_zones.available: Read complete after 3s [id=ap-south-1]
+module.vpc.aws_default_route_table.default[0]: Refreshing state... [id=rtb-01e947448315617c6]
+module.vpc.aws_default_security_group.this[0]: Refreshing state... [id=sg-0b153177fcf3460ae]
+module.vpc.aws_subnet.public[0]: Refreshing state... [id=subnet-03873c649a0a04ca5]
+module.vpc.aws_subnet.public[1]: Refreshing state... [id=subnet-08e8767f5ffb9716b]
+module.eks.aws_security_group.cluster[0]: Refreshing state... [id=sg-05379c2f7d8c97706]
+module.vpc.aws_default_network_acl.this[0]: Refreshing state... [id=acl-0fd41b3ac6707a3a7]
+module.vpc.aws_internet_gateway.this[0]: Refreshing state... [id=igw-0ea54508805700169]
+module.eks.aws_security_group.node[0]: Refreshing state... [id=sg-063401c9d57221888]
+module.vpc.aws_route_table.public[0]: Refreshing state... [id=rtb-088e92c4909a8114f]
+module.vpc.aws_subnet.private[0]: Refreshing state... [id=subnet-02ae72237701ed2c6]
+module.vpc.aws_subnet.private[1]: Refreshing state... [id=subnet-0bb25480a9005c25e]
+module.vpc.aws_route_table.private[0]: Refreshing state... [id=rtb-0ead8381595b3ab9d]
+module.vpc.aws_eip.nat[0]: Refreshing state... [id=eipalloc-0d31c38f5b601a298]
+module.eks.aws_security_group_rule.node["ingress_cluster_6443_webhook"]: Refreshing state... [id=sgrule-2655336837]
+module.eks.aws_security_group_rule.node["ingress_cluster_8443_webhook"]: Refreshing state... [id=sgrule-2367227300]
+module.eks.aws_security_group_rule.node["ingress_self_coredns_udp"]: Refreshing state... [id=sgrule-2785238490]
+module.eks.aws_security_group_rule.node["ingress_cluster_kubelet"]: Refreshing state... [id=sgrule-3899980532]
+module.eks.aws_security_group_rule.node["ingress_self_coredns_tcp"]: Refreshing state... [id=sgrule-39648821]
+module.eks.aws_security_group_rule.node["ingress_cluster_443"]: Refreshing state... [id=sgrule-1671382884]
+module.eks.aws_security_group_rule.node["egress_all"]: Refreshing state... [id=sgrule-1978047348]
+module.eks.aws_security_group_rule.node["ingress_cluster_9443_webhook"]: Refreshing state... [id=sgrule-3921163887]
+module.eks.aws_security_group_rule.node["ingress_cluster_4443_webhook"]: Refreshing state... [id=sgrule-1460100627]
+module.eks.aws_security_group_rule.node["ingress_nodes_ephemeral"]: Refreshing state... [id=sgrule-2601454599]
+module.eks.aws_security_group_rule.cluster["ingress_nodes_443"]: Refreshing state... [id=sgrule-1001294874]
+module.vpc.aws_route_table_association.public[0]: Refreshing state... [id=rtbassoc-0e5915bfef59859c6]
+module.vpc.aws_route_table_association.public[1]: Refreshing state... [id=rtbassoc-0bfc3c13aa19aafb7]
+module.vpc.aws_route.public_internet_gateway[0]: Refreshing state... [id=r-rtb-088e92c4909a8114f1080289494]
+module.vpc.aws_route_table_association.private[1]: Refreshing state... [id=rtbassoc-001b6ee261fffd9af]
+module.vpc.aws_route_table_association.private[0]: Refreshing state... [id=rtbassoc-0e7eb13f4e782e7ce]
+module.eks.module.eks_managed_node_group["application"].aws_iam_role_policy_attachment.this["AmazonEC2ContainerRegistryReadOnly"]: Refreshing state... [id=application-eks-node-group-20261017161529333600000001-2026101716155029670000000d]
+module.eks.module.eks_managed_node_group["application"].aws_iam_role_policy_attachment.this["AmazonEKS_CNI_Policy"]: Refreshing state... [id=application-eks-node-group-20261017161529333600000001-2026101716155030470000000e]
+module.eks.module.eks_managed_node_group["application"].aws_iam_role_policy_attachment.this["AmazonEKSWorkerNodePolicy"]: Refreshing state... [id=application-eks-node-group-20261017161529333600000001-2026101716155071210000000f]
+module.eks.aws_iam_role_policy_attachment.this["AmazonEKSClusterPolicy"]: Refreshing state... [id=campusdesk-24bcs10053-cluster-20261017161529333600000002-2026101716154975890000000b]
+module.eks.aws_iam_role_policy_attachment.this["AmazonEKSVPCResourceController"]: Refreshing state... [id=campusdesk-24bcs10053-cluster-20261017161529333600000002-2026101716155015730000000c]
+module.eks.aws_iam_role_policy_attachment.custom[0]: Refreshing state... [id=campusdesk-24bcs10053-cluster-20261017161529333600000002-2026101716154959080000000a]
+module.vpc.aws_nat_gateway.this[0]: Refreshing state... [id=nat-06ca71e1cb72c7930]
+module.eks.module.kms.data.aws_iam_policy_document.this[0]: Reading...
+module.eks.module.kms.data.aws_iam_policy_document.this[0]: Read complete after 0s [id=2769740929]
+module.eks.module.kms.aws_kms_key.this[0]: Refreshing state... [id=45bc9ec7-11a2-4792-85fb-7f58ebc79f84]
+module.vpc.aws_route.private_nat_gateway[0]: Refreshing state... [id=r-rtb-0ead8381595b3ab9d1080289494]
+module.eks.module.kms.aws_kms_alias.this["cluster"]: Refreshing state... [id=alias/eks/campusdesk-24bcs10053]
+module.eks.aws_iam_policy.cluster_encryption[0]: Refreshing state... [id=arn:aws:iam::273528188747:policy/campusdesk-24bcs10053-cluster-ClusterEncryption20261017161610094200000010]
+module.eks.aws_eks_cluster.this[0]: Refreshing state... [id=campusdesk-24bcs10053]
+module.eks.aws_iam_role_policy_attachment.cluster_encryption[0]: Refreshing state... [id=campusdesk-24bcs10053-cluster-20261017161529333600000002-20261017161611241900000011]
+module.eks.aws_eks_access_entry.this["cluster_creator"]: Refreshing state... [id=campusdesk-24bcs10053:arn:aws:iam::273528188747:user/command-line]
+module.eks.data.tls_certificate.this[0]: Reading...
+module.eks.time_sleep.this[0]: Refreshing state... [id=2026-10-17T16:25:37Z]
+module.eks.module.eks_managed_node_group["application"].module.user_data.null_resource.validate_cluster_service_cidr: Refreshing state... [id=8492697909688053932]
+module.eks.module.eks_managed_node_group["application"].aws_launch_template.this[0]: Refreshing state... [id=lt-0dd6505f608da6ff8]
+module.eks.aws_eks_access_policy_association.this["cluster_creator_admin"]: Refreshing state... [id=campusdesk-24bcs10053#arn:aws:iam::273528188747:user/command-line#arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy]
+module.eks.module.eks_managed_node_group["application"].aws_eks_node_group.this[0]: Refreshing state... [id=campusdesk-24bcs10053:application-20261017162618837600000014]
+module.eks.data.tls_certificate.this[0]: Read complete after 4s [id=1e3a331631939a1ae4a625cd4244a4963dabbfa2]
+module.eks.data.aws_eks_addon_version.this["kube-proxy"]: Reading...
+module.eks.data.aws_eks_addon_version.this["vpc-cni"]: Reading...
+module.eks.data.aws_eks_addon_version.this["coredns"]: Reading...
+module.eks.data.aws_eks_addon_version.this["aws-ebs-csi-driver"]: Reading...
+module.eks.data.aws_eks_addon_version.this["kube-proxy"]: Read complete after 0s [id=kube-proxy]
+module.eks.data.aws_eks_addon_version.this["vpc-cni"]: Read complete after 0s [id=vpc-cni]
+module.eks.data.aws_eks_addon_version.this["aws-ebs-csi-driver"]: Read complete after 0s [id=aws-ebs-csi-driver]
+module.eks.data.aws_eks_addon_version.this["coredns"]: Read complete after 0s [id=coredns]
+
+Note: Objects have changed outside of Terraform
+
+Terraform detected the following changes made outside of Terraform since the
+last "terraform apply" which may have affected this plan:
+
+  # module.eks.module.eks_managed_node_group["application"].aws_eks_node_group.this[0] has changed
+  ~ resource "aws_eks_node_group" "this" {
+        id                     = "campusdesk-24bcs10053:application-20261017162618837600000014"
+      + labels                 = {}
+        tags                   = {
+            "Name" = "application"
+        }
+        # (15 unchanged attributes hidden)
+
+        # (4 unchanged blocks hidden)
+    }
+
+
+Unless you have made equivalent changes to your configuration, or ignored the
+relevant attributes using ignore_changes, the following plan may include
+actions to undo or respond to these changes.
+
+─────────────────────────────────────────────────────────────────────────────
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+ <= read (data resources)
+
+Terraform will perform the following actions:
+
+  # module.ebs_csi.data.aws_iam_policy_document.this[0] will be read during apply
+  # (config refers to values not yet known)
+ <= data "aws_iam_policy_document" "this" {
+      + id            = (known after apply)
+      + json          = (known after apply)
+      + minified_json = (known after apply)
+
+      + statement {
+          + actions = [
+              + "sts:AssumeRoleWithWebIdentity",
+            ]
+          + effect  = "Allow"
+
+          + condition {
+              + test     = "StringEquals"
+              + values   = [
+                  + "sts.amazonaws.com",
+                ]
+              + variable = (known after apply)
+            }
+          + condition {
+              + test     = "StringEquals"
+              + values   = [
+                  + "system:serviceaccount:kube-system:ebs-csi-controller-sa",
+                ]
+              + variable = (known after apply)
+            }
+
+          + principals {
+              + identifiers = [
+                  + (known after apply),
+                ]
+              + type        = "Federated"
+            }
+        }
+    }
+
+  # module.ebs_csi.aws_iam_role.this[0] will be created
+  + resource "aws_iam_role" "this" {
+      + arn                   = (known after apply)
+      + assume_role_policy    = (known after apply)
+      + create_date           = (known after apply)
+      + force_detach_policies = true
+      + id                    = (known after apply)
+      + managed_policy_arns   = (known after apply)
+      + max_session_duration  = 3600
+      + name                  = "campusdesk-24bcs10053-ebs-csi"
+      + name_prefix           = (known after apply)
+      + path                  = "/"
+      + tags_all              = {
+          + "Managed" = "Terraform"
+          + "Project" = "CampusDesk"
+          + "Roll"    = "24BCS10053"
+          + "Student" = "T. Abdul Kalam Azad"
+        }
+      + unique_id             = (known after apply)
+
+      + inline_policy (known after apply)
+    }
+
+  # module.ebs_csi.aws_iam_role_policy_attachment.ebs_csi[0] will be created
+  + resource "aws_iam_role_policy_attachment" "ebs_csi" {
+      + id         = (known after apply)
+      + policy_arn = "arn:aws:iam::273528188747:policy/AmazonEKS_EBS_CSI_Policy-20261017161529334100000004"
+      + role       = "campusdesk-24bcs10053-ebs-csi"
+    }
+
+  # module.eks.aws_eks_addon.before_compute["vpc-cni"] will be created
+  + resource "aws_eks_addon" "before_compute" {
+      + addon_name                  = "vpc-cni"
+      + addon_version               = "v1.22.4-eksbuild.3"
+      + arn                         = (known after apply)
+      + cluster_name                = "campusdesk-24bcs10053"
+      + configuration_values        = (known after apply)
+      + created_at                  = (known after apply)
+      + id                          = (known after apply)
+      + modified_at                 = (known after apply)
+      + preserve                    = true
+      + resolve_conflicts_on_create = "OVERWRITE"
+      + resolve_conflicts_on_update = "OVERWRITE"
+      + tags_all                    = {
+          + "Managed" = "Terraform"
+          + "Project" = "CampusDesk"
+          + "Roll"    = "24BCS10053"
+          + "Student" = "T. Abdul Kalam Azad"
+        }
+
+      + timeouts {}
+    }
+
+  # module.eks.aws_eks_addon.this["aws-ebs-csi-driver"] will be created
+  + resource "aws_eks_addon" "this" {
+      + addon_name                  = "aws-ebs-csi-driver"
+      + addon_version               = "v1.67.0-eksbuild.1"
+      + arn                         = (known after apply)
+      + cluster_name                = "campusdesk-24bcs10053"
+      + configuration_values        = (known after apply)
+      + created_at                  = (known after apply)
+      + id                          = (known after apply)
+      + modified_at                 = (known after apply)
+      + preserve                    = true
+      + resolve_conflicts_on_create = "OVERWRITE"
+      + resolve_conflicts_on_update = "OVERWRITE"
+      + service_account_role_arn    = (known after apply)
+      + tags_all                    = {
+          + "Managed" = "Terraform"
+          + "Project" = "CampusDesk"
+          + "Roll"    = "24BCS10053"
+          + "Student" = "T. Abdul Kalam Azad"
+        }
+
+      + timeouts {}
+    }
+
+  # module.eks.aws_eks_addon.this["coredns"] will be created
+  + resource "aws_eks_addon" "this" {
+      + addon_name                  = "coredns"
+      + addon_version               = "v1.13.2-eksbuild.51"
+      + arn                         = (known after apply)
+      + cluster_name                = "campusdesk-24bcs10053"
+      + configuration_values        = (known after apply)
+      + created_at                  = (known after apply)
+      + id                          = (known after apply)
+      + modified_at                 = (known after apply)
+      + preserve                    = true
+      + resolve_conflicts_on_create = "OVERWRITE"
+      + resolve_conflicts_on_update = "OVERWRITE"
+      + tags_all                    = {
+          + "Managed" = "Terraform"
+          + "Project" = "CampusDesk"
+          + "Roll"    = "24BCS10053"
+          + "Student" = "T. Abdul Kalam Azad"
+        }
+
+      + timeouts {}
+    }
+
+  # module.eks.aws_eks_addon.this["kube-proxy"] will be created
+  + resource "aws_eks_addon" "this" {
+      + addon_name                  = "kube-proxy"
+      + addon_version               = "v1.35.3-eksbuild.52"
+      + arn                         = (known after apply)
+      + cluster_name                = "campusdesk-24bcs10053"
+      + configuration_values        = (known after apply)
+      + created_at                  = (known after apply)
+      + id                          = (known after apply)
+      + modified_at                 = (known after apply)
+      + preserve                    = true
+      + resolve_conflicts_on_create = "OVERWRITE"
+      + resolve_conflicts_on_update = "OVERWRITE"
+      + tags_all                    = {
+          + "Managed" = "Terraform"
+          + "Project" = "CampusDesk"
+          + "Roll"    = "24BCS10053"
+          + "Student" = "T. Abdul Kalam Azad"
+        }
+
+      + timeouts {}
+    }
+
+  # module.eks.aws_iam_openid_connect_provider.oidc_provider[0] will be created
+  + resource "aws_iam_openid_connect_provider" "oidc_provider" {
+      + arn             = (known after apply)
+      + client_id_list  = [
+          + "sts.amazonaws.com",
+        ]
+      + id              = (known after apply)
+      + tags            = {
+          + "Name" = "campusdesk-24bcs10053-eks-irsa"
+        }
+      + tags_all        = {
+          + "Managed" = "Terraform"
+          + "Name"    = "campusdesk-24bcs10053-eks-irsa"
+          + "Project" = "CampusDesk"
+          + "Roll"    = "24BCS10053"
+          + "Student" = "T. Abdul Kalam Azad"
+        }
+      + thumbprint_list = [
+          + "06b25927c42a721631c1efd9431e648fa62e1e39",
+        ]
+      + url             = "https://oidc.eks.ap-south-1.amazonaws.com/id/17A97D1EDC6A03E029DF50B9D0E563CE"
+    }
+
+Plan: 7 to add, 0 to change, 0 to destroy.
+module.eks.aws_iam_openid_connect_provider.oidc_provider[0]: Creating...
+module.eks.aws_iam_openid_connect_provider.oidc_provider[0]: Creation complete after 2s [id=arn:aws:iam::273528188747:oidc-provider/oidc.eks.ap-south-1.amazonaws.com/id/17A97D1EDC6A03E029DF50B9D0E563CE]
+module.ebs_csi.data.aws_iam_policy_document.this[0]: Reading...
+module.ebs_csi.data.aws_iam_policy_document.this[0]: Read complete after 0s [id=716397953]
+module.ebs_csi.aws_iam_role.this[0]: Creating...
+module.ebs_csi.aws_iam_role.this[0]: Creation complete after 1s [id=campusdesk-24bcs10053-ebs-csi]
+module.ebs_csi.aws_iam_role_policy_attachment.ebs_csi[0]: Creating...
+module.eks.aws_eks_addon.before_compute["vpc-cni"]: Creating...
+module.eks.aws_eks_addon.this["kube-proxy"]: Creating...
+module.eks.aws_eks_addon.this["coredns"]: Creating...
+module.eks.aws_eks_addon.this["aws-ebs-csi-driver"]: Creating...
+module.ebs_csi.aws_iam_role_policy_attachment.ebs_csi[0]: Creation complete after 0s [id=campusdesk-24bcs10053-ebs-csi-20261017162838809600000005]
+module.eks.aws_eks_addon.before_compute["vpc-cni"]: Still creating... [10s elapsed]
+module.eks.aws_eks_addon.this["aws-ebs-csi-driver"]: Still creating... [10s elapsed]
+module.eks.aws_eks_addon.this["kube-proxy"]: Still creating... [10s elapsed]
+module.eks.aws_eks_addon.this["coredns"]: Still creating... [10s elapsed]
+module.eks.aws_eks_addon.this["coredns"]: Creation complete after 14s [id=campusdesk-24bcs10053:coredns]
+module.eks.aws_eks_addon.this["kube-proxy"]: Still creating... [20s elapsed]
+module.eks.aws_eks_addon.this["aws-ebs-csi-driver"]: Still creating... [20s elapsed]
+module.eks.aws_eks_addon.before_compute["vpc-cni"]: Still creating... [20s elapsed]
+module.eks.aws_eks_addon.this["kube-proxy"]: Creation complete after 24s [id=campusdesk-24bcs10053:kube-proxy]
+module.eks.aws_eks_addon.before_compute["vpc-cni"]: Still creating... [30s elapsed]
+module.eks.aws_eks_addon.this["aws-ebs-csi-driver"]: Still creating... [30s elapsed]
+module.eks.aws_eks_addon.before_compute["vpc-cni"]: Creation complete after 34s [id=campusdesk-24bcs10053:vpc-cni]
+module.eks.aws_eks_addon.this["aws-ebs-csi-driver"]: Still creating... [40s elapsed]
+module.eks.aws_eks_addon.this["aws-ebs-csi-driver"]: Creation complete after 44s [id=campusdesk-24bcs10053:aws-ebs-csi-driver]
+
+Apply complete! Resources: 7 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+cluster_endpoint = "https://17A97D1EDC6A03E029DF50B9D0E563CE.gr7.ap-south-1.eks.amazonaws.com"
+cluster_name = "campusdesk-24bcs10053"
+cluster_version = "1.35"
+configure_kubectl = "aws eks update-kubeconfig --region ap-south-1 --name campusdesk-24bcs10053 --alias campusdesk-24bcs10053"
+kubectl_context = "campusdesk-24bcs10053"
+nat_gateway_ids = [
+  "nat-06ca71e1cb72c7930",
+]
+node_group_names = {
+  "application" = "application-20261017162618837600000014"
+}
+private_subnet_ids = [
+  "subnet-02ae72237701ed2c6",
+  "subnet-0bb25480a9005c25e",
+]
+public_subnet_ids = [
+  "subnet-03873c649a0a04ca5",
+  "subnet-08e8767f5ffb9716b",
+]
+region = "ap-south-1"
+vpc_id = "vpc-09f58b5fefcde394e"

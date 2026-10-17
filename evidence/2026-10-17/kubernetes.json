@@ -1,0 +1,17 @@
+{
+  "capturedAt": "2026-10-17T16:40:20.661482+00:00",
+  "finishedAt": "2026-10-17T16:40:20.837415+00:00",
+  "command": [
+    "kubectl",
+    "--context",
+    "kind-campusdesk",
+    "-n",
+    "campusdesk",
+    "get",
+    "pods,svc,ingress,hpa"
+  ],
+  "cwd": "/Users/abdulkalamazad/Documents/campusdesk-devops-capstone",
+  "exitCode": 0,
+  "durationSeconds": 0.18,
+  "stdout": "NAME                             READY   STATUS    RESTARTS   AGE\npod/backend-7f887b5554-k2hv7     1/1     Running   0          4m56s\npod/backend-7f887b5554-rsf4s     1/1     Running   0          5m2s\npod/frontend-8497dff4cd-hkk4c    1/1     Running   0          4m56s\npod/frontend-8497dff4cd-w449x    1/1     Running   0          5m2s\npod/grafana-8669bc84f9-s5wwl     1/1     Running   0          24m\npod/postgres-0                   1/1     Running   0          24m\npod/prometheus-dfbc7cbf4-flrpv   1/1     Running   0          24m\n\nNAME                      TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE\nservice/backend           ClusterIP   10.96.176.50    <none>        8000/TCP         24m\nservice/backend-metrics   ClusterIP   None            <none>        8000/TCP         24m\nservice/frontend          ClusterIP   10.96.102.5     <none>        8080/TCP         24m\nservice/grafana           NodePort    10.96.23.104    <none>        3000:30300/TCP   24m\nservice/postgres          ClusterIP   None            <none>        5432/TCP         24m\nservice/prometheus        NodePort    10.96.135.137   <none>        9090:30900/TCP   24m\n\nNAME                                   CLASS     HOSTS                  ADDRESS     PORTS   AGE\ningress.networking.k8s.io/campusdesk   traefik   campusdesk.localhost   127.0.0.1   80      24m\n\nNAME                                          REFERENCE            TARGETS       MINPODS   MAXPODS   REPLICAS   AGE\nhorizontalpodautoscaler.autoscaling/backend   Deployment/backend   cpu: 4%/70%   2         4         2          24m\n"
+}

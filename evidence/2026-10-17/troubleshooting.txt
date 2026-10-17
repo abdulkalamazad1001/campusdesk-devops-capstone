@@ -1,0 +1,317 @@
+Captured 2026-10-17T16:25:48.454656+00:00
+
+$ kubectl --context kind-campusdesk -n campusdesk apply -f troubleshooting/broken-service.yaml
+service/broken-backend-demo created
+
+Exit code: 0
+
+$ kubectl --context kind-campusdesk -n campusdesk get service broken-backend-demo -o yaml
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"broken-backend-demo","namespace":"campusdesk"},"spec":{"ports":[{"port":8000,"targetPort":8000}],"selector":{"app":"nonexistent-backend"}}}
+  creationTimestamp: "2026-10-17T16:25:48Z"
+  name: broken-backend-demo
+  namespace: campusdesk
+  resourceVersion: "2232"
+  uid: 25873f1b-f0fa-4b5e-8d61-00464e60bd28
+spec:
+  clusterIP: 10.96.105.118
+  clusterIPs:
+  - 10.96.105.118
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - port: 8000
+    protocol: TCP
+    targetPort: 8000
+  selector:
+    app: nonexistent-backend
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
+
+Exit code: 0
+
+$ kubectl --context kind-campusdesk -n campusdesk get endpointslices -l kubernetes.io/service-name=broken-backend-demo -o json
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "addressType": "IPv4",
+            "apiVersion": "discovery.k8s.io/v1",
+            "endpoints": null,
+            "kind": "EndpointSlice",
+            "metadata": {
+                "annotations": {
+                    "endpoints.kubernetes.io/last-change-trigger-time": "2026-10-17T16:25:48Z"
+                },
+                "creationTimestamp": "2026-10-17T16:25:48Z",
+                "generateName": "broken-backend-demo-",
+                "generation": 1,
+                "labels": {
+                    "endpointslice.kubernetes.io/managed-by": "endpointslice-controller.k8s.io",
+                    "kubernetes.io/service-name": "broken-backend-demo"
+                },
+                "name": "broken-backend-demo-9mc97",
+                "namespace": "campusdesk",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "Service",
+                        "name": "broken-backend-demo",
+                        "uid": "25873f1b-f0fa-4b5e-8d61-00464e60bd28"
+                    }
+                ],
+                "resourceVersion": "2234",
+                "uid": "04562b57-054f-4488-8152-c7dcd5ea0e09"
+            },
+            "ports": null
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
+
+Exit code: 0
+
+$ kubectl --context kind-campusdesk -n campusdesk set selector service/broken-backend-demo app=backend
+service/broken-backend-demo selector updated
+
+Exit code: 0
+
+$ kubectl --context kind-campusdesk -n campusdesk get endpointslices -l kubernetes.io/service-name=broken-backend-demo -o json
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "addressType": "IPv4",
+            "apiVersion": "discovery.k8s.io/v1",
+            "endpoints": [
+                {
+                    "addresses": [
+                        "10.244.0.18"
+                    ],
+                    "conditions": {
+                        "ready": true,
+                        "serving": true,
+                        "terminating": false
+                    },
+                    "nodeName": "campusdesk-control-plane",
+                    "targetRef": {
+                        "kind": "Pod",
+                        "name": "backend-65db84898d-px689",
+                        "namespace": "campusdesk",
+                        "uid": "2c8256cb-ab42-4aa1-9d39-7aaa230bbc91"
+                    }
+                },
+                {
+                    "addresses": [
+                        "10.244.0.9"
+                    ],
+                    "conditions": {
+                        "ready": true,
+                        "serving": true,
+                        "terminating": false
+                    },
+                    "nodeName": "campusdesk-control-plane",
+                    "targetRef": {
+                        "kind": "Pod",
+                        "name": "backend-65db84898d-rljrz",
+                        "namespace": "campusdesk",
+                        "uid": "50b7bcab-d5d6-429b-86cc-53acd03d854b"
+                    }
+                },
+                {
+                    "addresses": [
+                        "10.244.0.7"
+                    ],
+                    "conditions": {
+                        "ready": true,
+                        "serving": true,
+                        "terminating": false
+                    },
+                    "nodeName": "campusdesk-control-plane",
+                    "targetRef": {
+                        "kind": "Pod",
+                        "name": "backend-65db84898d-glb5p",
+                        "namespace": "campusdesk",
+                        "uid": "5a6efa2e-b0ad-46e0-afea-50a5241946a7"
+                    }
+                },
+                {
+                    "addresses": [
+                        "10.244.0.17"
+                    ],
+                    "conditions": {
+                        "ready": true,
+                        "serving": true,
+                        "terminating": false
+                    },
+                    "nodeName": "campusdesk-control-plane",
+                    "targetRef": {
+                        "kind": "Pod",
+                        "name": "backend-65db84898d-pz6hn",
+                        "namespace": "campusdesk",
+                        "uid": "a7585630-9842-4ce7-bbb8-73fc64c784af"
+                    }
+                }
+            ],
+            "kind": "EndpointSlice",
+            "metadata": {
+                "annotations": {
+                    "endpoints.kubernetes.io/last-change-trigger-time": "2026-10-17T16:19:05Z"
+                },
+                "creationTimestamp": "2026-10-17T16:25:48Z",
+                "generateName": "broken-backend-demo-",
+                "generation": 2,
+                "labels": {
+                    "endpointslice.kubernetes.io/managed-by": "endpointslice-controller.k8s.io",
+                    "kubernetes.io/service-name": "broken-backend-demo"
+                },
+                "name": "broken-backend-demo-9mc97",
+                "namespace": "campusdesk",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "Service",
+                        "name": "broken-backend-demo",
+                        "uid": "25873f1b-f0fa-4b5e-8d61-00464e60bd28"
+                    }
+                ],
+                "resourceVersion": "2237",
+                "uid": "04562b57-054f-4488-8152-c7dcd5ea0e09"
+            },
+            "ports": [
+                {
+                    "name": "",
+                    "port": 8000,
+                    "protocol": "TCP"
+                }
+            ]
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
+
+Exit code: 0
+
+$ kubectl --context kind-campusdesk -n campusdesk apply -f troubleshooting/broken-image.yaml
+deployment.apps/broken-image-demo created
+
+Exit code: 0
+
+$ kubectl --context kind-campusdesk -n campusdesk get pods -l app=broken-image-demo
+NAME                                 READY   STATUS         RESTARTS   AGE
+broken-image-demo-7c997dc496-vfd82   0/1     ErrImagePull   0          11s
+
+Exit code: 0
+
+$ kubectl --context kind-campusdesk -n campusdesk describe pods -l app=broken-image-demo
+Name:             broken-image-demo-7c997dc496-vfd82
+Namespace:        campusdesk
+Priority:         0
+Service Account:  default
+Node:             campusdesk-control-plane/172.30.0.2
+Start Time:       Sat, 17 Oct 2026 21:55:50 +0530
+Labels:           app=broken-image-demo
+                  pod-template-hash=7c997dc496
+Annotations:      <none>
+Status:           Pending
+IP:               10.244.0.20
+IPs:
+  IP:           10.244.0.20
+Controlled By:  ReplicaSet/broken-image-demo-7c997dc496
+Containers:
+  demo:
+    Container ID:   
+    Image:          nginx:campusdesk-intentionally-missing-tag
+    Image ID:       
+    Port:           <none>
+    Host Port:      <none>
+    State:          Waiting
+      Reason:       ErrImagePull
+    Ready:          False
+    Restart Count:  0
+    Limits:
+      cpu:     100m
+      memory:  64Mi
+    Requests:
+      cpu:        10m
+      memory:     32Mi
+    Environment:  <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-zjwdz (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-zjwdz:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason     Age   From               Message
+  ----     ------     ----  ----               -------
+  Normal   Scheduled  11s   default-scheduler  Successfully assigned campusdesk/broken-image-demo-7c997dc496-vfd82 to campusdesk-control-plane
+  Normal   Pulling    10s   kubelet            spec.containers{demo}: Pulling image "nginx:campusdesk-intentionally-missing-tag"
+  Warning  Failed     2s    kubelet            spec.containers{demo}: Failed to pull image "nginx:campusdesk-intentionally-missing-tag": failed to pull and unpack image "docker.io/library/nginx:campusdesk-intentionally-missing-tag": failed to resolve reference "docker.io/library/nginx:campusdesk-intentionally-missing-tag": failed to do request: Head "https://registry-1.docker.io/v2/library/nginx/manifests/campusdesk-intentionally-missing-tag": dial tcp: lookup registry-1.docker.io on 192.168.65.254:53: server misbehaving
+  Warning  Failed     2s    kubelet            spec.containers{demo}: Error: ErrImagePull
+  Normal   BackOff    2s    kubelet            spec.containers{demo}: Back-off pulling image "nginx:campusdesk-intentionally-missing-tag"
+  Warning  Failed     2s    kubelet            spec.containers{demo}: Error: ImagePullBackOff
+
+Exit code: 0
+
+$ kubectl --context kind-campusdesk -n campusdesk set image deployment/broken-image-demo demo=campusdesk-frontend:local
+deployment.apps/broken-image-demo image updated
+
+Exit code: 0
+
+$ kubectl --context kind-campusdesk -n campusdesk rollout status deployment/broken-image-demo --timeout=120s
+Waiting for deployment "broken-image-demo" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "broken-image-demo" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "broken-image-demo" rollout to finish: 1 old replicas are pending termination...
+deployment "broken-image-demo" successfully rolled out
+
+Exit code: 0
+
+$ kubectl --context kind-campusdesk -n campusdesk get pods -l app=broken-image-demo
+NAME                                 READY   STATUS        RESTARTS   AGE
+broken-image-demo-79c8ffc855-9mjgn   1/1     Running       0          0s
+broken-image-demo-7c997dc496-vfd82   0/1     Terminating   0          11s
+
+Exit code: 0
+
+$ kubectl --context kind-campusdesk -n campusdesk delete service broken-backend-demo --ignore-not-found
+service "broken-backend-demo" deleted from campusdesk namespace
+
+Exit code: 0
+
+$ kubectl --context kind-campusdesk -n campusdesk delete deployment broken-image-demo --ignore-not-found
+deployment.apps "broken-image-demo" deleted from campusdesk namespace
+
+Exit code: 0

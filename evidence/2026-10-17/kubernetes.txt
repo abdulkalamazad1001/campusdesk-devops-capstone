@@ -1,0 +1,27 @@
+Captured at: 2026-10-17T16:40:20.661482+00:00
+Command: kubectl --context kind-campusdesk -n campusdesk get pods,svc,ingress,hpa
+Exit code: 0
+Duration: 0.18s
+
+NAME                             READY   STATUS    RESTARTS   AGE
+pod/backend-7f887b5554-k2hv7     1/1     Running   0          4m56s
+pod/backend-7f887b5554-rsf4s     1/1     Running   0          5m2s
+pod/frontend-8497dff4cd-hkk4c    1/1     Running   0          4m56s
+pod/frontend-8497dff4cd-w449x    1/1     Running   0          5m2s
+pod/grafana-8669bc84f9-s5wwl     1/1     Running   0          24m
+pod/postgres-0                   1/1     Running   0          24m
+pod/prometheus-dfbc7cbf4-flrpv   1/1     Running   0          24m
+
+NAME                      TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+service/backend           ClusterIP   10.96.176.50    <none>        8000/TCP         24m
+service/backend-metrics   ClusterIP   None            <none>        8000/TCP         24m
+service/frontend          ClusterIP   10.96.102.5     <none>        8080/TCP         24m
+service/grafana           NodePort    10.96.23.104    <none>        3000:30300/TCP   24m
+service/postgres          ClusterIP   None            <none>        5432/TCP         24m
+service/prometheus        NodePort    10.96.135.137   <none>        9090:30900/TCP   24m
+
+NAME                                   CLASS     HOSTS                  ADDRESS     PORTS   AGE
+ingress.networking.k8s.io/campusdesk   traefik   campusdesk.localhost   127.0.0.1   80      24m
+
+NAME                                          REFERENCE            TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+horizontalpodautoscaler.autoscaling/backend   Deployment/backend   cpu: 4%/70%   2         4         2          24m

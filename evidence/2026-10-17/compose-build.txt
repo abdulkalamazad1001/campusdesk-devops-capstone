@@ -1,0 +1,160 @@
+Captured at: 2026-10-17T16:15:09.706651+00:00
+Command: docker compose up --build -d --wait
+Exit code: 0
+Duration: 34.85s
+
+ Image campusdesk-frontend:local Building 
+ Image campusdesk-backend:local Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.12kB done
+#1 DONE 0.0s
+
+#2 [backend internal] load build definition from Dockerfile
+#2 transferring dockerfile: 668B done
+#2 DONE 0.0s
+
+#3 [frontend internal] load build definition from Dockerfile
+#3 transferring dockerfile: 412B done
+#3 DONE 0.0s
+
+#4 [frontend internal] load metadata for docker.io/library/node:24-alpine
+#4 DONE 0.5s
+
+#5 [frontend internal] load metadata for docker.io/nginxinc/nginx-unprivileged:stable-alpine
+#5 DONE 1.0s
+
+#6 [backend internal] load metadata for docker.io/library/python:3.13-alpine
+#6 DONE 1.0s
+
+#7 [frontend internal] load .dockerignore
+#7 transferring context: 69B done
+#7 DONE 0.0s
+
+#8 [backend internal] load .dockerignore
+#8 transferring context: 100B done
+#8 DONE 0.0s
+
+#9 [backend internal] load build context
+#9 transferring context: 944B done
+#9 DONE 0.0s
+
+#10 [frontend stage-1 1/3] FROM docker.io/nginxinc/nginx-unprivileged:stable-alpine@sha256:782bb89768cc87b7f95c18b95baa1af250e5d451f26794f59363540161147c01
+#10 resolve docker.io/nginxinc/nginx-unprivileged:stable-alpine@sha256:782bb89768cc87b7f95c18b95baa1af250e5d451f26794f59363540161147c01 0.0s done
+#10 DONE 0.0s
+
+#11 [frontend build 1/6] FROM docker.io/library/node:24-alpine@sha256:44fce696f38ba8c987c4db89954051000bbd05ffd8d8659ba15ed4a8602e937f
+#11 resolve docker.io/library/node:24-alpine@sha256:44fce696f38ba8c987c4db89954051000bbd05ffd8d8659ba15ed4a8602e937f 0.0s done
+#11 DONE 0.0s
+
+#12 [backend 1/7] FROM docker.io/library/python:3.13-alpine@sha256:2d9aefe2fef018a7eb2c13064c89c71929800fd2e5dccdbf52ea5da5bb8d929a
+#12 resolve docker.io/library/python:3.13-alpine@sha256:2d9aefe2fef018a7eb2c13064c89c71929800fd2e5dccdbf52ea5da5bb8d929a 0.0s done
+#12 DONE 0.0s
+
+#13 [backend 2/7] WORKDIR /app
+#13 CACHED
+
+#14 [backend 6/7] COPY --chown=10001:10001 alembic ./alembic
+#14 CACHED
+
+#15 [backend 3/7] COPY requirements.txt .
+#15 CACHED
+
+#16 [backend 5/7] COPY --chown=10001:10001 app ./app
+#16 CACHED
+
+#17 [backend 4/7] RUN apk upgrade --no-cache     && pip install --no-cache-dir -r requirements.txt     && pip uninstall --yes pip     && adduser -D -u 10001 app
+#17 CACHED
+
+#18 [frontend internal] load build context
+#18 transferring context: 381B done
+#18 DONE 0.0s
+
+#19 [backend 7/7] COPY --chown=10001:10001 alembic.ini .
+#19 CACHED
+
+#20 [frontend build 5/6] COPY . .
+#20 CACHED
+
+#21 [frontend build 2/6] WORKDIR /app
+#21 CACHED
+
+#22 [frontend stage-1 2/3] COPY nginx.conf /etc/nginx/conf.d/default.conf
+#22 CACHED
+
+#23 [frontend build 6/6] RUN npm run build
+#23 CACHED
+
+#24 [frontend build 4/6] RUN npm ci
+#24 CACHED
+
+#25 [frontend build 3/6] COPY package*.json ./
+#25 CACHED
+
+#26 [frontend stage-1 3/3] COPY --from=build /app/dist /usr/share/nginx/html
+#26 CACHED
+
+#27 [backend] exporting to image
+#27 exporting layers done
+#27 exporting manifest sha256:4da330747633003cad33fddc4f6efa4bd784c3f04620eed603d8ad9e58b0943f done
+#27 exporting config sha256:9ee1bac7bd0faa0f986b6a0d4ee0263cb2282cb0cb34c5384b8fa008b1dbf77f done
+#27 exporting attestation manifest sha256:aaee3e286ddc380554441fa0cc23d26465d4bcd8218eafcdf191832e47c80bd3 done
+#27 exporting manifest list sha256:7d7f9dd6dd5fbad016286107a4507d6742c9b00e52560a171d4e45c7904a255b done
+#27 naming to docker.io/library/campusdesk-backend:local done
+#27 unpacking to docker.io/library/campusdesk-backend:local done
+#27 DONE 0.0s
+
+#28 [frontend] exporting to image
+#28 exporting layers done
+#28 exporting manifest sha256:5d44c7a8f21507b63eaad7c8433f876f64cd1f37ffe1a11bbf3ee54e75b5a500 done
+#28 exporting config sha256:63842cddc12d443c47884532c71bf3144be5a87f6cac0dc06ad4f8bb9834a9ee done
+#28 exporting attestation manifest sha256:77aa29b68e43d030236ffa0f2f7a10e121040ca1e1ebe5642649660766e7b7e4 done
+#28 exporting manifest list sha256:cc305b14eff29df24f42f276427be6ae97c2b4383eb25f82e8e9140ee9d6376b done
+#28 naming to docker.io/library/campusdesk-frontend:local done
+#28 unpacking to docker.io/library/campusdesk-frontend:local done
+#28 DONE 0.1s
+
+#29 [backend] resolving provenance for metadata file
+#29 DONE 0.0s
+
+#30 [frontend] resolving provenance for metadata file
+#30 DONE 0.0s
+ Image campusdesk-backend:local Built 
+ Image campusdesk-frontend:local Built 
+ Volume campusdesk_postgres-data Creating 
+ Network campusdesk_default Creating 
+ Volume campusdesk_postgres-data Creating 
+ Network campusdesk_default Creating 
+ Volume campusdesk_postgres-data Created 
+ Volume campusdesk_postgres-data Created 
+ Network campusdesk_default Created 
+ Network campusdesk_default Created 
+ Container campusdesk-postgres-1 Creating 
+ Container campusdesk-postgres-1 Created 
+ Container campusdesk-migrate-1 Creating 
+ Container campusdesk-migrate-1 Created 
+ Container campusdesk-backend-1 Creating 
+ Container campusdesk-backend-1 Created 
+ Container campusdesk-frontend-1 Creating 
+ Container campusdesk-frontend-1 Created 
+ Container campusdesk-postgres-1 Starting 
+ Container campusdesk-postgres-1 Started 
+ Container campusdesk-postgres-1 Waiting 
+ Container campusdesk-postgres-1 Healthy 
+ Container campusdesk-migrate-1 Starting 
+ Container campusdesk-migrate-1 Started 
+ Container campusdesk-migrate-1 Waiting 
+ Container campusdesk-migrate-1 Exited 
+ Container campusdesk-backend-1 Starting 
+ Container campusdesk-backend-1 Started 
+ Container campusdesk-backend-1 Waiting 
+ Container campusdesk-backend-1 Healthy 
+ Container campusdesk-frontend-1 Starting 
+ Container campusdesk-frontend-1 Started 
+ Container campusdesk-backend-1 Waiting 
+ Container campusdesk-frontend-1 Waiting 
+ Container campusdesk-postgres-1 Waiting 
+ Container campusdesk-migrate-1 Waiting 
+ Container campusdesk-migrate-1 Exited 
+ Container campusdesk-backend-1 Healthy 
+ Container campusdesk-postgres-1 Healthy 
+ Container campusdesk-frontend-1 Healthy 

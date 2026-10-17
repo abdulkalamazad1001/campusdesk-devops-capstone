@@ -1,0 +1,16 @@
+{
+  "capturedAt": "2026-10-17T16:22:32.896648+00:00",
+  "finishedAt": "2026-10-17T16:24:33.855139+00:00",
+  "command": [
+    "python3",
+    "scripts/load.py",
+    "--seconds",
+    "120",
+    "--workers",
+    "16"
+  ],
+  "cwd": "/Users/abdulkalamazad/Documents/campusdesk-devops-capstone",
+  "exitCode": 0,
+  "durationSeconds": 120.96,
+  "stdout": "Successful requests: 31274; failed requests: 0\n"
+}

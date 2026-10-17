@@ -1,0 +1,8 @@
+Captured at: 2026-10-17T16:29:39.078398+00:00
+Command: kubectl --context campusdesk-24bcs10053 get nodes -o wide
+Exit code: 0
+Duration: 1.15s
+
+NAME                                          STATUS   ROLES    AGE     VERSION               INTERNAL-IP    EXTERNAL-IP   OS-IMAGE                        KERNEL-VERSION                     CONTAINER-RUNTIME
+ip-10-42-11-120.ap-south-1.compute.internal   Ready    <none>   2m22s   v1.35.8-eks-b9510e3   10.42.11.120   <none>        Amazon Linux 2023.12.20261012   6.12.111-136.204.amzn2023.x86_64   containerd://2.3.5+unknown
+ip-10-42-12-146.ap-south-1.compute.internal   Ready    <none>   2m21s   v1.35.8-eks-b9510e3   10.42.12.146   <none>        Amazon Linux 2023.12.20261012   6.12.111-136.204.amzn2023.x86_64   containerd://2.3.5+unknown

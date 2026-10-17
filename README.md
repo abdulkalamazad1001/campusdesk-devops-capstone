@@ -25,6 +25,14 @@ implementation for the DevOps capstone, using the course architecture.
 Other guides: [demo script](demo/VIDEO-SCRIPT.md) | [evidence](evidence/README.md) |
 [troubleshooting exercises](troubleshooting/README.md) | [security gates](security/README.md)
 
+The [17 October verification record](evidence/2026-10-17/README.md) contains the
+current Compose, Kind, AWS EKS, browser, autoscaling and monitoring results.
+[Run 39049385857](https://github.com/abdulkalamazad1001/campusdesk-devops-capstone/actions/runs/39049385857)
+passed native AMD64 and ARM64 tests, scans and Helm/browser checks before publishing
+the multi-platform release. The app's DM Sans font is bundled locally with its
+[SIL Open Font License](frontend/public/fonts/OFL.txt), so rendering does not depend
+on an external font service.
+
 ![CampusDesk running through local Kubernetes Ingress](evidence/application-ingress.png)
 
 ## Architecture
@@ -357,6 +365,20 @@ first, so `terraform destroy` cannot hang on them. The full step-by-step
 [AWS runbook](terraform/README.md) covers prerequisites, cost, deploying the app to
 EKS, screenshots and cleanup checks.
 
+On macOS/Linux, after applying Terraform and configuring AWS authentication:
+
+```bash
+bash scripts/aws-k8s.sh
+# Capture the live deployment before cleanup.
+cd terraform
+bash scripts/pre-destroy.sh --yes
+terraform destroy
+```
+
+The deployment script reads the cluster and region from Terraform outputs, uses
+an explicit Kubernetes context, creates random secrets in memory, and deploys the
+published SHA-tagged images. Keep the Terraform state until cleanup is verified.
+
 ## Known Limits
 
 - This is a classroom helpdesk with no authentication/RBAC; keep it local or add
@@ -375,4 +397,5 @@ EKS, screenshots and cleanup checks.
 - [Current project brief](https://github.com/Nency-Ravaliya/devsecops-python/blob/main/README.md)
 - [Grading rubric](https://github.com/Nency-Ravaliya/devsecops-python/blob/main/GRADING.md)
 - [Submission instructions](https://github.com/Nency-Ravaliya/devsecops-python/blob/main/SUBMISSION.md)
+- Bundled font: [DM Sans from Google Fonts](https://github.com/google/fonts/tree/main/ofl/dmsans), distributed under the included SIL Open Font License.
 - Campus photograph: [Unsplash source image](https://images.unsplash.com/photo-1523240795612-9a054b0db644), used as illustrative campus imagery.

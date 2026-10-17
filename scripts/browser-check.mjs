@@ -8,7 +8,8 @@ const { chromium } = require('playwright');
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const evidence = process.env.EVIDENCE_DIR || path.join(root, 'evidence');
 await fs.mkdir(evidence, { recursive: true });
-const browser = await chromium.launch({headless: true});
+const browser = await chromium.launch({headless: true,
+  args: process.env.CHROMIUM_RESOLVER_RULES ? [`--host-resolver-rules=${process.env.CHROMIUM_RESOLVER_RULES}`] : []});
 const context = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
 const page = await context.newPage();
 const errors = [];
